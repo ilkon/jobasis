@@ -5,7 +5,7 @@ class Publisher < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { in: 2..250 }
 
-  strip_attributes
+  strip_attributes :name
 
   default_scope { order(:name) }
 end

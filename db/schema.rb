@@ -25,16 +25,15 @@ ActiveRecord::Schema.define(version: 2018_11_22_190935) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "publisher_id", null: false
-    t.string "publisher_key"
-    t.datetime "published_at"
+    t.string "publisher_key", null: false
+    t.datetime "published_at", null: false
+    t.text "raw_text"
     t.bigint "employer_id"
     t.string "author"
-    t.text "text"
     t.jsonb "features", default: {}, null: false
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employer_id"], name: "index_posts_on_employer_id"
-    t.index ["publisher_id"], name: "index_posts_on_publisher_id"
   end
 
   create_table "publishers", force: :cascade do |t|
