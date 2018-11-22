@@ -10,7 +10,7 @@ gem 'react-rails'
 gem 'haml-rails'
 gem 'uglifier'
 gem 'turbolinks'
-gem 'sqlite3'
+gem 'pg'
 
 gem 'mini_racer', platforms: :ruby
 
