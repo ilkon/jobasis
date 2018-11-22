@@ -25,3 +25,4 @@ Bundler/OrderedGems:
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - 'db/schema.rb'

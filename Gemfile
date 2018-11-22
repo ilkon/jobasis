@@ -12,6 +12,10 @@ gem 'uglifier'
 gem 'turbolinks'
 gem 'pg'
 
+gem 'typhoeus'
+gem 'ffaker'
+gem 'strip_attributes'
+
 gem 'mini_racer', platforms: :ruby
 
 # Reduces boot times through caching; required in config/boot.rb
