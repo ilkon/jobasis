@@ -2,10 +2,12 @@
 
 FactoryBot.define do
   factory :post do
-    publisher_id { 1 }
-    publisher_key { 'MyString' }
-    employer_id { 1 }
-    text { 'MyText' }
-    features { '' }
+    association   :publisher, strategy: :build
+    association   :employer, strategy: :build
+    publisher_key { FFaker::Guid.guid }
+    published_at  { Time.now - rand(10).days }
+    raw_text      { FFaker::Lorem.paragraphs.join("\n") }
+    date          { published_at.to_date }
+    features      { '{}' }
   end
 end

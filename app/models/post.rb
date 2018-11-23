@@ -3,17 +3,21 @@
 class Post < ApplicationRecord
   include Partitionable
 
-  validates_presence_of :publisher_id
-  validates_presence_of :publisher_key
-  validates_presence_of :published_at
-  validates_presence_of :raw_text
-  validates_presence_of :date
+  belongs_to :publisher
+  belongs_to :employer
+
+  validates :publisher, presence: true
+  validates :publisher_key, presence: true, uniqueness: { scope: :publisher_id }
+  validates :published_at, presence: true
+
+  validates :raw_text, presence: true
+  validates :date, presence: true
 
   serialize :features, ObjectToJsonbSerializer
 
   class << self
     def create_indexes(schema, table)
-      connection.execute("CREATE INDEX #{table}_publisher_id ON #{schema}.#{table} (publisher_id)")
+      connection.execute("CREATE UNIQUE INDEX #{table}_publisher ON #{schema}.#{table} (publisher_id, publisher_key)")
       connection.execute("CREATE INDEX #{table}_employer_id ON #{schema}.#{table} (employer_id)")
     end
   end
