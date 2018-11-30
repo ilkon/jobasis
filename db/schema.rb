@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_190935) do
+ActiveRecord::Schema.define(version: 2018_11_28_210533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,28 @@ ActiveRecord::Schema.define(version: 2018_11_22_190935) do
   create_table "posts", force: :cascade do |t|
     t.bigint "publisher_id", null: false
     t.string "publisher_key", null: false
-    t.datetime "published_at", null: false
+    t.datetime "published_at"
     t.text "raw_text"
     t.bigint "employer_id"
     t.string "author"
     t.jsonb "features", default: {}, null: false
+    t.datetime "last_fetched_at", null: false
+    t.datetime "last_processed_at"
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "publisher_stashes", force: :cascade do |t|
+    t.bigint "publisher_id", null: false
+    t.string "publisher_key", null: false
+    t.datetime "published_at"
+    t.jsonb "content", default: {}, null: false
+    t.datetime "last_fetched_at", null: false
+    t.datetime "last_processed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publisher_id", "publisher_key"], name: "publisher_stashes_unique", unique: true
   end
 
   create_table "publishers", force: :cascade do |t|
