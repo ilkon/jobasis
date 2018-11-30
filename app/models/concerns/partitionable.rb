@@ -6,7 +6,10 @@ module Partitionable
       def self.partition_model(date, create = true)
         partition_suffix = "_#{date.strftime('%Y%m')}"
 
-        schema, table = "#{table_name}#{partition_suffix}".split('.', 2)
+        schema = 'public'
+        table = "#{table_name}#{partition_suffix}"
+        schema, table = table.split('.', 2) if table.include?('.')
+
         exists = connection.select_one("SELECT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = '#{schema}' AND tablename = '#{table}')")
 
         unless exists['exists'] == 't' || exists['exists'] == true

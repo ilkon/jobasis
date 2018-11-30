@@ -22,6 +22,11 @@ Layout/EmptyLinesAroundExceptionHandlingKeywords:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
 AllCops:
   Exclude:
     - 'bin/**/*'

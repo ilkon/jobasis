@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.references :publisher, null: false, index: false
       t.string     :publisher_key, null: false
       t.datetime   :published_at
-      t.text       :raw_text
+      t.text       :raw_text, null: false
       t.references :employer, index: false
       t.string     :author
       t.jsonb      :features, null: false, default: {}
