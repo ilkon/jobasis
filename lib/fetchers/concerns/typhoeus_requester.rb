@@ -7,13 +7,14 @@ module Fetchers
     def self.included(base)
       base.class_eval do
         def self.request_with(base_url, options = {})
+          result = nil
           request = Typhoeus::Request.new(base_url, options)
 
           Rails.logger.info "#{name.demodulize}: requesting #{request.url}"
 
           request.on_complete do |response|
             if response.success?
-              yield(response)
+              result = yield(response)
             elsif response.timed_out?
               Rails.logger.error "#{name.demodulize}: fetching timed out, interrupting"
             elsif response.code.zero?
@@ -24,6 +25,7 @@ module Fetchers
           end
 
           request.run
+          result
         end
       end
     end
