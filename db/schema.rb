@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 2018_11_28_210533) do
     t.bigint "publisher_id", null: false
     t.string "publisher_key", null: false
     t.datetime "published_at"
-    t.text "raw_text"
+    t.text "raw_text", null: false
     t.bigint "employer_id"
     t.string "author"
     t.jsonb "features", default: {}, null: false
     t.datetime "last_fetched_at", null: false
-    t.datetime "last_processed_at"
+    t.datetime "last_parsed_at"
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2018_11_28_210533) do
     t.datetime "published_at"
     t.jsonb "content", default: {}, null: false
     t.datetime "last_fetched_at", null: false
-    t.datetime "last_processed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publisher_id", "publisher_key"], name: "publisher_stashes_unique", unique: true

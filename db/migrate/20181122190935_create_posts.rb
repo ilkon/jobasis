@@ -13,7 +13,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string     :author
       t.jsonb      :features, null: false, default: {}
       t.datetime   :last_fetched_at, null: false
-      t.datetime   :last_processed_at
+      t.datetime   :last_parsed_at
 
       t.date       :date, null: false
 

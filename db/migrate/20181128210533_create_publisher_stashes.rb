@@ -10,7 +10,6 @@ class CreatePublisherStashes < ActiveRecord::Migration[5.2]
       t.datetime   :published_at
       t.jsonb      :content, null: false, default: {}
       t.datetime   :last_fetched_at, null: false
-      t.datetime   :last_processed_at
 
       t.timestamps
     end
