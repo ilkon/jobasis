@@ -7,7 +7,7 @@ MAX_AGE_FOR_STASH = 4.months
 namespace :hacker_news do
   desc 'Fetch data'
   task :fetch, %i[] => :environment do
-    Rails.logger = Logger.new(STDOUT)
+    # Rails.logger = Logger.new(STDOUT)
 
     today = Date.today
     publisher = Publisher.find_or_create_by!(name: 'HackerNews')
@@ -42,7 +42,6 @@ namespace :hacker_news do
       response = Fetchers::HackerNews.fetch(publisher_key)
       next unless response && response[:type] == type
 
-      puts "#{response[:type]}, #{publisher_key}, #{response[:time] && Time.at(response[:time])}"
       key = { publisher_id: publisher.id, publisher_key: publisher_key }
 
       case response[:type]
