@@ -10,7 +10,7 @@ class PostsContainer extends React.Component {
 
     const postItems = posts.map((post) =>
         <PostItem key={post.id}
-            rawText={post.raw_text} />
+            post={post} />
     );
 
     return (

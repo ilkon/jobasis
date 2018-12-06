@@ -12,6 +12,7 @@ gem 'pg'
 
 gem 'typhoeus'
 gem 'ffaker'
+gem 'htmlentities'
 
 gem 'mini_racer', platforms: :ruby
 
