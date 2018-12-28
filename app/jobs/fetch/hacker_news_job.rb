@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# https://github.com/HackerNews/API
+
 module Fetch
   class HackerNewsJob < ApplicationJob
     MAX_AGE_FOR_STASH = 4.months
