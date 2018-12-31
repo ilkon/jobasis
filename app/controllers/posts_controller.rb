@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  PER_PAGE = 25
+  PER_PAGE = 10
 
   def index
-    limit = params[:limit].to_i
+    limit = params[:per_page].to_i
     limit = PER_PAGE if limit.zero?
-    offset = params[:offset].to_i
+    offset = params[:page].to_i.positive? && (params[:page].to_i - 1) * limit || 0
 
     posts = Post.select('*, count(*) OVER() AS total_count')
                 .includes(:employer)
@@ -34,6 +34,11 @@ class PostsController < ApplicationController
       @current_page = 0
     elsif @current_page > @total_pages
       @current_page = @total_pages + 1
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: { data: { posts: @posts, page: @current_page } } }
     end
   end
 end

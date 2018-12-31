@@ -11,8 +11,11 @@ class PostsContainer extends React.Component {
       paginator: { ...prevState.paginator, current: page }
     }));
 
+    this.setState({loading: true});
+
     let url = new URL(window.location.href);
-    url.search.set('page', page);
+    url.pathname = 'posts.json';
+    url.searchParams.set('page', page);
 
     fetch(url, {
       cache: 'no-cache',
@@ -30,16 +33,13 @@ class PostsContainer extends React.Component {
             response.json().then(data => {
               this.setState({
                 loading: false,
-                info: data.data
+                posts: data.data.posts
               });
-              if (data.data.top_tracks.length > 0) {
-                this.props.handleArtistChange(data.data.name, data.data.top_tracks[0].name);
-              }
             }).then(() => {
               window.scrollTo({
-                top: 260,
+                top: 0,
                 left: 0,
-                behavior: 'smooth'
+                behavior: 'auto'
               });
             });
           } else {
@@ -70,7 +70,6 @@ class PostsContainer extends React.Component {
             </ul>
           }
           {
-            postItems.length > 0 &&
             <Paginator current={paginator.current} total={paginator.total} handlePageChange={this.handlePageChange} />
           }
         </div>
