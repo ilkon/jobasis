@@ -5,8 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails'
 gem 'puma'
+gem 'haml-rails'
 gem 'sass-rails'
-gem 'react-rails'
 gem 'uglifier'
 gem 'pg'
 
@@ -17,6 +17,9 @@ gem 'htmlentities'
 gem 'mini_racer', platforms: :ruby
 
 gem 'whenever', require: false
+
+gem 'turbolinks'
+gem 'jbuilder'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

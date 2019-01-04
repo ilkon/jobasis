@@ -1,0 +1,40 @@
+-# =1= 2  3 ...
+-#  1 =2= 3  4 ...
+-#  1  2 =3= 4  5 ...
+-#  1  2  3 =4= 5  6 ...
+-#  1  2  3  4 =5= 6  7 ...
+-#  1  2  3  4  5 =6= 7  8 ...
+-#  1  2  ...   5  6 =7= 8  9 ...
+-#  ...
+-#  1  2  ...  128  129 =130= 131  132 ...
+-#  1  2  ...       129  130 =131= 132  133  134
+-#  1  2  ...            130  131 =132= 133  134
+-#  1  2  ...                 131  132 =133= 134
+-#  1  2  ...                      132  133 =134=
+
+- neighbors = 2
+- spot_size = 2 * neighbors + 1
+
+- if @total_pages > 0
+  - current_spot = Array.new(spot_size) { |i| i + @current_page - neighbors }.select { |i| i > 0 && i <= @total_pages }
+  - first_spot = Array.new(spot_size) { |i| i - neighbors }.select { |i| !current_spot.include?(i) && i > 0 && i <= @total_pages }
+  %ul.paginator
+    - first_spot.each do |p|
+      %li= link_to p, posts_path(page: p)
+    - if first_spot.last && current_spot.first
+      - if first_spot.last == current_spot.first - 2
+        - p = current_spot.first - 1
+        %li= link_to p, posts_path(page: p)
+      - elsif first_spot.last < current_spot.first - 2
+        %li ...
+    - unless current_spot.empty?
+      - current_spot.each do |p|
+        - if p == @current_page
+          %li
+            %span= p
+        - else
+          %li= link_to p, posts_path(page: p)
+      - if current_spot.last == @total_pages - 1
+        %li= link_to @total_pages, posts_path(page: @total_pages)
+      - elsif current_spot.last < @total_pages - 1
+        %li ...
