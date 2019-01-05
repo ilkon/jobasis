@@ -1,0 +1,8 @@
+- unless @posts.empty?
+  %ul
+    - @posts.each do |post|
+      %li
+        %b= post.employer&.name
+        |
+        %i= post.published_at
+        %p= post.raw_text
