@@ -8,6 +8,7 @@ gem 'puma'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'webpacker'
 gem 'pg'
 
 gem 'typhoeus'
