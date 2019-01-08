@@ -6,8 +6,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails'
 gem 'puma'
 gem 'haml-rails'
-gem 'sass-rails'
-gem 'uglifier'
 gem 'webpacker'
 gem 'pg'
 
@@ -15,11 +13,8 @@ gem 'typhoeus'
 gem 'ffaker'
 gem 'htmlentities'
 
-gem 'mini_racer', platforms: :ruby
-
 gem 'whenever', require: false
 
-gem 'turbolinks'
 gem 'jbuilder'
 
 # Reduces boot times through caching; required in config/boot.rb
