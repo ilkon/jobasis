@@ -16,25 +16,37 @@
 - spot_size = 2 * neighbors + 1
 
 - if @total_pages > 0
-  - current_spot = Array.new(spot_size) { |i| i + @current_page - neighbors }.select { |i| i > 0 && i <= @total_pages }
-  - first_spot = Array.new(spot_size) { |i| i - neighbors }.select { |i| !current_spot.include?(i) && i > 0 && i <= @total_pages }
-  %ul.paginator
-    - first_spot.each do |p|
-      %li= link_to p, posts_path(page: p)
-    - if first_spot.last && current_spot.first
-      - if first_spot.last == current_spot.first - 2
-        - p = current_spot.first - 1
-        %li= link_to p, posts_path(page: p)
-      - elsif first_spot.last < current_spot.first - 2
-        %li ...
-    - unless current_spot.empty?
-      - current_spot.each do |p|
-        - if p == @current_page
+  %nav.pagination.is-centered{ 'aria-label' => 'pagination', :role => 'navigation' }
+    - if @current_page > 1
+      %a.pagination-previous{ href: posts_path(page: @current_page - 1) } Previous
+    - if @current_page < @total_pages
+      %a.pagination-next{ href: posts_path(page: @current_page + 1) } Next page
+
+    - current_spot = Array.new(spot_size) { |i| i + @current_page - neighbors }.select { |i| i > 0 && i <= @total_pages }
+    - first_spot = Array.new(spot_size) { |i| i - neighbors }.select { |i| !current_spot.include?(i) && i > 0 && i <= @total_pages }
+    %ul.pagination-list
+      - first_spot.each do |p|
+        %li
+          %a.pagination-link{ href: posts_path(page: p), 'aria-label' => "Goto page #{p}" }= p
+      - if first_spot.last && current_spot.first
+        - if first_spot.last == current_spot.first - 2
+          - p = current_spot.first - 1
           %li
-            %span= p
-        - else
-          %li= link_to p, posts_path(page: p)
-      - if current_spot.last == @total_pages - 1
-        %li= link_to @total_pages, posts_path(page: @total_pages)
-      - elsif current_spot.last < @total_pages - 1
-        %li ...
+            %a.pagination-link{ href: posts_path(page: p), 'aria-label' => "Goto page #{p}" }= p
+        - elsif first_spot.last < current_spot.first - 2
+          %li
+            %span.pagination-ellipsis …
+      - unless current_spot.empty?
+        - current_spot.each do |p|
+          - if p == @current_page
+            %li
+              %a.pagination-link.is-current{ 'aria-current' => 'page', 'aria-label' => "Page #{p}" }= p
+          - else
+            %li
+              %a.pagination-link{ href: posts_path(page: p), 'aria-label' => "Goto page #{p}" }= p
+        - if current_spot.last == @total_pages - 1
+          %li
+            %a.pagination-link{ href: posts_path(page: @total_pages), 'aria-label' => "Goto page #{@total_pages}" }= @total_pages
+        - elsif current_spot.last < @total_pages - 1
+          %li
+            %span.pagination-ellipsis …

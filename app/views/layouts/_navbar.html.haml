@@ -1,0 +1,19 @@
+%nav.navbar{ 'data-controller': 'navbar' }
+  .container
+    .navbar-brand
+      %a.navbar-item{ href: '#' }
+        %img{ src: 'https://bulma.io/images/bulma-logo.png', height: 28, width: 112 }
+      .navbar-burger.burger{ 'data-target' => 'main-nav' }
+        %span
+        %span
+        %span
+    #main-nav.navbar-menu
+      .navbar-start
+        = link_to '#', class: 'navbar-item' do
+          %span.icon
+            %i.far.fa-gem
+          %span Home
+        = link_to '#', class: 'navbar-item' do
+          %span.icon
+            %i.far.fa-star
+          %span About
