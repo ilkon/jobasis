@@ -1,7 +1,8 @@
 - unless @posts.empty?
   - @posts.each do |post|
-    .box
-      %b= post.employer&.name
-      |
-      %i= post.published_at
-      %p= post.raw_text
+    %article.message
+      .message-header
+        %b= post.employer&.name
+        %i= time_ago_in_words(post.published_at) + ' ago'
+      .message-body
+        %p= post.raw_text

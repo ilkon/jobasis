@@ -3,6 +3,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
+$message-header-background-color: hsl(0, 0%, 60%);
 @import '~bulma/bulma';
 
 //@import '../stylesheets/posts';

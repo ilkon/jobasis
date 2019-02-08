@@ -20,8 +20,8 @@ ActiveStorage.start()
 import { Application } from 'stimulus'
 import { definitionsFromContext } from 'stimulus/webpack-helpers'
 
-//import Bulma from '../javascripts/bulmajs/bulma';
-import Navbar from '../javascripts/bulmajs/plugins/navbar';
+//import Bulma from '../javascripts/bulmajs/bulma'
+import Navbar from '../javascripts/bulmajs/plugins/navbar'
 
 const application = Application.start()
 const context = require.context('controllers', true, /\.js$/)
