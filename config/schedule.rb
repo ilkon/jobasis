@@ -25,4 +25,8 @@ if @environment == 'production'
   every 2.hours do
     rake 'hacker_news:fetch'
   end
+
+  every '5 * * * *' do
+    rake 'hacker_news:parse'
+  end
 end
