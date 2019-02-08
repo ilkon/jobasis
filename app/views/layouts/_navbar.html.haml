@@ -1,19 +1,26 @@
-%nav.navbar{ 'data-controller': 'navbar' }
+%nav.navbar.is-light{ 'aria-label' => 'main navigation', role: 'navigation' }
   .container
     .navbar-brand
       %a.navbar-item{ href: '#' }
         %img{ src: 'https://bulma.io/images/bulma-logo.png', height: 28, width: 112 }
-      .navbar-burger.burger{ 'data-target' => 'main-nav' }
-        %span
-        %span
-        %span
+      .navbar-burger.burger{ 'aria-expanded' => 'false', 'aria-label' => 'menu', 'data-target' => 'main-nav', role: 'button' }
+        %span{ 'aria-hidden' => 'true' }
+        %span{ 'aria-hidden' => 'true' }
+        %span{ 'aria-hidden' => 'true' }
     #main-nav.navbar-menu
       .navbar-start
-        = link_to '#', class: 'navbar-item' do
+        %a.navbar-item{ href: '#' }
           %span.icon
             %i.far.fa-gem
           %span Home
-        = link_to '#', class: 'navbar-item' do
+        %a.navbar-item{ href: '#' }
           %span.icon
             %i.far.fa-star
           %span About
+      .navbar-end
+        .navbar-item
+          .buttons
+            %a.button.is-primary
+              %strong Sign up
+            %a.button.is-light
+              Log in
