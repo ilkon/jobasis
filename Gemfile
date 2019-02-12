@@ -13,6 +13,9 @@ gem 'typhoeus'
 gem 'ffaker'
 gem 'htmlentities'
 
+gem 'bcrypt'
+gem 'jwt'
+
 gem 'whenever', require: false
 
 gem 'jbuilder'

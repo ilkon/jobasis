@@ -1,0 +1,8 @@
+.navbar {
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out;
+
+  &.is-hidden-scroll {
+    transform: translateY(-100%);
+  }
+}
