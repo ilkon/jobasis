@@ -23,4 +23,4 @@ en:
       reset_password_instruction:
         subject: Reset your password
       changed_password_notification:
-        subject: Your password is changed
+        subject: Your password was changed
