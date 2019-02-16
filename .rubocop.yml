@@ -30,4 +30,5 @@ Layout/AlignHash:
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - 'node_modules/**/*'
     - 'db/schema.rb'

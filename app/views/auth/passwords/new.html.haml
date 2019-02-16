@@ -1,0 +1,24 @@
+.container.has-text-centered
+  .columns.is-centered
+    .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
+      %h3.title.has-text-grey Reset password
+      - if true
+        .box
+          %p.content.has-text-grey Enter your email address and we will send you a link to reset your password.
+          %form
+            .field
+              .control.has-icons-left
+                %input.input{ type: 'email', autofocus: true, placeholder: 'Email' }
+                %span.icon.is-small.is-left
+                  %i.fas.fa-envelope
+            %button.button.is-block.is-info.is-fullwidth Send password reset link
+      - if true
+        - page_title = "Password sent!"
+        .box
+          %p.content.has-text-grey Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder.
+          %a.button.is-block.is-info.is-fullwidth{ href: new_user_session_path }
+            Return to Login
+      %p.has-text-grey
+        %a{ href: new_user_session_path } Login
+         · 
+        %a{ href: new_user_registration_path } Register

@@ -56,7 +56,7 @@ module Fetch
             raw_text:        response[:text],
             author:          response[:by],
             published_at:    published_at,
-            last_fetched_at: Time.now,
+            last_fetched_at: Time.now.utc,
             date:            published_date
           }
           Post.partition_model(published_date).create(key.merge(data))
@@ -70,7 +70,7 @@ module Fetch
           data = {
             content:         response[:kids].to_json,
             published_at:    published_at,
-            last_fetched_at: Time.now
+            last_fetched_at: Time.now.utc
           }
           stash ? stash.update(data) : PublisherStash.create(key.merge(data))
 
@@ -83,7 +83,7 @@ module Fetch
           data = {
             content:         response[:submitted].to_json,
             published_at:    published_at,
-            last_fetched_at: Time.now
+            last_fetched_at: Time.now.utc
           }
           stash ? stash.update(data) : PublisherStash.create(key.merge(data))
 

@@ -1,0 +1,8 @@
+- if flash[:notice]
+  .notification.is-primary
+    %button.delete
+    = flash[:notice]
+- if flash[:error]
+  .notification.is-danger
+    %button.delete
+    = flash[:error]

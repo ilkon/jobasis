@@ -1,33 +1,26 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  auth:
+    session:
+      changed_password: Your password has been changed. Please login again.
+      expired_session: Your session is expired. Please login again.
+      login_error: Incorrect username or password.
+
+    registration:
+      success: You are registered. A message with a confirmation link has been sent to your email address.
+
+    confirmation:
+      expired_token: Sorry, the link is expired.
+      invalid_token: Sorry, the link is invalid.
+
+    password:
+      user_has_no_password: It seems that you are registered with your Facebook account. Please login to Facebook.
+      expired_token: Sorry, the link is expired. Please reset your password once again.
+      invalid_token: Sorry, the link is invalid. Please reset your password once again.
+
+    mailer:
+      confirm_email_instruction:
+        subject: Confirm your email
+      reset_password_instruction:
+        subject: Reset your password
+      changed_password_notification:
+        subject: Your password is changed

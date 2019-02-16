@@ -6,8 +6,9 @@ module Auth
       pepper
       stretches
       password_length
-      access_token_ttl
-      refresh_token_ttl
+      regular_session_ttl
+      memorized_session_ttl
+      password_check_session_ttl
       confirm_email_token_ttl
       confirm_email_token_length
       reset_password_token_ttl
@@ -44,12 +45,16 @@ module Auth
       @password_length || (6..64)
     end
 
-    def access_token_ttl
-      @access_token_ttl || 15.minutes
+    def regular_session_ttl
+      @regular_session_ttl || 30.minutes
     end
 
-    def refresh_token_ttl
-      @refresh_token_ttl || 1.week
+    def memorized_session_ttl
+      @memorized_session_ttl || 90.days
+    end
+
+    def password_check_session_ttl
+      @password_check_session_ttl || 5.minutes
     end
 
     def confirm_email_token_ttl
@@ -66,10 +71,6 @@ module Auth
 
     def reset_password_token_length
       @reset_password_token_length || 48
-    end
-
-    def cookie_name
-      '_auth_token'
     end
   end
 end

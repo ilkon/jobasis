@@ -5,7 +5,7 @@ FactoryBot.define do
     name { FFaker::Name.name }
   end
 
-  factory :invalid_user, parent: :user do |f|
-    f.name nil
-  end
+  # factory :invalid_user, parent: :user do |f|
+  #   f.name nil
+  # end
 end

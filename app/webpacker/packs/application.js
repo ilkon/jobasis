@@ -21,6 +21,7 @@ import {Application} from 'stimulus'
 import {definitionsFromContext} from 'stimulus/webpack-helpers'
 
 import Navbar from '../javascripts/bulmajs/plugins/navbar'
+import Notification from '../javascripts/bulmajs/plugins/notification'
 //import '../javascripts/bulma/main'
 
 const application = Application.start()

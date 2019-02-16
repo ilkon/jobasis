@@ -1,0 +1,51 @@
+.container.has-text-centered
+  .columns.is-centered
+    .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
+      %h3.title.has-text-grey Register
+
+      .box.has-text-left
+        = form_for @user, url: user_registration_path do |f|
+          = f.fields_for :user_emails do |ef|
+            .field
+              - email_error = @user.errors[:'user_emails.email'].first
+              %div{ class: "control has-icons-left #{email_error && 'has-icons-right'}" }
+                = ef.email_field :email, autofocus: true, placeholder: 'Email', class: "input #{email_error && 'is-danger'}"
+                %span.icon.is-small.is-left
+                  %i.fas.fa-envelope
+                - if email_error
+                  %span.icon.is-small.is-right
+                    %i.fas.fa-exclamation-triangle
+              - if email_error
+                %p.help.is-danger= 'Email ' + email_error
+
+          = f.fields_for :user_password do |pf|
+            .field
+              - password_error = @user.errors[:'user_password.password'].first
+              %div{ class: "control has-icons-left #{password_error && 'has-icons-right'}" }
+                = pf.password_field :password, placeholder: 'Password', class: "input #{password_error && 'is-danger'}"
+                %span.icon.is-small.is-left
+                  %i.fas.fa-lock
+                - if password_error
+                  %span.icon.is-small.is-right
+                    %i.fas.fa-exclamation-triangle
+              - if password_error
+                %p.help.is-danger= 'Password ' + password_error
+
+          .field
+            - name_error = @user.errors[:name].first
+            %div{ class: "control has-icons-left #{name_error && 'has-icons-right'}" }
+              = f.text_field :name, placeholder: 'Name', class: "input #{name_error && 'is-danger'}"
+              %span.icon.is-small.is-left
+                %i.fas.fa-address-card
+              - if name_error
+                %span.icon.is-small.is-right
+                  %i.fas.fa-exclamation-triangle
+            - if name_error
+              %p.help.is-danger= 'Name ' + name_error
+
+          %button.button.is-block.is-info.is-fullwidth Register
+
+      %p.has-text-grey
+        %a{ href: new_user_session_path } Login
+         · 
+        %a{ href: new_user_password_path } Forgot Password

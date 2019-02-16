@@ -27,7 +27,7 @@ class Post < ApplicationRecord
       employer = Employer.find_or_create_by!(name: emp_candidate)
       self.employer_id = employer.id
     end
-    self.last_parsed_at = Time.now
+    self.last_parsed_at = Time.now.utc
     save!
   end
 

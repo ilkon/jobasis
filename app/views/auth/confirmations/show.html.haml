@@ -1,0 +1,11 @@
+.container.has-text-centered
+  .columns.is-centered
+    .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
+      %h3.title.has-text-grey Confirm email
+
+      = render 'layouts/notification'
+
+      - if @confirmed
+        .box
+          %p.content.has-text-grey Thank you! Email address is confirmed. You are logged in now.
+          %a.button.is-block.is-info.is-fullwidth{ href: root_path } Proceed

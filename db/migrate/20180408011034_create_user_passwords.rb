@@ -11,6 +11,8 @@ class CreateUserPasswords < ActiveRecord::Migration[5.2]
       t.string      :reset_token, index: { unique: true, name: "#{table_name}_reset_token" }
       t.datetime    :reset_sent_at
 
+      t.datetime    :changed_at
+
       t.timestamps
     end
 

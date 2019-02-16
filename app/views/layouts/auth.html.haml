@@ -8,10 +8,11 @@
     = csp_meta_tag
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.has-navbar-fixed-top
-    = render 'layouts/navbar', fixed_top: true, auth_links: true
-    %section.section
-      .container
-        = render 'layouts/notification'
+  %body
+    %section.hero.is-fullheight
+      .hero-head
+        = render 'layouts/navbar'
+      .hero-body
         = yield
-    = render 'layouts/footer'
+      .hero-foot
+        = render 'layouts/footer'

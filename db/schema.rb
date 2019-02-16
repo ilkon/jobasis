@@ -38,78 +38,6 @@ ActiveRecord::Schema.define(version: 2018_11_28_210533) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts_201809", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employer_id"], name: "posts_201809_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201809_publisher", unique: true
-  end
-
-  create_table "posts_201810", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employer_id"], name: "posts_201810_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201810_publisher", unique: true
-  end
-
-  create_table "posts_201811", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employer_id"], name: "posts_201811_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201811_publisher", unique: true
-  end
-
-  create_table "posts_201812", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employer_id"], name: "posts_201812_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201812_publisher", unique: true
-  end
-
   create_table "publisher_stashes", force: :cascade do |t|
     t.bigint "publisher_id", null: false
     t.string "publisher_key", null: false
@@ -146,6 +74,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_210533) do
     t.string "encrypted_password", null: false
     t.string "reset_token"
     t.datetime "reset_sent_at"
+    t.datetime "changed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reset_token"], name: "user_passwords_reset_token", unique: true
