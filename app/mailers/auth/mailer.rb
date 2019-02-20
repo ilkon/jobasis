@@ -6,26 +6,20 @@ module Auth
       @user = user
       @token = token
 
-      mail to: email, subject: subject_for(:confirm_email_instruction)
+      mail to: email, subject: I18n.t('auth.mailer.confirm_email_instruction.subject')
     end
 
     def reset_password_instruction(email, user, token)
       @user = user
       @token = token
 
-      mail to: email, subject: subject_for(:reset_password_instruction)
+      mail to: email, subject: I18n.t('auth.mailer.reset_password_instruction.subject')
     end
 
     def changed_password_notification(email, user)
       @user = user
 
-      mail to: email, subject: subject_for(:changed_password_notification)
-    end
-
-    private
-
-    def subject_for(key)
-      I18n.t("auth.mailer.#{key}.subject")
+      mail to: email, subject: I18n.t('auth.mailer.changed_password_notification.subject')
     end
   end
 end

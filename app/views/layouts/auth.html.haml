@@ -3,7 +3,7 @@
   %head
     %meta{ 'http-equiv' => 'Content-Type', content: 'text/html; charset=UTF-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    %title Remotico
+    %title= content_for?(:page_title) ? yield(:page_title) : 'Remotico'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'

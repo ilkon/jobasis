@@ -1,9 +1,11 @@
+- content_for(:page_title) { "Email confirmation" }
+
 .container.has-text-centered
   .columns.is-centered
     .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
       %h3.title.has-text-grey Confirm email
 
-      = render 'layouts/notification'
+      = render 'layouts/notification', permanent: true
 
       - if @confirmed
         .box

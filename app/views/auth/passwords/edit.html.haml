@@ -1,23 +1,28 @@
-- page_title = "Change your password"
+- content_for(:page_title) { "Change your password" }
+
 .container.has-text-centered
   .columns.is-centered
     .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
       %h3.title.has-text-grey Change password
-      .box
-        %p.content.has-text-grey Make sure new password is more than 15 characters OR at least 8 characters including a number and a lowercase letter.
-        %form
-          .field
-            .control.has-icons-left
-              %input.input{ type: 'password', placeholder: 'Password' }
-              %span.icon.is-small.is-left
-                %i.fas.fa-lock
-          .field
-            .control.has-icons-left
-              %input.input{ type: 'password', placeholder: 'Confirm password' }
-              %span.icon.is-small.is-left
-                %i.fas.fa-lock
-          %button.button.is-block.is-info.is-fullwidth Change password
-      %p.has-text-grey
-        %a{ href: new_user_session_path } Login
-         · 
-        %a{ href: new_user_registration_path } Register
+
+      = render 'layouts/notification', permanent: true
+
+      - if @confirmed
+        .box
+          %p.content.has-text-grey Make sure new password is more than 15 characters OR at least 8 characters including a number and a lowercase letter.
+          %form
+            .field
+              .control.has-icons-left
+                %input.input{ type: 'password', placeholder: 'Password' }
+                %span.icon.is-small.is-left
+                  %i.fas.fa-lock
+            .field
+              .control.has-icons-left
+                %input.input{ type: 'password', placeholder: 'Confirm password' }
+                %span.icon.is-small.is-left
+                  %i.fas.fa-lock
+            %button.button.is-block.is-info.is-fullwidth Change password
+        %p.has-text-grey
+          %a{ href: new_user_session_path } Login
+           · 
+          %a{ href: new_user_registration_path } Register

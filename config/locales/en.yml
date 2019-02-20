@@ -13,7 +13,8 @@ en:
       invalid_token: Sorry, the link is invalid.
 
     password:
-      user_has_no_password: It seems that you are registered with your Facebook account. Please login to Facebook.
+      no_password: It seems that you was registered using social network.
+      no_user: Sorry, the user with this email is not found.
       expired_token: Sorry, the link is expired. Please reset your password once again.
       invalid_token: Sorry, the link is invalid. Please reset your password once again.
 

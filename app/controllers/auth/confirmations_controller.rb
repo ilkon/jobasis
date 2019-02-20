@@ -4,6 +4,8 @@ module Auth
   class ConfirmationsController < BaseController
     # GET /auth/confirm_email?token=abcdef
     def show
+      confirm_params = params.permit(:token)
+
       email = UserEmail.find_by_confirm_token(confirm_params[:token])
 
       if email
@@ -17,12 +19,6 @@ module Auth
       else
         flash.now[:error] = I18n.t('auth.confirmation.invalid_token')
       end
-    end
-
-    private
-
-    def confirm_params
-      params.permit(:token)
     end
   end
 end

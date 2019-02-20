@@ -11,7 +11,9 @@ module Auth
 
     # POST /auth/register
     def create
-      @user = User.new(user_params)
+      register_params = params.require(:user).permit(:name, user_emails_attributes: %i[id email], user_password_attributes: %i[password])
+
+      @user = User.new(register_params)
 
       if @user.save
         email = @user.user_emails.first
@@ -23,12 +25,6 @@ module Auth
       else
         render :new
       end
-    end
-
-    private
-
-    def user_params
-      params.require(:user).permit(:name, user_emails_attributes: %i[id email], user_password_attributes: %i[password])
     end
   end
 end
