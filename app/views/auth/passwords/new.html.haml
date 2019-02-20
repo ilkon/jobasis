@@ -6,12 +6,13 @@
       = render 'layouts/notification'
 
       - if @success
-        - content_for(:page_title) { "Password sent!" }
+        - content_for(:page_title) { 'Password link sent!' }
         .box
           %p.content.has-text-grey Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
           %a.button.is-block.is-info.is-fullwidth{ href: new_user_session_path }
             Return to Login
       - else
+        - content_for(:page_title) { 'Forgot your password?' }
         .box
           %p.content.has-text-grey Enter your email address and we will send you a link to reset your password.
           = form_tag user_password_path do
