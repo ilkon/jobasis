@@ -12,12 +12,11 @@ module Auth
         if email.confirm_sent_at.to_i + Auth.confirm_email_token_ttl.to_i > Time.now.to_i
           email.clear_confirm_token
           sign_in!(email.user)
-          @confirmed = true
         else
-          flash.now[:error] = I18n.t('auth.confirmation.expired_token')
+          @error = I18n.t('auth.confirmation.expired_token')
         end
       else
-        flash.now[:error] = I18n.t('auth.confirmation.invalid_token')
+        @error = I18n.t('auth.confirmation.invalid_token')
       end
     end
   end

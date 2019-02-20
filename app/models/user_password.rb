@@ -8,7 +8,7 @@ class UserPassword < ApplicationRecord
   before_validation { self.password = password.strip if password.present? }
 
   validates :user, presence: true
-  validates :password, presence: true, length: { within: Auth.password_length }
+  validates :password, presence: true, length: { within: Auth.password_length }, format: { with: Auth.password_regexp }
 
   before_save do
     self.encrypted_password = Auth::Encryptor.digest(password) if password.present?
@@ -21,15 +21,15 @@ class UserPassword < ApplicationRecord
   def set_reset_token
     token, encoded_token = Auth.token_generator.generate(self.class, :reset_token, Auth.reset_password_token_length)
 
-    self.reset_token    = encoded_token
-    self.reset_sent_at  = Time.now.utc
+    self.reset_token   = encoded_token
+    self.reset_sent_at = Time.now.utc
     save(validate: false)
     token
   end
 
   def clear_reset_token
-    self.reset_token    = nil
-    self.reset_sent_at  = nil
+    self.reset_token   = nil
+    self.reset_sent_at = nil
     save(validate: false)
   end
 

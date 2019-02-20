@@ -1,10 +1,8 @@
 - if flash[:notice]
   .notification.is-primary
-    - unless local_assigns[:permanent]
-      %button.delete
+    %button.delete
     = flash[:notice]
 - if flash[:error]
   .notification.is-danger
-    - unless local_assigns[:permanent]
-      %button.delete
+    %button.delete
     = flash[:error]

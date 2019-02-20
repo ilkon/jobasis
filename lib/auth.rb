@@ -33,6 +33,14 @@ module Auth
       /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
     end
 
+    def password_regexp
+      /\A
+        (?=.*\d)           # Must contain a digit
+        (?=.*[a-z])        # Must contain a lowercase character
+        (?=.*[A-Z])        # Must contain an uppercase character
+      /x
+    end
+
     def token_generator
       @token_generator ||= Auth::TokenGenerator.new(
         ActiveSupport::CachingKeyGenerator.new(
@@ -42,7 +50,7 @@ module Auth
     end
 
     def password_length
-      @password_length || (6..64)
+      @password_length || (8..64)
     end
 
     def regular_session_ttl
