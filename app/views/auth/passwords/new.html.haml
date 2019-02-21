@@ -9,13 +9,13 @@
         - content_for(:page_title) { 'Password link sent!' }
         .box
           %p.content.has-text-grey Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
-          %a.button.is-block.is-info.is-fullwidth{ href: new_user_session_path }
+          %a.button.is-block.is-info.is-fullwidth{ href: user_login_path }
             Return to Login
       - else
         - content_for(:page_title) { 'Forgot your password?' }
         .box
           %p.content.has-text-grey Enter your email address and we will send you a link to reset your password.
-          = form_tag user_password_path do
+          = form_tag user_forgot_password_path do
             .field
               .control.has-icons-left
                 %input.input{ type: :email, name: :email, autofocus: true, placeholder: 'Email', value: @email }
@@ -25,6 +25,6 @@
             %button.button.is-block.is-info.is-fullwidth Send password reset link
 
       %p.has-text-grey
-        %a{ href: new_user_session_path } Login
+        %a{ href: user_login_path } Login
          · 
-        %a{ href: new_user_registration_path } Register
+        %a{ href: user_register_path } Register

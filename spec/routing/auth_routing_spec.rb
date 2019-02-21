@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Auth', type: :routing do
-  it { expect(get:    '/auth/session').to         route_to('auth/sessions#new') }
-  it { expect(post:   '/auth/session').to         route_to('auth/sessions#create') }
-  it { expect(delete: '/auth/session').to         route_to('auth/sessions#destroy') }
+  it { expect(get:    '/auth/login').to           route_to('auth/sessions#new') }
+  it { expect(post:   '/auth/login').to           route_to('auth/sessions#create') }
+  it { expect(delete: '/auth/logout').to          route_to('auth/sessions#destroy') }
   it { expect(get:    '/auth/register').to        route_to('auth/registrations#new') }
   it { expect(post:   '/auth/register').to        route_to('auth/registrations#create') }
   it { expect(get:    '/auth/confirm_email').to   route_to('auth/emails#confirm') }

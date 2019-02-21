@@ -8,7 +8,7 @@
       = render 'layouts/notification'
 
       .box.has-text-left
-        = form_tag user_session_path do
+        = form_tag user_login_path do
           .field
             - email_value = @values && @values[:email]
             .control.has-icons-left
@@ -31,6 +31,6 @@
           %button.button.is-block.is-info.is-fullwidth Login
 
       %p.has-text-grey
-        %a{ href: new_user_registration_path } Register
+        %a{ href: user_register_path } Register
          · 
-        %a{ href: new_user_password_path } Forgot Password
+        %a{ href: user_forgot_password_path } Forgot Password

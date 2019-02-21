@@ -2,7 +2,7 @@
 
 module Auth
   class SessionsController < BaseController
-    # POST /auth/session
+    # POST /auth/login
     def create
       login_params = params.permit(:email, :password, :remember_me)
 
@@ -20,7 +20,7 @@ module Auth
       end
     end
 
-    # DELETE /auth/session
+    # DELETE /auth/logout
     def destroy
       reset_session
       redirect_to root_path

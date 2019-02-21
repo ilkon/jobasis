@@ -6,7 +6,7 @@
       %h3.title.has-text-grey Register
 
       .box.has-text-left
-        = form_tag user_registration_path do
+        = form_tag user_register_path do
           .field
             - email_error = @errors && @errors[:email]
             - email_value = @values && @values[:email]
@@ -49,6 +49,6 @@
           %button.button.is-block.is-info.is-fullwidth Register
 
       %p.has-text-grey
-        %a{ href: new_user_session_path } Login
+        %a{ href: user_login_path } Login
          · 
-        %a{ href: new_user_password_path } Forgot Password
+        %a{ href: user_forgot_password_path } Forgot Password
