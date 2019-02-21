@@ -61,7 +61,9 @@ module Auth
             @success = true
 
           else
-            @password_error = password.errors[:password].first
+            @errors = {
+              password: password.errors[:password].first
+            }
           end
         else
           @token_error = I18n.t('auth.password.expired_token')

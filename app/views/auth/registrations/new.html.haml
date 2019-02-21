@@ -6,37 +6,38 @@
       %h3.title.has-text-grey Register
 
       .box.has-text-left
-        = form_for @user, url: user_registration_path do |f|
-          = f.fields_for :user_emails do |ef|
-            .field
-              - email_error = @user.errors[:'user_emails.email'].first
-              %div{ class: "control has-icons-left #{email_error && 'has-icons-right'}" }
-                = ef.email_field :email, autofocus: true, placeholder: 'Email', class: "input #{email_error && 'is-danger'}"
-                %span.icon.is-small.is-left
-                  %i.fas.fa-envelope
-                - if email_error
-                  %span.icon.is-small.is-right
-                    %i.fas.fa-exclamation-triangle
+        = form_tag user_registration_path do
+          .field
+            - email_error = @errors && @errors[:email]
+            - email_value = @values && @values[:email]
+            %div{ class: "control has-icons-left #{email_error && 'has-icons-right'}" }
+              %input{ class: "input #{email_error && 'is-danger'}", type: :email, name: :email, value: email_value, placeholder: 'Email', autofocus: true }
+              %span.icon.is-small.is-left
+                %i.fas.fa-envelope
               - if email_error
-                %p.help.is-danger= 'Email ' + email_error
-
-          = f.fields_for :user_password do |pf|
-            .field
-              - password_error = @user.errors[:'user_password.password'].first
-              %div{ class: "control has-icons-left #{password_error && 'has-icons-right'}" }
-                = pf.password_field :password, placeholder: 'Password', class: "input #{password_error && 'is-danger'}"
-                %span.icon.is-small.is-left
-                  %i.fas.fa-lock
-                - if password_error
-                  %span.icon.is-small.is-right
-                    %i.fas.fa-exclamation-triangle
-              - if password_error
-                %p.help.is-danger= 'Password ' + password_error
+                %span.icon.is-small.is-right
+                  %i.fas.fa-exclamation-triangle
+            - if email_error
+              %p.help.is-danger= 'Email ' + email_error
 
           .field
-            - name_error = @user.errors[:name].first
+            - password_error = @errors && @errors[:password]
+            - password_value = @values && @values[:password]
+            %div{ class: "control has-icons-left #{password_error && 'has-icons-right'}" }
+              %input{ class: "input #{password_error && 'is-danger'}", type: :password, name: :password, value: password_value, placeholder: 'Password' }
+              %span.icon.is-small.is-left
+                %i.fas.fa-lock
+              - if password_error
+                %span.icon.is-small.is-right
+                  %i.fas.fa-exclamation-triangle
+            - if password_error
+              %p.help.is-danger= 'Password ' + password_error
+
+          .field
+            - name_error = @errors && @errors[:name]
+            - name_value = @values && @values[:name]
             %div{ class: "control has-icons-left #{name_error && 'has-icons-right'}" }
-              = f.text_field :name, placeholder: 'Name', class: "input #{name_error && 'is-danger'}"
+              %input{ class: "input #{name_error && 'is-danger'}", type: :text, name: :name, value: name_value, placeholder: 'Name' }
               %span.icon.is-small.is-left
                 %i.fas.fa-address-card
               - if name_error

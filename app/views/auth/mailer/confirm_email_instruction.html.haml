@@ -1,4 +1,4 @@
 %p
   Hello #{@user.name}!
 %p You can confirm your account email through the link below:
-%p= link_to 'Confirm my email', user_confirmation_url(token: @token)
+%p= link_to 'Confirm my email', user_confirm_email_url(token: @token)

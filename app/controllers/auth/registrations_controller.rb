@@ -2,30 +2,38 @@
 
 module Auth
   class RegistrationsController < BaseController
-    # GET /auth/register
-    def new
-      @user = User.new
-      @user.user_emails.build
-      @user.build_user_password
-    end
-
     # POST /auth/register
     def create
-      register_params = params.require(:user).permit(:name, user_emails_attributes: %i[id email], user_password_attributes: %i[password]).tap do |rp|
-        rp.require(:user_emails_attributes)
-        rp.require(:user_password_attributes)
-      end
+      register_params = params.permit(:email, :password, :name)
 
-      @user = User.new(register_params)
+      user = User.new(
+        name:                     register_params[:name],
+        user_password_attributes: {
+          password: register_params[:password]
+        },
+        user_emails_attributes:   [
+          {
+            email: register_params[:email]
+          }
+        ]
+      )
 
-      if @user.save
-        email = @user.user_emails.first
+      if user.save
+        email = user.user_emails.first
         token = email.set_confirm_token
-        Auth::Mailer.confirm_email_instruction(email.email, @user, token).deliver_now
+        Auth::Mailer.confirm_email_instruction(email.email, user, token).deliver_now
 
-        sign_in!(@user)
+        sign_in!(user)
         redirect_to root_path, notice: I18n.t('auth.registration.success')
+
       else
+        @values = register_params.select { |k, _v| %i[email name].include?(k) }
+        @errors = {
+          email:    user.errors[:'user_emails.email'].first,
+          password: user.errors[:'user_password.password'].first,
+          name:     user.errors[:name].first
+        }
+
         render :new
       end
     end

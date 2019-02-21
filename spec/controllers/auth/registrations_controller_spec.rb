@@ -15,67 +15,59 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
   end
 
   describe 'POST #create' do
-    def user_params(name, email, password)
-      { user: { name: name, user_emails_attributes: [{ email: email }], user_password_attributes: { password: password } } }
-    end
-
     context 'with valid parameters' do
-      let(:name) { 'John Doe' }
-      let(:email) { 'john@test.com' }
-      let(:password) { '123Qwerty123' }
+      let(:params) { { name: 'John Doe', email: 'john@test.com', password: '123Qwerty123' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: user_params(name, email, password)
+        post :create, params: params
 
         expect(response.response_code).to eq(302)
       end
 
       it 'creates a new user with given params' do
         expect do
-          post :create, params: user_params(name, email, password)
+          post :create, params: params
         end.to change(User, :count).by(1)
 
         user = User.last
 
         expect(user).not_to be_nil
-        expect(user.name).to eql(name)
+        expect(user.name).to eql(params[:name])
         expect(user.user_password).not_to be_nil
         expect(user.user_emails).not_to be_empty
-        expect(user.user_emails.first.email).to eql(email)
+        expect(user.user_emails.first.email).to eql(params[:email])
       end
 
       it 'strips and downcases sensitive params before creating user' do
-        name = ' John Doe  '
-        email = ' JOHNNY@test.com '
-        password = '    123Qwerty123  '
+        params = { name: ' John Doe  ', email: ' JOHNNY@test.com ', password: '    123Qwerty123  ' }
 
         expect do
-          post :create, params: user_params(name, email, password)
+          post :create, params: params
         end.to change(User, :count).by(1)
 
         user = User.last
 
         expect(user).not_to be_nil
-        expect(user.name).to eql(name.strip)
+        expect(user.name).to eql(params[:name].strip)
         expect(user.user_password).not_to be_nil
         expect(user.user_emails).not_to be_empty
-        expect(user.user_emails.first.email).to eql(email.strip.downcase)
+        expect(user.user_emails.first.email).to eql(params[:email].strip.downcase)
       end
 
       it 'sends email about email confirm instructions' do
         expect do
           perform_enqueued_jobs do
-            post :create, params: user_params(name, email, password)
+            post :create, params: params
           end
         end.to change(ActionMailer::Base.deliveries, :count).by(1)
 
         delivered_email = ActionMailer::Base.deliveries.last
-        expect(delivered_email.to).to include(email)
+        expect(delivered_email.to).to include(params[:email])
         expect(delivered_email.subject).to eql(I18n.t('auth.mailer.confirm_email_instruction.subject'))
       end
 
       it 'sets confirm_token and confirm_sent_at time' do
-        post :create, params: user_params(name, email, password)
+        post :create, params: params
         user = User.last
 
         expect(user.user_emails.first.confirm_token).not_to be_nil
@@ -83,7 +75,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       it 'authenticates user with given params' do
-        post :create, params: user_params(name, email, password)
+        post :create, params: params
 
         user = User.last
 
@@ -94,32 +86,30 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     context 'with invalid parameters' do
-      let(:name) { nil }
-      let(:email) { 'john@test.com' }
-      let(:password) { '123Qwerty123' }
+      let(:params) { { email: 'john@test.com', password: '123Qwerty123' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: user_params(name, email, password)
+        post :create, params: params
 
         expect(response.response_code).to eq(200)
       end
 
       it 'does not save new user in the database' do
         expect do
-          post :create, params: user_params(name, email, password)
+          post :create, params: params
         end.to_not change(User, :count)
       end
 
       it 'returns details about validation error' do
-        post :create, params: user_params(name, email, password)
+        post :create, params: params
 
         expect(response.body).to include('Name can&#39;t be blank')
       end
 
       it 'returns details about validation error in nested associations' do
-        create(:user, user_emails_attributes: [{ email: email }])
+        create(:user, user_emails_attributes: [{ email: params[:email] }])
 
-        post :create, params: user_params(name, email, '')
+        post :create, params: params.merge(password: '')
 
         expect(response.body).to include('Name can&#39;t be blank')
         expect(response.body).to include('Password can&#39;t be blank')
@@ -129,7 +119,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it "doesn't send an email about email confirm instructions" do
         expect do
           perform_enqueued_jobs do
-            post :create, params: user_params(name, email, password)
+            post :create, params: params
           end
         end.not_to change(ActionMailer::Base.deliveries, :count)
       end

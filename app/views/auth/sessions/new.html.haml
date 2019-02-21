@@ -10,14 +10,16 @@
       .box.has-text-left
         = form_tag user_session_path do
           .field
+            - email_value = @values && @values[:email]
             .control.has-icons-left
-              %input.input{ type: :email, name: :email, autofocus: true, placeholder: 'Email', value: @email }
+              %input.input{ type: :email, name: :email, value: email_value, placeholder: 'Email', autofocus: true }
               %span.icon.is-small.is-left
                 %i.fas.fa-envelope
 
           .field
+            - password_value = @values && @values[:password]
             .control.has-icons-left
-              %input.input{ type: :password, name: :password, placeholder: 'Password' }
+              %input.input{ type: :password, name: :password, value: password_value, placeholder: 'Password' }
               %span.icon.is-small.is-left
                 %i.fas.fa-lock
 

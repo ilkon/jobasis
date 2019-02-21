@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Auth
-  class ConfirmationsController < BaseController
+  class EmailsController < BaseController
     # GET /auth/confirm_email?token=abcdef
-    def show
+    def confirm
       confirm_params = params.permit(:token)
 
       email = UserEmail.find_by_confirm_token(confirm_params[:token])
@@ -13,10 +13,10 @@ module Auth
           email.clear_confirm_token
           sign_in!(email.user)
         else
-          @token_error = I18n.t('auth.confirmation.expired_token')
+          @token_error = I18n.t('auth.email.expired_token')
         end
       else
-        @token_error = I18n.t('auth.confirmation.invalid_token')
+        @token_error = I18n.t('auth.email.invalid_token')
       end
     end
   end

@@ -8,7 +8,7 @@ en:
     registration:
       success: You are registered. A message with a confirmation link has been sent to your email address.
 
-    confirmation:
+    email:
       expired_token: Sorry, the link is expired.
       invalid_token: Sorry, the link is invalid.
 

@@ -3,9 +3,9 @@
 Rails.application.routes.draw do
   namespace :auth, as: :user do
     resource :session, only: [], path: '' do
-      get    :new,     path: 'login', as: 'new'
-      post   :create,  path: 'login'
-      delete :destroy, path: 'logout', as: 'destroy'
+      get    :new,     path: 'session', as: 'new'
+      post   :create,  path: 'session'
+      delete :destroy, path: 'session', as: 'destroy'
     end
 
     resource :registration, only: [], path: '' do
@@ -20,9 +20,7 @@ Rails.application.routes.draw do
       post   :update,  path: 'reset_password'
     end
 
-    resource :confirmation, only: [], path: '' do
-      get    :show,    path: 'confirm_email'
-    end
+    get :confirm_email, to: 'emails#confirm'
   end
 
   root to: 'posts#index'

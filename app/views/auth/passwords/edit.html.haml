@@ -24,15 +24,16 @@
           = form_tag edit_user_password_path do
             %input{ type: :hidden, name: :token, value: @token }
             .field
-              %div{ class: "control has-icons-left #{@password_error && 'has-icons-right'}" }
-                %input{ class: "input #{@password_error && 'is-danger'}", type: :password, name: :password, placeholder: 'Password' }
+              - password_error = @errors && @errors[:password]
+              %div{ class: "control has-icons-left #{password_error && 'has-icons-right'}" }
+                %input{ class: "input #{password_error && 'is-danger'}", type: :password, name: :password, placeholder: 'Password' }
                 %span.icon.is-small.is-left
                   %i.fas.fa-lock
-                - if @password_error
+                - if password_error
                   %span.icon.is-small.is-right
                     %i.fas.fa-exclamation-triangle
-              - if @password_error
-                %p.help.is-danger= 'Password ' + @password_error
+              - if password_error
+                %p.help.is-danger= 'Password ' + password_error
 
             %button.button.is-block.is-info.is-fullwidth Change password
 
