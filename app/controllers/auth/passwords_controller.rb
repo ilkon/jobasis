@@ -33,16 +33,15 @@ module Auth
 
       if password
         if password.reset_sent_at.to_i + Auth.reset_password_token_ttl.to_i > Time.now.to_i
-
         else
-          @error = I18n.t('auth.password.expired_token')
+          @token_error = I18n.t('auth.password.expired_token')
         end
       else
-        @error = I18n.t('auth.password.invalid_token')
+        @token_error = I18n.t('auth.password.invalid_token')
       end
     end
 
-    # Changing password confirmed by reset_token
+    # POST /auth/reset_password
     def update
       reset_params = params.permit(:token, :password)
 
@@ -50,7 +49,7 @@ module Auth
       password = UserPassword.find_by_reset_token(@token)
 
       if password
-        if password.reset_sent_at.to_i + Auth.reset_password_token_ttl.to_i > Time.now.utc.to_i
+        if password.reset_sent_at.to_i + Auth.reset_password_token_ttl.to_i > Time.now.to_i
 
           if password.update(password: reset_params[:password])
             password.clear_reset_token
@@ -64,12 +63,11 @@ module Auth
           else
             @password_error = password.errors[:password].first
           end
-
         else
-          @error = I18n.t('auth.password.expired_token')
+          @token_error = I18n.t('auth.password.expired_token')
         end
       else
-        @error = I18n.t('auth.password.invalid_token')
+        @token_error = I18n.t('auth.password.invalid_token')
       end
 
       render :edit

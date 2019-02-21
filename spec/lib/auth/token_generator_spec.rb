@@ -40,13 +40,16 @@ RSpec.describe Auth::TokenGenerator, type: :model do
     let(:token_length) { 48 }
 
     before :each do
-      pwd = 'super-password'
+      pwd = 'Super-SeCrEt=password_123'
       10.times { create(:user_password, password: pwd) }
       10.times { create(:user_email) }
     end
 
     it 'generates raw and encoded token' do
-      [[UserPassword, :reset_token], [UserEmail, :confirm_token]].each do |klass, column|
+      [
+        [UserPassword, :reset_token],
+        [UserEmail, :confirm_token]
+      ].each do |klass, column|
         token, encoded_token = @token_generator.generate(klass, column, token_length)
         expect(token).not_to be_nil
         expect(encoded_token).not_to be_nil
@@ -55,7 +58,10 @@ RSpec.describe Auth::TokenGenerator, type: :model do
     end
 
     it 'generates raw tokens of given length' do
-      [[UserPassword, :reset_token], [UserEmail, :confirm_token]].each do |klass, column|
+      [
+        [UserPassword, :reset_token],
+        [UserEmail, :confirm_token]
+      ].each do |klass, column|
         token, = @token_generator.generate(klass, column, token_length)
         expect(token).not_to be_nil
         expect(token.length).to eql(token_length)
@@ -63,7 +69,10 @@ RSpec.describe Auth::TokenGenerator, type: :model do
     end
 
     it 'generates unique encoded tokens' do
-      [[UserPassword, :reset_token], [UserEmail, :confirm_token]].each do |klass, column|
+      [
+        [UserPassword, :reset_token],
+        [UserEmail, :confirm_token]
+      ].each do |klass, column|
         expect(klass.count).to eql(10)
 
         encoded_tokens = []
@@ -78,7 +87,10 @@ RSpec.describe Auth::TokenGenerator, type: :model do
     end
 
     it 'generates raw and encoded tokens which can be matched with digest' do
-      [[UserPassword, :reset_token], [UserEmail, :confirm_token]].each do |klass, column|
+      [
+        [UserPassword, :reset_token],
+        [UserEmail, :confirm_token]
+      ].each do |klass, column|
         expect(klass.count).to eql(10)
 
         klass.all.each do |item|

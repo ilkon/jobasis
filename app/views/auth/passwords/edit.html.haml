@@ -5,10 +5,10 @@
 
       = render 'layouts/notification'
 
-      - if @error
-        - content_for(:page_title) { 'Password update error' }
+      - if @token_error
+        - content_for(:page_title) { 'Link error' }
         .box
-          %p.content.has-text-grey= @error
+          %p.content.has-text-grey= @token_error
 
       - elsif @success
         - content_for(:page_title) { 'Password updated!' }

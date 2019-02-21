@@ -3,10 +3,10 @@
     .column.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen
       %h3.title.has-text-grey Confirm email
 
-      - if @error
-        - content_for(:page_title) { 'Confirmation error' }
+      - if @token_error
+        - content_for(:page_title) { 'Link error' }
         .box
-          %p.content.has-text-grey= @error
+          %p.content.has-text-grey= @token_error
       - else
         - content_for(:page_title) { 'Email confirmed' }
         .box

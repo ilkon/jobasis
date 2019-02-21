@@ -13,10 +13,10 @@ module Auth
           email.clear_confirm_token
           sign_in!(email.user)
         else
-          @error = I18n.t('auth.confirmation.expired_token')
+          @token_error = I18n.t('auth.confirmation.expired_token')
         end
       else
-        @error = I18n.t('auth.confirmation.invalid_token')
+        @token_error = I18n.t('auth.confirmation.invalid_token')
       end
     end
   end

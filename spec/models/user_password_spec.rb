@@ -39,12 +39,12 @@ RSpec.describe UserPassword, type: :model do
   end
 
   it 'is valid with a valid password' do
-    obj = build(:user_password, password: 'new password')
+    obj = build(:user_password, password: 'SuperCoolPwd123')
     expect(obj).to be_valid
   end
 
   it 'strips password before saving' do
-    pwd = ' 123mamama123  '
+    pwd = ' 123maMAma123  '
     obj = create(:user_password, password: pwd)
     expect(obj.match?(pwd.strip)).to be_truthy
   end
@@ -60,22 +60,22 @@ RSpec.describe UserPassword, type: :model do
   end
 
   it 'generates new hash password again if password has changed' do
-    obj = create(:user_password, password: 'old password')
+    obj = create(:user_password, password: 'oldPassword_123')
     encrypted_password = obj.encrypted_password.dup
-    obj.password = 'new password'
+    obj.password = 'newPassword_321'
     obj.save
     expect(obj.encrypted_password).not_to eql(encrypted_password)
   end
 
   it 'generates different hashed passwords for the same password' do
-    pwd = '123mamama123'
+    pwd = '123maMAma123'
     obj1 = create(:user_password, password: pwd)
     obj2 = create(:user_password, password: pwd)
     expect(obj1.encrypted_password).not_to eql(obj2.encrypted_password)
   end
 
   describe '.match?' do
-    let(:pwd) { 'super-password' }
+    let(:pwd) { 'Super-SeCrEt=password_123' }
 
     it 'matches valid password' do
       obj = create(:user_password, password: pwd)

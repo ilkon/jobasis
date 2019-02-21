@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :user_password do
     association :user, strategy: :create
 
-    password { FFaker::String.from_regexp(/\w+\w+\w+\w+\w+\w+\w+/) }
+    password { FFaker::String.from_regexp(/\w{12}[a-z][A-Z]\d/) }
   end
 end
