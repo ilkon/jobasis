@@ -32,7 +32,10 @@
 
 # Ignore local db credentials
 /config/database.yml
+
 /public/packs
 /public/packs-test
 yarn-debug.log*
 .yarn-integrity
+
+/coverage/

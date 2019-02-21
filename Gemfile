@@ -21,10 +21,12 @@ gem 'whenever', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'timecop'
+  gem 'simplecov', require: false
+  gem 'rspec-rails'
+  # gem 'database_cleaner', git: 'git@github.com:DatabaseCleaner/database_cleaner'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw] # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 end
 
 group :development do

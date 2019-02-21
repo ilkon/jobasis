@@ -11,7 +11,10 @@ module Auth
 
     # POST /auth/register
     def create
-      register_params = params.require(:user).permit(:name, user_emails_attributes: %i[id email], user_password_attributes: %i[password])
+      register_params = params.require(:user).permit(:name, user_emails_attributes: %i[id email], user_password_attributes: %i[password]).tap do |rp|
+        rp.require(:user_emails_attributes)
+        rp.require(:user_password_attributes)
+      end
 
       @user = User.new(register_params)
 
