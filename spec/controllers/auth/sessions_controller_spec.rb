@@ -66,4 +66,24 @@ RSpec.describe Auth::SessionsController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'responds with appropriate HTTP code' do
+      delete :destroy
+
+      expect(response.response_code).to eq(302)
+    end
+
+    it 'destroys user session' do
+      session[:user_id] = 1
+      session[:user_name] = 'John'
+      session[:login_at] = Time.now.to_i
+
+      delete :destroy
+
+      expect(session[:user_id]).to be_falsey
+      expect(session[:user_name]).to be_falsey
+      expect(session[:login_at]).to be_falsey
+    end
+  end
 end

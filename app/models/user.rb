@@ -26,13 +26,5 @@ class User < ApplicationRecord
     def find_by_social_profile(provider_id, uid)
       includes(:user_role).joins(:user_social_profiles).where(user_social_profiles: { provider_id: provider_id, uid: uid }).take
     end
-
-    def find_by_access_token(user_id, issued_at)
-      user = includes(:user_role).includes(:user_password).where(id: user_id).take
-
-      return nil if user&.user_password && user.user_password.updated_at.to_i > issued_at
-
-      user
-    end
   end
 end
