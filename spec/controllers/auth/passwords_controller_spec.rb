@@ -218,11 +218,14 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       end
 
       it 'authenticates user' do
+        before_ts = Time.now.to_i
         post :update, params: @params
+        after_ts = Time.now.to_i
 
         expect(session[:user_id]).to eql(@user.id)
         expect(session[:user_name]).to eql(@user.name)
-        expect(session[:login_at]).to eql(Time.now.to_i)
+        expect(session[:login_at]).not_to be_nil
+        expect(session[:login_at]).to be_between(before_ts, after_ts)
       end
     end
 
