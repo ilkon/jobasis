@@ -13,7 +13,7 @@ module Auth
         redirect_to root_path
 
       else
-        @values = login_params.select { |k, _v| %i[email].include?(k) }
+        @values = login_params.to_h.select { |k, _v| %i[email].include?(k.to_sym) }
         flash.now[:error] = I18n.t('auth.session.login_error')
 
         render :new

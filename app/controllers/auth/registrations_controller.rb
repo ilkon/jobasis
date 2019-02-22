@@ -27,7 +27,7 @@ module Auth
         redirect_to root_path, notice: I18n.t('auth.registration.success')
 
       else
-        @values = register_params.select { |k, _v| %i[email name].include?(k) }
+        @values = register_params.to_h.select { |k, _v| %i[email name].include?(k.to_sym) }
         @errors = {
           email:    user.errors[:'user_emails.email'].first,
           password: user.errors[:'user_password.password'].first,
