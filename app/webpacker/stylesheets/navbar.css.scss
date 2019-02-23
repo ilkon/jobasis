@@ -1,14 +1,17 @@
+.application {
+  .navbar {
+    transform: translateY(0);
+    transition: transform 0.2s ease-in-out;
 
-.navbar {
-  transform: translateY(0);
-  transition: transform 0.2s ease-in-out;
-
-  &.is-hidden-scroll {
-    transform: translateY(-100%);
+    &.is-hidden-scroll {
+      transform: translateY(-100%);
+    }
   }
 }
 
-.hero .navbar {
-  background-color: whitesmoke;
-  color: #363636;
+.auth {
+  .navbar {
+    background-color: whitesmoke;
+    color: #363636;
+  }
 }
