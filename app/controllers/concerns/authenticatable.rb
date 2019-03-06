@@ -31,11 +31,9 @@ module Authenticatable
               return
             end
 
-            auth_provider = session[:auth_provider].to_sym
-            auth_access_token = session[:auth_access_token]
-
-            if auth_provider == :github
-              userinfo = Auth::Api::Github.userinfo(auth_access_token)
+            case session[:auth_provider].to_sym
+            when :github
+              userinfo = Auth::Api::Github.userinfo(session[:auth_access_token])
 
               unless userinfo
                 reset_session

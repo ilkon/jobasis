@@ -68,7 +68,7 @@ module Auth
     end
 
     def auth_provider_check_session_ttl
-      @auth_provider_check_session_ttl || 1.minute
+      @auth_provider_check_session_ttl || 5.minutes
     end
 
     def confirm_email_token_ttl
