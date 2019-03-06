@@ -9,7 +9,7 @@ module Auth
       user = User.find_by_email(login_params[:email])
 
       if user&.password?(login_params[:password])
-        sign_in!(user, login_params[:remember_me].present?)
+        sign_in!(user, remember_me: login_params[:remember_me].present?)
         redirect_to root_path
 
       else

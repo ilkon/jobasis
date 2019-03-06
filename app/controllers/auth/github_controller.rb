@@ -4,27 +4,18 @@ require 'securerandom'
 
 module Auth
   class GithubController < BaseController
-    AUTHORIZE_URL = 'https://github.com/login/oauth/authorize'
-    TOKEN_URL = 'https://github.com/login/oauth/access_token'
-    USERINFO_URL = 'https://api.github.com/user'
-
     # GET /auth/github
     def new
       reset_session
-      session[:oauth2_state] = SecureRandom.hex(24)
+      session[:oauth_state] = SecureRandom.hex(Auth.oauth_state_token_length)
 
-      query_values = {
-        client_id: Rails.application.credentials.dig(:github, :client_id),
-        state:     session[:oauth2_state]
-      }
-
-      redirect_to AUTHORIZE_URL + '?' + query_values.to_query
+      redirect_to Auth::Api::Github.authorize_url(session[:oauth_state])
     end
 
     # GET /auth/github_callback
     def create
       callback_params = params.permit(:code, :state)
-      state = session[:oauth2_state]
+      state = session[:oauth_state]
       reset_session
 
       unless callback_params[:state] && callback_params[:state] == state
@@ -32,80 +23,57 @@ module Auth
         return
       end
 
-      # Requesting for access token
-      options = {
-        params:  {
-          client_id:     Rails.application.credentials.dig(:github, :client_id),
-          client_secret: Rails.application.credentials.dig(:github, :client_secret),
-          code:          callback_params[:code],
-          state:         state
-        },
-        headers: {
-          Accept: 'application/json'
-        }
-      }
-      response = Typhoeus.post(TOKEN_URL, options)
+      access_token = Auth::Api::Github.access_token(callback_params[:code], state)
 
-      if response.success?
-        resp = JSON.parse(response.response_body, symbolize_names: true)
-        if resp.is_a?(Hash) && resp[:access_token]
-          # Requesting for user info
-          options = {
-            headers: {
-              Authorization: "token #{resp[:access_token]}"
-            }
-          }
-          response = Typhoeus.get(USERINFO_URL, options)
+      if access_token
+        userinfo = Auth::Api::Github.userinfo(access_token)
 
-          if response.success?
-            resp = JSON.parse(response.response_body, symbolize_names: true)
+        if userinfo
+          uid = userinfo[:id]
+          name = userinfo[:name]
 
-            uid = resp[:id]
-            name = resp[:name]
+          provider_id = UserSocialProfile::PROVIDERS[:github]
+          user = User.find_by_social_profile(provider_id, uid)
 
-            provider_id = UserSocialProfile::PROVIDERS[:github]
-            user = User.find_by_social_profile(provider_id, uid)
+          if user
+            user.update(name: name) unless user.name == name
 
-            if user
-              user.update(name: name) unless user.name == name
+            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            redirect_to root_path
+            return
+          end
 
-              sign_in!(user, true)
-              redirect_to root_path
-              return
-            end
+          email = userinfo[:email]
+          user = User.find_by_email(email)
 
-            email = resp[:email]
-            user = User.find_by_email(email)
+          if user
+            user.update(name: name) unless user.name == name
+            user.user_social_profiles.create(provider_id: provider_id, uid: uid)
 
-            if user
-              user.update(name: name) unless user.name == name
-              user.user_social_profiles.create(provider_id: provider_id, uid: uid)
+            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            redirect_to root_path
+            return
+          end
 
-              sign_in!(user, true)
-              redirect_to root_path
-              return
-            end
+          user = User.create(
+            name:                            name,
+            user_social_profiles_attributes: [
+              {
+                provider_id: provider_id,
+                uid:         uid
+              }
+            ],
+            user_emails_attributes:          [
+              {
+                email: email
+              }
+            ]
+          )
 
-            user = User.create(
-              name:                            name,
-              user_social_profiles_attributes: [
-                {
-                  provider_id: provider_id,
-                  uid:         uid
-                }
-              ],
-              user_emails_attributes:          [
-                {
-                  email: email
-                }
-              ]
-            )
-
-            if user
-              sign_in!(user, true)
-              redirect_to root_path
-              return
-            end
+          if user
+            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            redirect_to root_path
+            return
           end
         end
       end

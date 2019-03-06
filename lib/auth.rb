@@ -9,10 +9,12 @@ module Auth
       regular_session_ttl
       memorized_session_ttl
       password_check_session_ttl
+      auth_provider_check_session_ttl
       confirm_email_token_ttl
       confirm_email_token_length
       reset_password_token_ttl
       reset_password_token_length
+      oauth_state_token_length
     ].freeze
     attr_writer(*WRITER_METHODS)
 
@@ -65,6 +67,10 @@ module Auth
       @password_check_session_ttl || 5.minutes
     end
 
+    def auth_provider_check_session_ttl
+      @auth_provider_check_session_ttl || 1.minute
+    end
+
     def confirm_email_token_ttl
       @confirm_email_token_ttl || 48.hours
     end
@@ -79,6 +85,10 @@ module Auth
 
     def reset_password_token_length
       @reset_password_token_length || 48
+    end
+
+    def oauth_state_token_length
+      @oauth_state_token_length || 24
     end
   end
 end
