@@ -8,7 +8,7 @@
       = render 'layouts/notification'
 
       .box.has-text-left
-        = form_tag user_login_path do
+        = form_tag auth_login_path do
           .field
             - email_value = @values && @values[:email]
             .control.has-icons-left
@@ -30,7 +30,15 @@
 
           %button.button.is-block.is-info.is-fullwidth Login
 
+          .p.has-text-centered.has-padding-top-15.has-padding-bottom-15
+            OR
+
+          %a.button.is-block.is-dark.is-fullwidth{ href: auth_github_path }
+            %span.icon
+              %i.fab.fa-github
+            %span Login with GitHub
+
       %p.has-text-grey
-        %a{ href: user_register_path } Register
+        %a{ href: auth_register_path } Register
          · 
-        %a{ href: user_forgot_password_path } Forgot Password
+        %a{ href: auth_forgot_password_path } Forgot Password

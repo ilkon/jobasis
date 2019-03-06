@@ -26,7 +26,7 @@
               = 'Hi, ' + session[:user_name]
             = link_to 'Logout', user_logout_path, method: :delete, class: 'navbar-item'
           - else
-            %a.navbar-item{ href: user_login_path }
+            %a.navbar-item{ href: auth_login_path }
               Login
-            %a.navbar-item{ href: user_register_path }
+            %a.navbar-item{ href: auth_register_path }
               Register

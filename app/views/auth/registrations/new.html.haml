@@ -6,7 +6,7 @@
       %h3.title.has-text-grey Register
 
       .box.has-text-left
-        = form_tag user_register_path do
+        = form_tag auth_register_path do
           .field
             - email_error = @errors && @errors[:email]
             - email_value = @values && @values[:email]
@@ -48,7 +48,15 @@
 
           %button.button.is-block.is-info.is-fullwidth Register
 
+          .p.has-text-centered.has-padding-top-15.has-padding-bottom-15
+            OR
+
+          %a.button.is-block.is-dark.is-fullwidth{ href: auth_github_path }
+            %span.icon
+              %i.fab.fa-github
+            %span Register with GitHub
+
       %p.has-text-grey
-        %a{ href: user_login_path } Login
+        %a{ href: auth_login_path } Login
          · 
-        %a{ href: user_forgot_password_path } Forgot Password
+        %a{ href: auth_forgot_password_path } Forgot Password

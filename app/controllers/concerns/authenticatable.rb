@@ -27,7 +27,7 @@ module Authenticatable
 
           if user.user_password&.changed_at && user.user_password.changed_at > password_checked_at
             reset_session
-            redirect_to user_login_path, notice: I18n.t('auth.session.changed_password')
+            redirect_to auth_login_path, notice: I18n.t('auth.session.changed_password')
             return
           end
 
@@ -39,12 +39,12 @@ module Authenticatable
           if session[:remember_me]
             if session[:login_at] + Auth.memorized_session_ttl.to_i < now
               reset_session
-              redirect_to user_login_path, notice: I18n.t('auth.session.expired_session')
+              redirect_to auth_login_path, notice: I18n.t('auth.session.expired_session')
               return
             end
           else
             reset_session
-            redirect_to user_login_path, notice: I18n.t('auth.session.expired_session')
+            redirect_to auth_login_path, notice: I18n.t('auth.session.expired_session')
             return
           end
         end

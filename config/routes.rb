@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :auth, as: :user do
+  namespace :auth do
     get    :login,           to: 'sessions#new'
     post   :login,           to: 'sessions#create'
+    get    :github,          to: 'sessions#github'
+    get    :oauth2callback,  to: 'sessions#oauth2callback'
     delete :logout,          to: 'sessions#destroy'
     get    :register,        to: 'registrations#new'
     post   :register,        to: 'registrations#create'

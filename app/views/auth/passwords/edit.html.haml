@@ -21,7 +21,7 @@
         .box.has-text-left
           %p.content.has-text-grey.has-text-centered
             Make sure new password is at least #{Auth.password_length.first} characters including a number, an uppercase and a lowercase letter.
-          = form_tag user_reset_password_path do
+          = form_tag auth_reset_password_path do
             %input{ type: :hidden, name: :token, value: @token }
             .field
               - password_error = @errors && @errors[:password]
@@ -38,6 +38,6 @@
             %button.button.is-block.is-info.is-fullwidth Change password
 
         %p.has-text-grey
-          %a{ href: user_login_path } Login
+          %a{ href: auth_login_path } Login
            · 
-          %a{ href: user_register_path } Register
+          %a{ href: auth_register_path } Register
