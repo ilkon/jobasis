@@ -13,4 +13,6 @@ RSpec.describe 'Authentication', type: :routing do
   it { expect(post:   '/auth/forgot_password').to route_to('auth/passwords#create') }
   it { expect(get:    '/auth/reset_password').to  route_to('auth/passwords#edit') }
   it { expect(post:   '/auth/reset_password').to  route_to('auth/passwords#update') }
+  it { expect(get:    '/auth/github').to          route_to('auth/github#new') }
+  it { expect(get:    '/auth/github_callback').to route_to('auth/github#create') }
 end

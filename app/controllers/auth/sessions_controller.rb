@@ -20,14 +20,6 @@ module Auth
       end
     end
 
-    # GET /auth/github
-    def github
-      redirect_to "https://github.com/login/oauth/authorize?client_id=#{Rails.application.credentials.dig(:github, :client_id)}"
-    end
-
-    # GET /auth/oauth2callback
-    def oauth2callback; end
-
     # DELETE /auth/logout
     def destroy
       reset_session

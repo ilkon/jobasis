@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   namespace :auth do
     get    :login,           to: 'sessions#new'
     post   :login,           to: 'sessions#create'
-    get    :github,          to: 'sessions#github'
-    get    :oauth2callback,  to: 'sessions#oauth2callback'
+    get    :github,          to: 'github#new'
+    get    :github_callback, to: 'github#create'
     delete :logout,          to: 'sessions#destroy'
     get    :register,        to: 'registrations#new'
     post   :register,        to: 'registrations#create'
