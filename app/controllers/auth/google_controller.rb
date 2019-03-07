@@ -38,7 +38,7 @@ module Auth
           if user
             user.update(name: name) unless user.name == name
 
-            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
+            sign_in!(user, oauth_provider: :google, oauth_access_token: access_token)
             redirect_to root_path
             return
           end
@@ -50,7 +50,7 @@ module Auth
             user.update(name: name) unless user.name == name
             user.user_social_profiles.create(provider_id: provider_id, uid: uid)
 
-            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
+            sign_in!(user, oauth_provider: :google, oauth_access_token: access_token)
             redirect_to root_path
             return
           end
@@ -71,7 +71,7 @@ module Auth
           )
 
           if user
-            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
+            sign_in!(user, oauth_provider: :google, oauth_access_token: access_token)
             redirect_to root_path
             return
           end

@@ -9,7 +9,7 @@ module Auth
       regular_session_ttl
       memorized_session_ttl
       password_check_session_ttl
-      auth_provider_check_session_ttl
+      oauth_provider_check_session_ttl
       confirm_email_token_ttl
       confirm_email_token_length
       reset_password_token_ttl
@@ -67,8 +67,8 @@ module Auth
       @password_check_session_ttl || 5.minutes
     end
 
-    def auth_provider_check_session_ttl
-      @auth_provider_check_session_ttl || 5.minutes
+    def oauth_provider_check_session_ttl
+      @oauth_provider_check_session_ttl || 5.minutes
     end
 
     def confirm_email_token_ttl

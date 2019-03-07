@@ -17,23 +17,23 @@ module Authenticatable
 
         now = Time.now.to_i
 
-        if session[:auth_provider]
-          auth_provider_checked_at = session[:last_auth_check_at] || session[:login_at]
-          if auth_provider_checked_at + Auth.auth_provider_check_session_ttl.to_i < now
+        if session[:oauth_provider]
+          oauth_provider_checked_at = session[:last_auth_check_at] || session[:login_at]
+          if oauth_provider_checked_at + Auth.oauth_provider_check_session_ttl.to_i < now
             user = User.find_by(id: session[:user_id])
             unless user
               reset_session
               return
             end
 
-            unless session[:auth_access_token]
+            unless session[:oauth_access_token]
               reset_session
               return
             end
 
-            case session[:auth_provider].to_sym
+            case session[:oauth_provider].to_sym
             when :github
-              userinfo = Auth::Api::Github.userinfo(session[:auth_access_token])
+              userinfo = Auth::Api::Github.userinfo(session[:oauth_access_token])
 
               unless userinfo
                 reset_session
