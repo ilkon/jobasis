@@ -51,10 +51,17 @@
           .p.has-text-centered.has-padding-top-15.has-padding-bottom-15
             OR
 
-          %a.button.is-block.is-dark.is-fullwidth{ href: auth_github_path, data: { turbolinks: 'false' } }
-            %span.icon
-              %i.fab.fa-github
-            %span Register with GitHub
+          .p.has-padding-top-5.has-padding-bottom-5
+            %a.button.is-block.is-dark.is-fullwidth{ href: auth_github_path, data: { turbolinks: 'false' } }
+              %span.icon
+                %i.fab.fa-github
+              %span Register with GitHub
+
+          .p.has-padding-top-5.has-padding-bottom-5
+            %a.button.is-block.is-fullwidth{ href: auth_google_path, data: { turbolinks: 'false' } }
+              %span.icon
+                %i.fab.fa-google
+              %span Register with Google
 
       %p.has-text-grey
         %a{ href: auth_login_path } Login

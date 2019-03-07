@@ -3,42 +3,42 @@
 require 'securerandom'
 
 module Auth
-  class GithubController < BaseController
-    # GET /auth/github
+  class GoogleController < BaseController
+    # GET /auth/google
     def new
       reset_session
       session[:oauth_state] = SecureRandom.hex(Auth.oauth_state_token_length)
 
-      redirect_to Auth::Api::Github.authorize_url(session[:oauth_state])
+      redirect_to Auth::Api::Google.authorize_url(session[:oauth_state], auth_google_callback_url)
     end
 
-    # GET /auth/github_callback
+    # GET /auth/google_callback
     def create
       callback_params = params.permit(:code, :state)
       state = session[:oauth_state]
       reset_session
 
       unless callback_params[:state] && callback_params[:state] == state
-        redirect_to root_path, error: I18n.t('auth.github.error')
+        redirect_to root_path, error: I18n.t('auth.google.error')
         return
       end
 
-      access_token = Auth::Api::Github.access_token(callback_params[:code], state)
+      access_token = Auth::Api::Google.access_token(callback_params[:code], auth_google_callback_url)
 
       if access_token
-        userinfo = Auth::Api::Github.userinfo(access_token)
+        userinfo = Auth::Api::Google.userinfo(access_token)
 
         if userinfo
-          uid = userinfo[:id]
+          uid = userinfo[:sub]
           name = userinfo[:name]
 
-          provider_id = UserSocialProfile::PROVIDERS[:github]
+          provider_id = UserSocialProfile::PROVIDERS[:google]
           user = User.find_by_social_profile(provider_id, uid)
 
           if user
             user.update(name: name) unless user.name == name
 
-            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
             redirect_to root_path
             return
           end
@@ -50,7 +50,7 @@ module Auth
             user.update(name: name) unless user.name == name
             user.user_social_profiles.create(provider_id: provider_id, uid: uid)
 
-            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
             redirect_to root_path
             return
           end
@@ -71,14 +71,14 @@ module Auth
           )
 
           if user
-            sign_in!(user, auth_provider: :github, auth_access_token: access_token)
+            sign_in!(user, auth_provider: :google, auth_access_token: access_token)
             redirect_to root_path
             return
           end
         end
       end
 
-      redirect_to root_path, error: I18n.t('auth.github.error')
+      redirect_to root_path, error: I18n.t('auth.google.error')
     end
   end
 end

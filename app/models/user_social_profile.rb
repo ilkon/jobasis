@@ -2,7 +2,8 @@
 
 class UserSocialProfile < ApplicationRecord
   PROVIDERS = {
-    github: 1
+    github: 1,
+    google: 2
   }.freeze
 
   belongs_to :user, inverse_of: :user_social_profiles

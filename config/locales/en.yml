@@ -11,6 +11,9 @@ en:
     github:
       error: Sorry, we cannot authorize you.
 
+    google:
+      error: Sorry, we cannot authorize you.
+
     email:
       expired_token: Sorry, the link is expired.
       invalid_token: Sorry, the link is invalid.

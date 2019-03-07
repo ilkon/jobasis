@@ -12,7 +12,7 @@ module Auth
       class << self
         def authorize_url(state)
           query_values = {
-            client_id: Rails.application.credentials.dig(:github, :client_id),
+            client_id: Rails.application.credentials.dig(:auth, :github, :client_id),
             state:     state
           }
 
@@ -24,8 +24,8 @@ module Auth
 
           options = {
             params:  {
-              client_id:     Rails.application.credentials.dig(:github, :client_id),
-              client_secret: Rails.application.credentials.dig(:github, :client_secret),
+              client_id:     Rails.application.credentials.dig(:auth, :github, :client_id),
+              client_secret: Rails.application.credentials.dig(:auth, :github, :client_secret),
               code:          code,
               state:         state
             },
