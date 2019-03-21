@@ -1,6 +1,7 @@
 - unless @posts.empty?
   - @posts.each do |post|
-    %article.message
+    - new_post = session[:previous_visit_at] && post.last_fetched_at.to_i > session[:previous_visit_at]
+    %article{ class: "message #{new_post && 'has-background-warning'}"}
       .message-header
         %b= post.employer&.name
         %i= time_ago_in_words(post.published_at) + ' ago'
