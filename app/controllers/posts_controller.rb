@@ -23,5 +23,8 @@ class PostsController < ApplicationController
     elsif @current_page > @total_pages
       @current_page = @total_pages + 1
     end
+
+    @last_visit_at = session[:posts_last_visit_at]
+    session[:posts_last_visit_at] = Time.now.to_i
   end
 end

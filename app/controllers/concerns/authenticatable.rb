@@ -91,7 +91,6 @@ module Authenticatable
           end
         end
 
-        session[:previous_visit_at] = session[:last_visit_at]
         session[:last_visit_at] = now
       end
     end
