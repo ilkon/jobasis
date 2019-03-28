@@ -5,5 +5,12 @@
       .message-header
         %b= post.employer&.name
         %i= time_ago_in_words(post.published_at) + ' ago'
-      .message-body
+      .message-body.content
         %p= post.raw_text
+
+        .box.is-size-7
+          - parsed = Parsers::HackerNews.parse(post.raw_text)
+          %p= parsed[:text]
+          %ol
+            - parsed[:urls].each do |url|
+              %li= url
