@@ -6,11 +6,17 @@
         %b= post.employer&.name
         %i= time_ago_in_words(post.published_at) + ' ago'
       .message-body.content
-        %p= post.raw_text
+        /%p= post.raw_text
 
         .box.is-size-7
           - parsed = Parsers::HackerNews.parse(post.raw_text)
-          %p= parsed[:text]
+          /%p= parsed[:text]
+          %ul
+            - parsed[:paragraphs].each do |p|
+              %li= p
           %ol
             - parsed[:urls].each do |url|
               %li= url
+          %ol
+            - parsed[:emails].each do |email|
+              %li= email
