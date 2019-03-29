@@ -3,6 +3,9 @@
 class Post < ApplicationRecord
   include Partitionable
 
+  REMOTENESS = %i[remote onsite].freeze
+  INVOLVEMENT = %i[fulltime parttime].freeze
+
   belongs_to :publisher
   belongs_to :employer, optional: true
 

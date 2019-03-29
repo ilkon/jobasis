@@ -6,28 +6,25 @@
         %b= post.employer&.name
         %i= time_ago_in_words(post.published_at) + ' ago'
       .message-body.content
-        /%p= post.raw_text
+        .tags
+          - Post::REMOTENESS.each_with_index do |f, i|
+            - if post.remoteness & (1 << i) > 0
+              %span{ class: "tag is-#{f}" }= t("posts.remoteness.#{f}")
+          - Post::INVOLVEMENT.each_with_index do |f, i|
+            - if post.involvement & (1 << i) > 0
+              %span{ class: "tag is-#{f}" }= t("posts.involvement.#{f}")
 
+        -#%p= post.raw_text
         .box.is-size-7
           - parsed = Parsers::HackerNews.parse(post.raw_text)
+          -#%p= parsed[:text]
 
-          %p= parsed[:text]
-
-          .tags
-            - if parsed.dig(:remoteness, :remote)
-              %span.tag.is-remote Remote
-            - if parsed.dig(:remoteness, :onsite)
-              %span.tag.is-onsite Onsite
-            - if parsed.dig(:involvement, :fulltime)
-              %span.tag.is-fulltime Full-time
-            - if parsed.dig(:involvement, :parttime)
-              %span.tag.is-parttime Part-time
-          -#%ul
-          -#  - parsed[:paragraphs].each do |p|
-          -#    %li= p
-          -#%ol
-          -#  - parsed[:urls].each do |url|
-          -#    %li= url
-          -#%ol
-          -#  - parsed[:emails].each do |email|
-          -#    %li= email
+          %ul
+            - parsed[:paragraphs].each do |p|
+              %li= p
+          %ol
+            - parsed[:urls].each do |url|
+              %li= url
+          %ol
+            - parsed[:emails].each do |email|
+              %li= email

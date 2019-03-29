@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_11_28_210533) do
     t.text "raw_text", null: false
     t.bigint "employer_id"
     t.string "author"
+    t.integer "remoteness"
+    t.integer "involvement"
     t.jsonb "features", default: {}, null: false
     t.datetime "last_fetched_at", null: false
     t.datetime "last_parsed_at"

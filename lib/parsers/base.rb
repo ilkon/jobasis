@@ -31,11 +31,7 @@ module Parsers
       end
 
       def schemed_urls(text)
-        text.scan(%r{\b(?:http[s]?:)?//[\w\.\-]+\.(?:#{tld.join('|')})[\#/\?]?[\w\.\-\+\=\!\#\/\?]*}i)
-      end
-
-      def schemeless_urls(text)
-        text.scan(%r{[\w\.\-]+\.(?:#{tld.join('|')})[\#\/\?]?[\w\.\-\+\=\!\#\/\?]*}i)
+        text.scan(%r{\b(?:http[s]?:)?//[\w\.\-]+\.(?:#{tld.join('|')})[\#/\?]?[\w\.\-\+\=\!\#\/\?\&]*}i)
       end
 
       def paragraphs(text)

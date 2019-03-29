@@ -18,6 +18,16 @@ module Parse
           post.employer_id = employer.id
         end
 
+        post.remoteness = 0
+        Post::REMOTENESS.each_with_index do |f, i|
+          post.remoteness |= (1 << i) if parsed.dig(:remoteness, f)
+        end
+
+        post.involvement = 0
+        Post::INVOLVEMENT.each_with_index do |f, i|
+          post.involvement |= (1 << i) if parsed.dig(:involvement, f)
+        end
+
         post.last_parsed_at = Time.now.utc
         post.save!
       end

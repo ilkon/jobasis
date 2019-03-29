@@ -31,3 +31,11 @@ en:
         subject: Reset your password
       changed_password_notification:
         subject: Your password was changed
+
+  posts:
+    remoteness:
+      remote: Remote
+      onsite: Onsite
+    involvement:
+      fulltime: Full-time
+      parttime: Part-time

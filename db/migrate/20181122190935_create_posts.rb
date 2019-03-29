@@ -11,6 +11,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text       :raw_text, null: false
       t.references :employer, index: false
       t.string     :author
+      t.integer    :remoteness
+      t.integer    :involvement
       t.jsonb      :features, null: false, default: {}
       t.datetime   :last_fetched_at, null: false
       t.datetime   :last_parsed_at
