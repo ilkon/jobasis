@@ -23,7 +23,7 @@ module Parsers
       end
 
       def cryptic_emails(text)
-        text.scan(/\b[\w\.\-+]+\s*(?:@|[\[\(\{]at[\]\)\}])\s*[\w\.\-]+\s*(?:\.|\bdot\b)\s*(?:#{tld.join('|')})\b/i)
+        text.scan(/\b[\w\.\-+]+\s*(?:@|[\[\(\{]at[\]\)\}])\s*[\w\.\-]+\s*(?:\.|[\[\(\{]?\bdot\b[\]\)\}]?)\s*(?:#{tld.join('|')})\b/i)
       end
 
       def domains(text)
@@ -66,7 +66,7 @@ module Parsers
         end
 
         cryptic_emails(text).each do |email|
-          pure_email = email.downcase.gsub(/\bdot\b/i, '.').gsub(/[\[\(\{]at[\]\)\}]/i, '@').delete(' ')
+          pure_email = email.downcase.gsub(/[\[\(\{]?\bdot\b[\]\)\}]?/i, '.').gsub(/[\[\(\{]at[\]\)\}]/i, '@').delete(' ')
           mapped[pure_email] ||= []
           mapped[pure_email] << email
         end
