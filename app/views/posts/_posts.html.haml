@@ -10,13 +10,24 @@
 
         .box.is-size-7
           - parsed = Parsers::HackerNews.parse(post.raw_text)
-          /%p= parsed[:text]
-          %ul
-            - parsed[:paragraphs].each do |p|
-              %li= p
-          %ol
-            - parsed[:urls].each do |url|
-              %li= url
-          %ol
-            - parsed[:emails].each do |email|
-              %li= email
+
+          %p= parsed[:text]
+
+          .tags
+            - if parsed.dig(:remoteness, :remote)
+              %span.tag.is-remote Remote
+            - if parsed.dig(:remoteness, :onsite)
+              %span.tag.is-onsite Onsite
+            - if parsed.dig(:involvement, :fulltime)
+              %span.tag.is-fulltime Full-time
+            - if parsed.dig(:involvement, :parttime)
+              %span.tag.is-parttime Part-time
+          -#%ul
+          -#  - parsed[:paragraphs].each do |p|
+          -#    %li= p
+          -#%ol
+          -#  - parsed[:urls].each do |url|
+          -#    %li= url
+          -#%ol
+          -#  - parsed[:emails].each do |email|
+          -#    %li= email

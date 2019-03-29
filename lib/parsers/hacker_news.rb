@@ -22,6 +22,14 @@ module Parsers
         parsed[:paragraphs] = paragraphs(text)
         parsed[:emails] = emails
         parsed[:urls] = urls
+        parsed[:remoteness] = {
+          onsite: onsite?(parsed[:paragraphs]),
+          remote: remote?(parsed[:paragraphs])
+        }
+        parsed[:involvement] = {
+          fulltime: fulltime?(parsed[:paragraphs]),
+          parttime: parttime?(parsed[:paragraphs])
+        }
 
         parsed
       end

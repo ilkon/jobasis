@@ -4,7 +4,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-$message-header-background-color: hsl(0, 0%, 60%);
+@import '../stylesheets/bulma-custom';
 @import '~bulma/bulma';
 @import '~bulma-helpers/bulma-helpers';
 

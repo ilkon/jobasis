@@ -44,6 +44,22 @@ module Parsers
         end.select(&:present?)
       end
 
+      def onsite?(paragraphs)
+        paragraphs.any? { |p| p.match?(/\bon[\s\-]*site\b/i) }
+      end
+
+      def remote?(paragraphs)
+        paragraphs.any? { |p| p.match?(/\bremote\b/i) }
+      end
+
+      def fulltime?(paragraphs)
+        paragraphs.any? { |p| p.match?(/\bfull[\s\-]*time\b/i) }
+      end
+
+      def parttime?(paragraphs)
+        paragraphs.any? { |p| p.match?(/\bpart[\s\-]*time\b/i) }
+      end
+
       def parse_emails(text)
         mapped = {}
 
