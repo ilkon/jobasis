@@ -27,7 +27,7 @@ module Parsers
             onsite: onsite?(paragraphs),
             remote: remote?(paragraphs)
           },
-            involvement: {
+          involvement:   {
             fulltime: fulltime?(paragraphs),
             parttime: parttime?(paragraphs)
           },
