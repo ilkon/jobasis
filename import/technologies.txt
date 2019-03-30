@@ -61,7 +61,7 @@ HTML
 Invision
 IOS
 Java
-JavaScript, JS
+JavaScript
 Jenkins
 Jest
 JQuery

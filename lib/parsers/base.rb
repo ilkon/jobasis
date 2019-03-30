@@ -40,6 +40,20 @@ module Parsers
         end.select(&:present?)
       end
 
+      def technologies(paragraphs)
+        technologies = []
+        Technology.all.each do |tech|
+          regexp = Regexp.new(/\b(?:#{([tech.name] + tech.synonyms).join('|')})\b/i)
+          paragraphs.each do |paragraph|
+            if paragraph.match?(regexp)
+              technologies << tech.name
+              break
+            end
+          end
+        end
+        technologies
+      end
+
       def onsite?(paragraphs)
         paragraphs.any? { |p| p.match?(/\bon[\s\-]*site\b/i) }
       end

@@ -28,3 +28,7 @@
           %ol
             - parsed[:emails].each do |email|
               %li= email
+
+        .tags
+          - parsed[:technologies].each do |p|
+            %span.tag.is-info= p
