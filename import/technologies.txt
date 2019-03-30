@@ -1,0 +1,131 @@
+Adobe CS
+Airflow
+Algolia
+AMQP, Advanced Message Queuing Protocol
+Android
+Angular, AngularJS, Angular.js
+Ansible
+Apache
+Apache Hadoop
+APIG
+Apollo
+AWS
+AWS ECS, ECS
+Azure
+Babel
+Bash
+Blockchain
+C
+C#
+C++, C++14, C++17
+Capistrano
+Celery
+Chef
+CircleCI, Circle CI
+Clang-Tidy
+Clojure
+ClojureScript
+Cloudfront
+Cognito
+CouchDB
+CSS
+Datadog
+Deep learning
+Django
+Docker
+Dropwizard
+Dynamo
+EC2
+ElasticSearch, Elastic Search
+Elixir
+EmberJS
+Figma
+Flask
+FPGA/VHDL
+Framer
+GCC
+GDB
+Git
+Github
+GoCD
+Golang
+Google Cloud, GCP
+Grafana
+GraphQL
+GStreamer
+Gunicorn
+HBase
+Heroku
+Hive
+HTML
+Invision
+IOS
+Java
+JavaScript, JS
+Jenkins
+Jest
+JQuery
+JVM
+Kotlin
+Kubernetes, K8s
+KVM
+Lambda
+Machine learning
+Maltego
+MariaDB
+Mesos
+MongoDB, Mongo
+Multiplexing
+MySQL
+Nagios
+Neptune
+Nginx
+Node
+Node.JS
+OpenCV
+OpenDKIM
+OpenStack
+Perl
+Phoenix
+PHP
+Postfix
+PostgreSQL, Postgres
+Presto
+Prometheus
+Proxmox
+Puppet
+Puppeteer
+Python
+R
+RabbitMQ
+RDS
+React-Apollo
+React.js, React, ReactJS
+React Native
+Redis
+Redux
+Rollbar
+Rspec
+RTMP
+Ruby
+Ruby on Rails, Rails, RoR
+S3
+Scala
+Sketch
+Snowflake
+Spark
+Spring
+SQL
+SQLAlchemy
+Swift
+Terraform
+TokuDB
+TravisCI, Travis
+Twilio
+TypeScript
+Unity
+Vagrant
+Varnish
+Vue.js, VueJS
+Webpack
+Wordpress
