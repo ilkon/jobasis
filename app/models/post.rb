@@ -16,6 +16,7 @@ class Post < ApplicationRecord
   validates :raw_text, presence: true
   validates :date, presence: true
 
+  serialize :technology_ids, ObjectToJsonbSerializer
   serialize :features, ObjectToJsonbSerializer
 
   class << self

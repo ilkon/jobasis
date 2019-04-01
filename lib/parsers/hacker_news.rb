@@ -13,13 +13,12 @@ module Parsers
 
         words_count = employer_name.split(' ').count
 
-        emails = parse_emails(text)
-        urls = parse_urls(text)
         paragraphs = paragraphs(text)
+        emails = parse_emails(paragraphs)
+        urls = parse_urls(paragraphs)
 
         {
           employer_name: words_count.positive? && words_count < 5 ? employer_name : nil,
-          text:          text,
           paragraphs:    paragraphs,
           emails:        emails,
           urls:          urls,

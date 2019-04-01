@@ -70,46 +70,54 @@ module Parsers
         paragraphs.any? { |p| p.match?(/\bpart[\s\-]*time\b/i) }
       end
 
-      def parse_emails(text)
+      def parse_emails(paragraphs)
         mapped = {}
 
-        plain_emails(text).each do |email|
-          pure_email = email.downcase
-          mapped[pure_email] ||= []
-          mapped[pure_email] << email
-        end
+        paragraphs.each do |paragraph|
+          plain_emails(paragraph).each do |email|
+            pure_email = email.downcase
+            mapped[pure_email] ||= []
+            mapped[pure_email] << email
+          end
 
-        cryptic_emails(text).each do |email|
-          pure_email = email.downcase.gsub(/[\[\(\{]?\bdot\b[\]\)\}]?/i, '.').gsub(/[\[\(\{]at[\]\)\}]/i, '@').delete(' ')
-          mapped[pure_email] ||= []
-          mapped[pure_email] << email
+          cryptic_emails(paragraph).each do |email|
+            pure_email = email.downcase.gsub(/[\[\(\{]?\bdot\b[\]\)\}]?/i, '.').gsub(/[\[\(\{]at[\]\)\}]/i, '@').delete(' ')
+            mapped[pure_email] ||= []
+            mapped[pure_email] << email
+          end
         end
 
         pure_emails = mapped.keys.sort_by(&:length).reverse
 
         pure_emails.each_with_index do |pure_email, i|
           mapped[pure_email].each do |email|
-            text.gsub!(email, "###EMAIL#{i}###")
+            paragraphs.map! do |paragraph|
+              paragraph.gsub(email, "###EMAIL#{i}###")
+            end
           end
         end
 
         pure_emails
       end
 
-      def parse_urls(text)
+      def parse_urls(paragraphs)
         mapped = {}
 
-        schemed_urls(text).each do |url|
-          pure_url = url.downcase
-          mapped[pure_url] ||= []
-          mapped[pure_url] << url
+        paragraphs.each do |paragraph|
+          schemed_urls(paragraph).each do |url|
+            pure_url = url.downcase
+            mapped[pure_url] ||= []
+            mapped[pure_url] << url
+          end
         end
 
         pure_urls = mapped.keys.sort_by(&:length).reverse
 
         pure_urls.each_with_index do |pure_url, i|
           mapped[pure_url].each do |url|
-            text.gsub!(url, "###URL#{i}###")
+            paragraphs.map! do |paragraph|
+              paragraph.gsub(url, "###URL#{i}###")
+            end
           end
         end
 

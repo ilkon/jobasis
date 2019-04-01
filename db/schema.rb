@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_200405) do
+ActiveRecord::Schema.define(version: 2019_04_01_164724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "technology_ids", default: [], null: false
   end
 
   create_table "posts_201812", id: false, force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "technology_ids", default: [], null: false
     t.index ["employer_id"], name: "posts_201812_employer_id"
     t.index ["publisher_id", "publisher_key"], name: "posts_201812_publisher", unique: true
   end
@@ -76,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "technology_ids", default: [], null: false
     t.index ["employer_id"], name: "posts_201901_employer_id"
     t.index ["publisher_id", "publisher_key"], name: "posts_201901_publisher", unique: true
   end
@@ -96,6 +99,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "technology_ids", default: [], null: false
     t.index ["employer_id"], name: "posts_201902_employer_id"
     t.index ["publisher_id", "publisher_key"], name: "posts_201902_publisher", unique: true
   end
@@ -116,6 +120,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "technology_ids", default: [], null: false
     t.index ["employer_id"], name: "posts_201903_employer_id"
     t.index ["publisher_id", "publisher_key"], name: "posts_201903_publisher", unique: true
   end

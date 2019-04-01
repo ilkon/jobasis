@@ -3,7 +3,7 @@ Airflow
 Algolia
 AMQP, Advanced Message Queuing Protocol
 Android
-Angular, AngularJS, Angular.js
+Angular, Angular.js, AngularJS
 Ansible
 Apache
 Apache Hadoop
@@ -100,7 +100,7 @@ R
 RabbitMQ
 RDS
 React-Apollo
-React.js, React, ReactJS
+React, React.js, ReactJS
 React Native
 Redis
 Redux
@@ -126,6 +126,6 @@ TypeScript
 Unity
 Vagrant
 Varnish
-Vue.js, VueJS
+Vue, Vue.js, VueJS
 Webpack
 Wordpress
