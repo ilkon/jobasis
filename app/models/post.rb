@@ -23,6 +23,7 @@ class Post < ApplicationRecord
     def create_indexes(schema, table)
       connection.execute("CREATE UNIQUE INDEX #{table}_publisher ON #{schema}.#{table} (publisher_id, publisher_key)")
       connection.execute("CREATE INDEX #{table}_employer_id ON #{schema}.#{table} (employer_id)")
+      connection.execute("CREATE INDEX #{table}_technology_ids ON #{schema}.#{table} USING GIN (technology_ids jsonb_path_ops)")
     end
   end
 end

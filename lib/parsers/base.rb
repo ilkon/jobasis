@@ -46,7 +46,7 @@ module Parsers
           regexp = Regexp.new(/\b(?:#{([tech.name] + tech.synonyms).join('|')})\b/i)
           paragraphs.each do |paragraph|
             if paragraph.match?(regexp)
-              technologies << tech.name
+              technologies << tech
               break
             end
           end

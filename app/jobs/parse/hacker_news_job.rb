@@ -10,6 +10,7 @@ module Parse
       publisher = Publisher.find_by!(name: 'HackerNews')
 
       posts = Post.where('publisher_id = ? AND (last_parsed_at IS NULL OR last_parsed_at < last_fetched_at)', publisher.id)
+      # posts = Post.where('publisher_id = ?', publisher.id)
       posts.each do |post|
         parsed = Parsers::HackerNews.parse(post.raw_text)
 
@@ -27,6 +28,8 @@ module Parse
         Post::INVOLVEMENT.each_with_index do |f, i|
           post.involvement |= (1 << i) if parsed.dig(:involvement, f)
         end
+
+        post.technology_ids = parsed[:technologies].map(&:id)
 
         post.last_parsed_at = Time.now.utc
         post.save!
