@@ -3,8 +3,8 @@ Airflow
 Algolia
 AMQP, Advanced Message Queuing Protocol
 Android
-Angular, Angular.js, AngularJS
-Ansible
+Angular, Angular.js, AngularJS, Angular2
+Ansible, Ansbile
 Apache
 Apache Hadoop
 APIG
@@ -15,9 +15,9 @@ Azure
 Babel
 Bash
 Blockchain
-C
 C#
 C++, C++14, C++17
+Caffe
 Capistrano
 Celery
 Chef
@@ -29,16 +29,18 @@ Cloudfront
 Cognito
 CouchDB
 CSS
-Datadog
+DataDog
+Datalog
 Deep learning
 Django
 Docker
 Dropwizard
-Dynamo
+DynamoDB, Dynamo
 EC2
 ElasticSearch, Elastic Search
 Elixir
 EmberJS
+ES6
 Figma
 Flask
 FPGA/VHDL
@@ -48,7 +50,7 @@ GDB
 Git
 Github
 GoCD
-Golang
+Golang, Go
 Google Cloud, GCP
 Grafana
 GraphQL
@@ -66,16 +68,19 @@ Jenkins
 Jest
 JQuery
 JVM
+Kibana
+Kinesis
 Kotlin
 Kubernetes, K8s
 KVM
 Lambda
-Machine learning
+Machine learning, ML
 Maltego
 MariaDB
 Mesos
 MongoDB, Mongo
 Multiplexing
+MxNet
 MySQL
 Nagios
 Neptune
@@ -91,6 +96,7 @@ PHP
 Postfix
 PostgreSQL, Postgres
 Presto
+Prolog
 Prometheus
 Proxmox
 Puppet
@@ -99,17 +105,20 @@ Python
 R
 RabbitMQ
 RDS
-React-Apollo
 React, React.js, ReactJS
+React-Apollo
 React Native
 Redis
+Redshift
 Redux
 Rollbar
 Rspec
 RTMP
 Ruby
 Ruby on Rails, Rails, RoR
+Rust
 S3
+SAT/SMT
 Scala
 Sketch
 Snowflake
@@ -117,6 +126,7 @@ Spark
 Spring
 SQL
 SQLAlchemy
+SQS
 Swift
 Terraform
 TokuDB

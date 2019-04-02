@@ -43,7 +43,8 @@ module Parsers
       def technologies(paragraphs)
         technologies = []
         Technology.all.each do |tech|
-          regexp = Regexp.new(/\b(?:#{([tech.name] + tech.synonyms).join('|')})\b/i)
+          names = ([tech.name] + tech.synonyms).map { |name| name.gsub(/([\.\+\-\#\\])/, '\\\\\1') }
+          regexp = Regexp.new(/(?:\A|\W)(?:#{names.join('|')})(?:\W|\z)/i)
           paragraphs.each do |paragraph|
             if paragraph.match?(regexp)
               technologies << tech
