@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-# Import technologies
-pathname = Rails.root.join('import', 'technologies.txt')
+# Import skills
+pathname = Rails.root.join('import', 'skills.txt')
 
-technologies = []
+skills = []
 File.open(pathname, 'r') do |file|
   file.each_line do |line|
     names = line.split(',').map(&:strip).reject(&:empty?)
     next if names.empty?
 
-    technologies << names
+    skills << names
   end
 end
 
-Technology.import(technologies)
+Skill.import(skills)

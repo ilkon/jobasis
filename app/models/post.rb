@@ -16,14 +16,14 @@ class Post < ApplicationRecord
   validates :raw_text, presence: true
   validates :date, presence: true
 
-  serialize :technology_ids, ObjectToJsonbSerializer
+  serialize :skill_ids, ObjectToJsonbSerializer
   serialize :features, ObjectToJsonbSerializer
 
   class << self
     def create_indexes(schema, table)
       connection.execute("CREATE UNIQUE INDEX #{table}_publisher ON #{schema}.#{table} (publisher_id, publisher_key)")
       connection.execute("CREATE INDEX #{table}_employer_id ON #{schema}.#{table} (employer_id)")
-      connection.execute("CREATE INDEX #{table}_technology_ids ON #{schema}.#{table} USING GIN (technology_ids jsonb_path_ops)")
+      connection.execute("CREATE INDEX #{table}_skill_ids ON #{schema}.#{table} USING GIN (skill_ids jsonb_path_ops)")
     end
   end
 end

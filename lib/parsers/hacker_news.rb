@@ -30,7 +30,7 @@ module Parsers
             fulltime: fulltime?(paragraphs),
             parttime: parttime?(paragraphs)
           },
-          technologies:  technologies(paragraphs)
+          skills:        skills(paragraphs)
         }
       end
     end

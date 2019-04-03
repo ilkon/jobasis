@@ -24,7 +24,7 @@ class PostsController < ApplicationController
       @current_page = @total_pages + 1
     end
 
-    @technologies = Technology.all.each_with_object({}) { |tech, hash| hash[tech.id] = tech.name }
+    @skills = Skill.all.each_with_object({}) { |skill, hash| hash[skill.id] = skill.name }
 
     @last_visit_at = session[:posts_last_visit_at]
     session[:posts_last_visit_at] = Time.now.to_i

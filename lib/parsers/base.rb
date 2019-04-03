@@ -40,19 +40,19 @@ module Parsers
         end.select(&:present?)
       end
 
-      def technologies(paragraphs)
-        technologies = []
-        Technology.all.each do |tech|
-          names = ([tech.name] + tech.synonyms).map { |name| name.gsub(/([\.\+\-\#\\])/, '\\\\\1') }
+      def skills(paragraphs)
+        skills = []
+        Skill.all.each do |skill|
+          names = ([skill.name] + skill.synonyms).map { |name| name.gsub(/([\.\+\-\#\\])/, '\\\\\1') }
           regexp = Regexp.new(/(?:\A|\W)(?:#{names.join('|')})(?:\W|\z)/i)
           paragraphs.each do |paragraph|
             if paragraph.match?(regexp)
-              technologies << tech
+              skills << skill
               break
             end
           end
         end
-        technologies
+        skills
       end
 
       def onsite?(paragraphs)

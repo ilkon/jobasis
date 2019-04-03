@@ -117,7 +117,7 @@ namespace :hacker_news do
         post.involvement |= (1 << i) if parsed.dig(:involvement, f)
       end
 
-      post.technology_ids = parsed[:technologies].map(&:id)
+      post.skill_ids = parsed[:skills].map(&:id)
 
       post.last_parsed_at = Time.now.utc
       post.save!

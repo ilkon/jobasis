@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_164724) do
+ActiveRecord::Schema.define(version: 2019_03_29_200405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,97 +32,13 @@ ActiveRecord::Schema.define(version: 2019_04_01_164724) do
     t.string "author"
     t.integer "remoteness"
     t.integer "involvement"
+    t.jsonb "skill_ids", default: [], null: false
     t.jsonb "features", default: {}, null: false
     t.datetime "last_fetched_at", null: false
     t.datetime "last_parsed_at"
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "technology_ids", default: [], null: false
-  end
-
-  create_table "posts_201812", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.integer "remoteness"
-    t.integer "involvement"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "technology_ids", default: [], null: false
-    t.index ["employer_id"], name: "posts_201812_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201812_publisher", unique: true
-  end
-
-  create_table "posts_201901", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.integer "remoteness"
-    t.integer "involvement"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "technology_ids", default: [], null: false
-    t.index ["employer_id"], name: "posts_201901_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201901_publisher", unique: true
-  end
-
-  create_table "posts_201902", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.integer "remoteness"
-    t.integer "involvement"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "technology_ids", default: [], null: false
-    t.index ["employer_id"], name: "posts_201902_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201902_publisher", unique: true
-  end
-
-  create_table "posts_201903", id: false, force: :cascade do |t|
-    t.bigint "id", default: -> { "nextval('posts_id_seq'::regclass)" }, null: false
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
-    t.string "author"
-    t.integer "remoteness"
-    t.integer "involvement"
-    t.jsonb "features", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "last_parsed_at"
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "technology_ids", default: [], null: false
-    t.index ["employer_id"], name: "posts_201903_employer_id"
-    t.index ["publisher_id", "publisher_key"], name: "posts_201903_publisher", unique: true
   end
 
   create_table "publisher_stashes", force: :cascade do |t|
@@ -143,12 +59,12 @@ ActiveRecord::Schema.define(version: 2019_04_01_164724) do
     t.index ["name"], name: "publishers_name", unique: true
   end
 
-  create_table "technologies", force: :cascade do |t|
+  create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.jsonb "synonyms", default: [], null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "technologies_name", unique: true
+    t.index ["name"], name: "skills_name", unique: true
   end
 
   create_table "user_emails", force: :cascade do |t|

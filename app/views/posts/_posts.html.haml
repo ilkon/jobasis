@@ -9,8 +9,8 @@
         - parsed = Parsers::HackerNews.parse(post.raw_text)
 
         .tags
-          - post.technology_ids.each do |tid|
-            %span.tag.is-info= @technologies[tid]
+          - post.skill_ids.each do |tid|
+            %span.tag.is-info= @skills[tid]
 
         -#%p= post.raw_text
         .box.is-size-7

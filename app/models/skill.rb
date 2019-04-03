@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Technology < ApplicationRecord
+class Skill < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 1..250 }
 
   strip_attributes :name
@@ -8,18 +8,18 @@ class Technology < ApplicationRecord
   serialize :synonyms, ObjectToJsonbSerializer
 
   class << self
-    def import(technologies)
+    def import(skills)
       status = { created: 0, updated: 0, deleted: 0 }
 
-      indexed_techs = all.index_by(&:id)
-      named_ids = indexed_techs.values.each_with_object({}) do |tech, hash|
-        hash[tech.name.downcase] = tech.id
-        tech.synonyms.each { |syn| hash[syn.downcase] = tech.id }
+      indexed_skills = all.index_by(&:id)
+      named_ids = indexed_skills.values.each_with_object({}) do |skill, hash|
+        hash[skill.name.downcase] = skill.id
+        skill.synonyms.each { |syn| hash[syn.downcase] = skill.id }
       end
 
       processed_names = []
 
-      technologies.each do |names|
+      skills.each do |names|
         names.reject! { |name| processed_names.include?(name.downcase) }
         next if names.empty?
 
@@ -27,7 +27,7 @@ class Technology < ApplicationRecord
 
         ids = names.map do |name|
           id = named_ids[name.downcase]
-          id && indexed_techs[id] ? id : nil
+          id && indexed_skills[id] ? id : nil
         end
 
         major_id = ids.compact.group_by(&:itself).max_by { |x| x[1].length }.try(:first)
@@ -36,17 +36,17 @@ class Technology < ApplicationRecord
         synonyms = names
 
         if major_id
-          indexed_techs[major_id].update(name: name, synonyms: synonyms)
+          indexed_skills[major_id].update(name: name, synonyms: synonyms)
           status[:updated] += 1
-          indexed_techs.delete(major_id)
+          indexed_skills.delete(major_id)
         else
           create(name: name, synonyms: synonyms)
           status[:created] += 1
         end
       end
 
-      status[:deleted] = indexed_techs.count
-      indexed_techs.each do |_id, model|
+      status[:deleted] = indexed_skills.count
+      indexed_skills.each do |_id, model|
         model.destroy
       end
 
@@ -54,7 +54,7 @@ class Technology < ApplicationRecord
     end
 
     def export
-      order(name: :asc).map { |tech| [tech.name] + tech.synonyms }
+      order(name: :asc).map { |skill| [skill.name] + skill.synonyms }
     end
   end
 end
