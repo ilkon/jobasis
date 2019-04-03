@@ -4,7 +4,7 @@ require_relative 'string_boolean'
 
 namespace :skills do
   desc 'Import skills from txt-file to database'
-  task :import => :environment do
+  task import: :environment do
     pathname = Rails.root.join('import', 'skills.txt')
 
     unless pathname.exist?
@@ -34,7 +34,7 @@ namespace :skills do
   end
 
   desc 'Export skills from database to txt-file'
-  task :export => :environment do
+  task export: :environment do
     skills = Skill.export
 
     if skills.empty?

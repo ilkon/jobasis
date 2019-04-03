@@ -8,6 +8,10 @@ class Skill < ApplicationRecord
   serialize :synonyms, ObjectToJsonbSerializer
 
   class << self
+    def export
+      order(name: :asc).map { |skill| [skill.name] + skill.synonyms }
+    end
+
     def import(skills)
       status = { created: 0, updated: 0, deleted: 0 }
 
@@ -32,8 +36,8 @@ class Skill < ApplicationRecord
 
         major_id = ids.compact.group_by(&:itself).max_by { |x| x[1].length }.try(:first)
 
-        name = names.shift
-        synonyms = names
+        name = names[0]
+        synonyms = names[1..-1]
 
         if major_id
           indexed_skills[major_id].update(name: name, synonyms: synonyms)
@@ -51,10 +55,6 @@ class Skill < ApplicationRecord
       end
 
       status
-    end
-
-    def export
-      order(name: :asc).map { |skill| [skill.name] + skill.synonyms }
     end
   end
 end
