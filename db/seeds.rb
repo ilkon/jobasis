@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Import technologies
+pathname = Rails.root.join('import', 'technologies.txt')
+
+technologies = []
+File.open(pathname, 'r') do |file|
+  file.each_line do |line|
+    names = line.split(',').map(&:strip).reject(&:empty?)
+    next if names.empty?
+
+    technologies << names
+  end
+end
+
+Technology.import(technologies)
