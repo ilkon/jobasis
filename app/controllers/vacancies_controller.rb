@@ -9,10 +9,10 @@ class VacanciesController < ApplicationController
     offset = params[:page].to_i.positive? && (params[:page].to_i - 1) * limit || 0
 
     @vacancies = Vacancy.select('*, count(*) OVER() AS total_count')
-                 .includes(:employer)
-                 .limit(limit)
-                 .offset(offset)
-                 .order(published_at: :desc).to_a
+                        .includes(:employer)
+                        .limit(limit)
+                        .offset(offset)
+                        .order(published_at: :desc).to_a
     total_count = @vacancies.first&.total_count || 0
 
     @total_pages = (total_count + limit - 1) / limit
