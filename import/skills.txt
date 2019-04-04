@@ -127,6 +127,7 @@ Spring
 SQL
 SQLAlchemy
 SQS
+Stripe
 Swift
 Terraform
 TokuDB

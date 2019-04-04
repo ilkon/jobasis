@@ -26,30 +26,15 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
   create_table "posts", force: :cascade do |t|
     t.bigint "publisher_id", null: false
     t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.text "raw_text", null: false
-    t.bigint "employer_id"
+    t.datetime "published_at", null: false
     t.string "author"
-    t.integer "remoteness"
-    t.integer "involvement"
-    t.jsonb "skill_ids", default: [], null: false
-    t.jsonb "features", default: {}, null: false
+    t.text "text"
+    t.boolean "vacancy", default: false
     t.datetime "last_fetched_at", null: false
     t.datetime "last_parsed_at"
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "publisher_stashes", force: :cascade do |t|
-    t.bigint "publisher_id", null: false
-    t.string "publisher_key", null: false
-    t.datetime "published_at"
-    t.jsonb "content", default: {}, null: false
-    t.datetime "last_fetched_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["publisher_id", "publisher_key"], name: "publisher_stashes_unique", unique: true
   end
 
   create_table "publishers", force: :cascade do |t|
@@ -112,6 +97,20 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vacancies", force: :cascade do |t|
+    t.bigint "publisher_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "published_at", null: false
+    t.bigint "employer_id"
+    t.integer "remoteness"
+    t.integer "involvement"
+    t.jsonb "skill_ids", default: [], null: false
+    t.jsonb "features", default: {}, null: false
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

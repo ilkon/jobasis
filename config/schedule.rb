@@ -23,10 +23,10 @@
 
 if @environment == 'production'
   every 2.hours do
-    rake 'hacker_news:fetch'
+    rake 'posts:fetch'
   end
 
   every '5 * * * *' do
-    rake 'hacker_news:parse'
+    rake 'vacancies:parse_new'
   end
 end

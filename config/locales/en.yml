@@ -32,7 +32,7 @@ en:
       changed_password_notification:
         subject: Your password was changed
 
-  posts:
+  vacancies:
     remoteness:
       remote: Remote
       onsite: Onsite

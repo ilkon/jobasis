@@ -1,0 +1,35 @@
+- unless @vacancies.empty?
+  - @vacancies.each do |vacancy|
+    - fresh_vacancy = @last_visit_at && vacancy.created_at.to_i > @last_visit_at
+    %article{ class: "message #{fresh_vacancy ? 'fresh-vacancy' : ''}" }
+      .message-header
+        %b= vacancy.employer&.name
+        %i= time_ago_in_words(vacancy.published_at) + ' ago'
+      .message-body.content
+        - parsed = Parsers::Base.parse(vacancy.post.text)
+
+        .tags
+          - vacancy.skill_ids.each do |skill_id|
+            %span.tag.is-info= @skills[skill_id]
+
+        -#%p= vacancy.raw_text
+        .box.is-size-7
+          -#%p= parsed[:text]
+
+          %ul
+            - parsed[:paragraphs].each do |p|
+              %li= p
+          %ol
+            - parsed[:urls].each do |url|
+              %li= url
+          %ol
+            - parsed[:emails].each do |email|
+              %li= email
+
+        .tags
+          - Vacancy::REMOTENESS.each_with_index do |f, i|
+            - if vacancy.remoteness & (1 << i) > 0
+              %span{ class: "tag is-#{f}" }= t("vacancies.remoteness.#{f}")
+          - Vacancy::INVOLVEMENT.each_with_index do |f, i|
+            - if vacancy.involvement & (1 << i) > 0
+              %span{ class: "tag is-#{f}" }= t("vacancies.involvement.#{f}")

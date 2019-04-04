@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'string_boolean'
-
 namespace :skills do
   desc 'Import skills from txt-file to database'
   task import: :environment do

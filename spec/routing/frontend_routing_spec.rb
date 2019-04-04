@@ -3,5 +3,5 @@
 require 'rails_helper'
 
 RSpec.describe 'Frontend', type: :routing do
-  it { expect(get: '/').to route_to('posts#index') }
+  it { expect(get: '/').to route_to('vacancies#index') }
 end

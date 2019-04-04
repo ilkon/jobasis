@@ -18,6 +18,17 @@ RSpec.describe Post, type: :model do
     expect(obj).not_to be_valid
   end
 
+  it 'is invalid without publishing time' do
+    obj = build(:post)
+    obj.published_at = nil
+    expect(obj).not_to be_valid
+  end
+
+  it 'is invalid without a date' do
+    obj = build(:post, date: nil)
+    expect(obj).not_to be_valid
+  end
+
   it 'is invalid with an empty key' do
     obj = build(:post, publisher_key: '')
     expect(obj).not_to be_valid

@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     get    :google_callback, to: 'google#create'
   end
 
-  root to: 'posts#index'
-  get 'posts', to: 'posts#index'
+  root to: 'vacancies#index'
+  get 'vacancies', to: 'vacancies#index'
 end
