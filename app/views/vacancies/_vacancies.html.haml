@@ -5,15 +5,14 @@
       .message-header
         %b= vacancy.employer&.name
         %i= time_ago_in_words(vacancy.published_at) + ' ago'
-      .message-body.content
+      .message-body
         - parsed = Parsers::Base.parse(vacancy.post.text)
 
         .tags
           - vacancy.skill_ids.each do |skill_id|
             %span.tag.is-info= @skills[skill_id]
 
-        -#%p= vacancy.raw_text
-        .box.is-size-7
+        .content.is-size-7
           -#%p= parsed[:text]
 
           %ul
