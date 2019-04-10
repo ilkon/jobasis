@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'htmlentities'
-
 module Parsers
   class Base
     class << self
@@ -21,7 +19,7 @@ module Parsers
       end
 
       def plain_emails(text)
-        text.scan(/\b\S+@\S+\.(?:#{tld.join('|')})\b/i)
+        text.scan(/\b[^\s\;]+@\S+\.(?:#{tld.join('|')})\b/i)
       end
 
       def cryptic_emails(text)
@@ -127,8 +125,16 @@ module Parsers
         pure_urls
       end
 
+      def text(paragraphs)
+        sanitizer = Rails::Html::WhiteListSanitizer.new
+
+        paragraphs.map do |paragraph|
+          "<p>#{sanitizer.sanitize(paragraph, tags: %w[strong b em i small u a ul ol li], attributes: %w[href])}</p>"
+        end.join
+      end
+
       def parse(raw_text)
-        text = HTMLEntities.new.decode(raw_text)
+        text = raw_text.gsub(/&#x2F;/i, '/')
 
         chunks = text.split('|')
         employer_name = AttributeStripper.strip_string(chunks[0], collapse_spaces: true, replace_newlines: true, allow_empty: true)
@@ -141,9 +147,6 @@ module Parsers
 
         {
           employer_name: words_count.positive? && words_count < 5 ? employer_name : nil,
-          paragraphs:    paragraphs,
-          emails:        emails,
-          urls:          urls,
           remoteness:    {
             onsite: onsite?(paragraphs),
             remote: remote?(paragraphs)
@@ -152,7 +155,10 @@ module Parsers
             fulltime: fulltime?(paragraphs),
             parttime: parttime?(paragraphs)
           },
-          skills:        skills(paragraphs)
+          skills:        skills(paragraphs),
+          urls:          urls,
+          emails:        emails,
+          text:          text(paragraphs)
         }
       end
     end

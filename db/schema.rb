@@ -109,7 +109,9 @@ ActiveRecord::Schema.define(version: 2019_03_29_200405) do
     t.integer "remoteness"
     t.integer "involvement"
     t.jsonb "skill_ids", default: [], null: false
-    t.jsonb "features", default: {}, null: false
+    t.jsonb "urls", default: [], null: false
+    t.jsonb "emails", default: [], null: false
+    t.text "text", null: false
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -12,7 +12,9 @@ class CreateVacancies < ActiveRecord::Migration[5.2]
       t.integer    :remoteness
       t.integer    :involvement
       t.jsonb      :skill_ids, null: false, default: []
-      t.jsonb      :features, null: false, default: {}
+      t.jsonb      :urls, null: false, default: []
+      t.jsonb      :emails, null: false, default: []
+      t.text       :text, null: false
 
       t.date       :date, null: false
 

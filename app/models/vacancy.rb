@@ -14,9 +14,11 @@ class Vacancy < ApplicationRecord
   validates :post, presence: true
   validates :published_at, presence: true
   validates :date, presence: true
+  validates :text, presence: true
 
   serialize :skill_ids, ObjectToJsonbSerializer
-  serialize :features, ObjectToJsonbSerializer
+  serialize :urls, ObjectToJsonbSerializer
+  serialize :emails, ObjectToJsonbSerializer
 
   class << self
     def create_indexes(schema, table)

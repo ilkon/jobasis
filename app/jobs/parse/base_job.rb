@@ -28,6 +28,9 @@ module Parse
       end
 
       data[:skill_ids] = parsed[:skills].map(&:id)
+      data[:urls] = parsed[:urls]
+      data[:emails] = parsed[:emails]
+      data[:text] = parsed[:text]
 
       vacancy = Vacancy.find_by(post_id: post.id)
       if vacancy
