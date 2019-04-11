@@ -12,7 +12,17 @@ class VacanciesController < ApplicationController
                         .includes(:employer)
                         .limit(limit)
                         .offset(offset)
-                        .order(published_at: :desc).to_a
+                        .order(published_at: :desc)
+
+    @filters = %i[remote onsite fulltime parttime].each_with_object({}) { |p, hash| hash[p] = params[p] if params[p].present? }
+
+    @vacancies = @vacancies.where(remoteness: [0, 1, 3]) if @filters[:remote] && !@filters[:onsite]
+    @vacancies = @vacancies.where(remoteness: [0, 2, 3]) if !@filters[:remote] && @filters[:onsite]
+    @vacancies = @vacancies.where(involvement: [0, 1, 3]) if @filters[:fulltime] && !@filters[:parttime]
+    @vacancies = @vacancies.where(involvement: [0, 2, 3]) if !@filters[:fulltime] && @filters[:parttime]
+
+    @vacancies = @vacancies.to_a
+
     total_count = @vacancies.first&.total_count || 0
 
     @total_pages = (total_count + limit - 1) / limit
