@@ -43,7 +43,7 @@ module Parsers
       def skills(paragraphs)
         skills = []
         Skill.all.each do |skill|
-          names = ([skill.name] + skill.synonyms).map { |name| name.gsub(/([\.\+\-\#\\])/, '\\\\\1') }
+          names = ([skill.name] + skill.synonyms).map { |name| name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1') }
           regexp = Regexp.new(/(?:\A|\W)(?:#{names.join('|')})(?:\W|\z)/i)
           paragraphs.each do |paragraph|
             if paragraph.match?(regexp)
@@ -56,7 +56,7 @@ module Parsers
       end
 
       def onsite?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bon[\s\-]*site\b/i) }
+        paragraphs.any? { |p| p.match?(/\bon[\s\-\­]*site\b/i) }
       end
 
       def remote?(paragraphs)
@@ -64,11 +64,11 @@ module Parsers
       end
 
       def fulltime?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bfull[\s\-]*time\b/i) }
+        paragraphs.any? { |p| p.match?(/\bfull[\s\-\­]*time\b/i) }
       end
 
       def parttime?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bpart[\s\-]*time\b/i) }
+        paragraphs.any? { |p| p.match?(/\bpart[\s\-\­]*time\b/i) }
       end
 
       def parse_emails(paragraphs)
