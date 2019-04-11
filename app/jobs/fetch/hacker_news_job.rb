@@ -52,10 +52,9 @@ module Fetch
         published_date = published_at.to_date
 
         data = {
-          published_at:    published_at,
-          author:          response[:by],
-          last_fetched_at: Time.now.utc,
-          date:            published_date
+          published_at: published_at,
+          author:       response[:by],
+          date:         published_date
         }
 
         case type
@@ -80,7 +79,15 @@ module Fetch
           data[:vacancy] = true
         end
 
-        post ? post.update(data) : Post.partition_model(published_date).create(key.merge(data))
+        if post
+          if data.any? { |k, v| post[k] != v }
+            data[:last_fetched_at] = Time.now.utc
+            post.update(data)
+          end
+        else
+          data[:last_fetched_at] = Time.now.utc
+          Post.partition_model(published_date).create(key.merge(data))
+        end
       end
     end
   end
