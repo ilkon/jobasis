@@ -56,7 +56,7 @@ module Parsers
       end
 
       def onsite?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bon[\W]*site\b/i) }
+        paragraphs.any? { |p| p.match?(/\bon[\W_]*site\b/i) }
       end
 
       def remote?(paragraphs)
@@ -64,11 +64,11 @@ module Parsers
       end
 
       def fulltime?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bfull[\W]*time\b/i) }
+        paragraphs.any? { |p| p.match?(/\bfull[\W_]*time\b/i) }
       end
 
       def parttime?(paragraphs)
-        paragraphs.any? { |p| p.match?(/\bpart[\W]*time\b/i) }
+        paragraphs.any? { |p| p.match?(/\bpart[\W_]*time\b/i) }
       end
 
       def parse_emails(paragraphs)
