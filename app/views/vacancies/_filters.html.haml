@@ -1,0 +1,17 @@
+%form
+  .field
+    %input.is-checkradio.is-block.is-remote{ type: 'checkbox', id: 'filterRemote' }
+    %label{ for: 'filterRemote' }
+      = t('vacancies.remoteness.remote')
+  .field
+    %input.is-checkradio.is-block.is-onsite{ type: 'checkbox', id: 'filterOnsite' }
+    %label{ for: 'filterOnsite' }
+      = t('vacancies.remoteness.onsite')
+  .field
+    %input.is-checkradio.is-block.is-fulltime{ type: 'checkbox', id: 'filterFulltime' }
+    %label{ for: 'filterFulltime' }
+      = t('vacancies.involvement.fulltime')
+  .field
+    %input.is-checkradio.is-block.is-parttime{ type: 'checkbox', id: 'filterParttime' }
+    %label{ for: 'filterParttime' }
+      = t('vacancies.involvement.parttime')

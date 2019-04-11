@@ -1,2 +1,6 @@
-= render 'vacancies'
+.columns
+  %mail.column
+    = render 'vacancies'
+  %aside.column.is-narrow.sidebar
+    = render 'filters'
 = render 'paginator'
