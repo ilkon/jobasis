@@ -6,7 +6,7 @@
     "@rails/webpacker": "^4.0.2",
     "activestorage": "^5.2.2",
     "bulma": "^0.7.2",
-    "bulma-checkradio": "^2.1.0",
+    "bulma-extensions": "^6.2.4",
     "bulma-helpers": "^0.3.6",
     "rails-ujs": "^5.2.2",
     "stimulus": "^1.1.1",
