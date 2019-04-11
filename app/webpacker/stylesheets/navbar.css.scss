@@ -1,5 +1,6 @@
 .application {
   .navbar {
+    background-color: #ededed;
     transform: translateY(0);
     transition: transform 0.2s ease-in-out;
 
@@ -11,7 +12,7 @@
 
 .auth {
   .navbar {
-    background-color: whitesmoke;
+    background-color: #ededed;
     color: #363636;
   }
 }

@@ -10,17 +10,11 @@
           - vacancy.skill_ids.each do |skill_id|
             %span.tag.is-info= @skills[skill_id]
 
-        .content.is-size-7
-          = vacancy.post.text
-          %hr
-          = vacancy.text
-
-          %ol
-            - vacancy.urls.each do |url|
-              %li= url
-          %ol
-            - vacancy.emails.each do |email|
-              %li= email
+        .content.vacancy
+          - if false
+            = vacancy.post.text
+            %hr
+          = raw(vacancy.clean_text(session[:user_id].present?))
 
         .tags
           - Vacancy::REMOTENESS.each_with_index do |f, i|

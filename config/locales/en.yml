@@ -39,3 +39,9 @@ en:
     involvement:
       fulltime: Full-time
       parttime: Part-time
+    url_placeholder:
+      text: Link is hidden
+      title: Please login to uncover the link
+    email_placeholder:
+      text: Email is hidden
+      title: Please login to uncover the email
