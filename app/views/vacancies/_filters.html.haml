@@ -1,4 +1,4 @@
-%form{ action: vacancies_path, onchange: 'submit()' }
+%form.filters.box{ action: vacancies_path, onchange: 'submit()' }
   - Vacancy::REMOTENESS.each do |filter|
     .field
       %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter] }
