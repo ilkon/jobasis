@@ -41,6 +41,7 @@ ElasticSearch, Elastic Search
 Elixir
 EmberJS
 ES6
+Express.js, ExpressJS
 Figma
 Flask
 FPGA/VHDL
@@ -56,6 +57,7 @@ Grafana
 GraphQL
 GStreamer
 Gunicorn
+Hadoop
 HAProxy
 HBase
 Heroku
@@ -87,8 +89,7 @@ MySQL
 Nagios
 Neptune
 Nginx, Ngnix
-Node
-Node.JS
+Node, Node.js, NodeJS
 OpenCV
 OpenDKIM
 OpenStack
@@ -120,6 +121,7 @@ Ruby
 Ruby on Rails, Rails, RoR
 Rust
 S3
+Salesforce
 SAT/SMT
 Scala
 Sketch
@@ -128,6 +130,7 @@ Spark
 Spring
 SQL
 SQLAlchemy
+SQL Server
 SQS
 Stripe
 Swift
