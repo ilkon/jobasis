@@ -23,7 +23,7 @@ module Parsers
       end
 
       def cryptic_emails(text)
-        text.scan(/\b[\w\.\-+]+\s*(?:@|[\[\(\{]at[\]\)\}])\s*[\w\.\-]+\s*(?:\.|[\[\(\{]?\bdot\b[\]\)\}]?)\s*(?:#{tld.join('|')})\b/i)
+        text.scan(/\b[\w\.\[\(\{\]\)\}\-+]+\s*(?:@|[\[\(\{]at[\]\)\}])\s*[\w\.\-]+\s*(?:\.|[\[\(\{]?\bdot\b[\]\)\}]?)\s*(?:#{tld.join('|')})\b/i)
       end
 
       def domains(text)
