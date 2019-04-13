@@ -3,15 +3,18 @@ Airflow
 Algolia
 AMQP, Advanced Message Queuing Protocol
 Android
-Angular, Angular.js, AngularJS, Angular2
+Angular.js, Angular, AngularJS, Angular2
 Ansible, Ansbile
 Apache
-Apache Hadoop
 APIG
 Apollo
+Arduino
+ASP.NET
+Assembly
+Aurelia
 AWS
 AWS ECS, ECS
-Azure
+Azure, Microsoft Azure
 Babel
 Bash
 Blockchain
@@ -19,6 +22,7 @@ C#
 C++, C++14, C++17
 Caffe
 Capistrano
+Cassandra
 Celery
 Chef
 CircleCI, Circle CI
@@ -27,22 +31,34 @@ Clojure
 ClojureScript
 Cloudfront
 Cognito
-CouchDB
+Cordova
+Couchbase
+CouchDB, Apache CouchDB
 CSS
+D3
+Dart
 DataDog
 Datalog
 Deep learning
 Django
 Docker
 Dropwizard
-DynamoDB, Dynamo
+Drupal
+DynamoDB, Dynamo, Amazon DynamoDB
+LoopBack
 EC2
 ElasticSearch, Elastic Search
+Electron.js, Electron, ElectronJS
 Elixir
-EmberJS
+Elm
+Embedded Linux
+Ember.js, Ember, EmberJS
+Erlang
 ES6
-Express.js, ExpressJS
+Express.js, Express, ExpressJS
+F#
 Figma
+Firebase
 Flask
 FPGA/VHDL
 Framer
@@ -57,8 +73,9 @@ Grafana
 GraphQL
 GStreamer
 Gunicorn
-Hadoop
+Hadoop, Apache Hadoop
 HAProxy
+Haskell
 HBase
 Heroku
 Hive
@@ -69,33 +86,40 @@ Java
 JavaScript
 Jenkins
 Jest
-JQuery
+jQuery
 JVM
+Kafka
 Kibana
 Kinesis
 Kotlin
 Kubernetes, K8s
 KVM
-Lambda
+Lambda, AWS Lambda
 Laravel
 Machine learning, ML
 Maltego
 MariaDB
 Mesos
+Meteor
 MongoDB, Mongo
 Multiplexing
 MxNet
 MySQL
 Nagios
 Neptune
+.NET, dotNet
 Nginx, Ngnix
-Node, Node.js, NodeJS
+Node.js, Node, NodeJS
+Objective-C, Objective C
+OCaml
 OpenCV
 OpenDKIM
 OpenStack
+Oracle
 Perl
 Phoenix
 PHP
+Polymer
 Postfix
 PostgreSQL, Postgres
 Presto
@@ -107,12 +131,13 @@ Puppeteer
 Python
 R
 RabbitMQ
+Raspberry Pi
 RDS
-React, React.js, ReactJS
 React-Apollo
+React.js, React, ReactJS
 React Native
 Redis
-Redshift
+Redshift, Amazon Redshift
 Redux
 Rollbar
 Rspec
@@ -130,18 +155,23 @@ Spark
 Spring
 SQL
 SQLAlchemy
-SQL Server
+SQLite
+SQL Server, Microsoft SQL Server
 SQS
 Stripe
 Swift
+TensorFlow
 Terraform
 TokuDB
 TravisCI, Travis
 Twilio
 TypeScript
-Unity
+Unity, Unity 3D
 Vagrant
 Varnish
-Vue, Vue.js, VueJS
+VBA
+Vue.js, Vue, VueJS
+WebAssembly
 Webpack
 Wordpress
+Xamarin

@@ -14,12 +14,18 @@ class VacanciesController < ApplicationController
                         .offset(offset)
                         .order(published_at: :desc)
 
-    @filters = %i[remote onsite fulltime parttime].each_with_object({}) { |p, hash| hash[p] = params[p] if params[p].present? }
+    @filters = %i[remote onsite fulltime parttime skill_ids].each_with_object({}) { |p, hash| hash[p] = params[p] if params[p].present? }
+    @filters[:skill_ids].map!(&:to_i) if @filters[:skill_ids].present?
 
-    @vacancies = @vacancies.where(remoteness: [0, 1, 3]) if @filters[:remote] && !@filters[:onsite]
-    @vacancies = @vacancies.where(remoteness: [0, 2, 3]) if !@filters[:remote] && @filters[:onsite]
-    @vacancies = @vacancies.where(involvement: [0, 1, 3]) if @filters[:fulltime] && !@filters[:parttime]
-    @vacancies = @vacancies.where(involvement: [0, 2, 3]) if !@filters[:fulltime] && @filters[:parttime]
+    @vacancies = @vacancies.where.not(remoteness: 2) if @filters[:remote] && !@filters[:onsite]
+    @vacancies = @vacancies.where.not(remoteness: 1) if !@filters[:remote] && @filters[:onsite]
+    @vacancies = @vacancies.where.not(involvement: 2) if @filters[:fulltime] && !@filters[:parttime]
+    @vacancies = @vacancies.where.not(involvement: 1) if !@filters[:fulltime] && @filters[:parttime]
+
+    if @filters[:skill_ids].present?
+      conditions = @filters[:skill_ids].map { |skill_id| "skill_ids @> '#{skill_id}'::jsonb" }.join(' OR ')
+      @vacancies = @vacancies.where(conditions)
+    end
 
     @vacancies = @vacancies.to_a
 
@@ -34,7 +40,7 @@ class VacanciesController < ApplicationController
       @current_page = @total_pages + 1
     end
 
-    @skills = Skill.all.each_with_object({}) { |skill, hash| hash[skill.id] = skill.name }
+    @skills = Skill.order(name: :asc).each_with_object({}) { |skill, hash| hash[skill.id] = skill.name }
 
     @last_visit_at = session[:vacancies_last_visit_at]
     session[:vacancies_last_visit_at] = Time.now.to_i
