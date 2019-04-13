@@ -131,6 +131,7 @@ Objective-C, Objective C
 OCaml
 OpenCV
 OpenDKIM
+OpenEmbedded
 OpenStack
 Oracle
 Pandas
@@ -147,7 +148,7 @@ Protobuf, Google Protobuf, Protocol Buffers
 Proxmox
 Puppet
 Puppeteer
-Python
+Python, Python3
 R
 RabbitMQ
 Raspberry Pi
