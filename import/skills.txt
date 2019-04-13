@@ -45,7 +45,6 @@ Docker
 Dropwizard
 Drupal
 DynamoDB, Dynamo, Amazon DynamoDB
-LoopBack
 EC2
 ElasticSearch, Elastic Search
 Electron.js, Electron, ElectronJS
@@ -96,6 +95,7 @@ Kubernetes, K8s
 KVM
 Lambda, AWS Lambda
 Laravel
+LoopBack
 Machine learning, ML
 Maltego
 MariaDB
@@ -125,6 +125,7 @@ PostgreSQL, Postgres
 Presto
 Prolog
 Prometheus
+Protobuf, Google Protobuf, Protocol Buffers
 Proxmox
 Puppet
 Puppeteer
