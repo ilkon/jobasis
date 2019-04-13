@@ -72,11 +72,13 @@ GDB
 Geode, Apache Geode
 Git
 GitHub
+GitLab
 GoCD
 Golang, Go
 Google Cloud, GCP
 Google Compute Engine, GCE
 Grafana
+Graphite
 GraphQL
 GStreamer
 Gunicorn
@@ -106,6 +108,7 @@ KVM
 Kylin, Apache Kylin
 Lambda, AWS Lambda
 Laravel
+Logstash
 LoopBack
 Machine learning, ML
 Maltego
@@ -120,6 +123,7 @@ MySQL
 Nagios
 Neptune
 .NET, dotNet
+Neural networks
 Nginx, Ngnix
 Node.js, Node, NodeJS
 Objective-C, Objective C
@@ -171,7 +175,7 @@ Spring
 SQL
 SQLAlchemy
 SQLite
-SQL Server, Microsoft SQL Server
+SQL Server, MSSQL, Microsoft SQL Server
 SQS
 Stripe
 Swift
