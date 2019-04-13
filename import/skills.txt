@@ -1,5 +1,7 @@
+ActiveMQ, Apache ActiveMQ
 Adobe CS
-Airflow
+Aerospike
+Airflow, Apache Airflow
 Algolia
 AMQP, Advanced Message Queuing Protocol
 Android
@@ -12,26 +14,29 @@ Arduino
 ASP.NET
 Assembly
 Aurelia
-AWS
+AWS, Amazon Web Services
 AWS ECS, ECS
 Azure, Microsoft Azure
 Babel
 Bash
+BigQuery, Google BigQuery
 Blockchain
 C#
 C++, C++14, C++17
 Caffe
 Capistrano
-Cassandra
+Cassandra, Apache Cassandra
 Celery
 Chef
 CircleCI, Circle CI
 Clang-Tidy
+ClickHouse
 Clojure
 ClojureScript
-Cloudfront
-Cognito
-Cordova
+CloudFront, Amazon CloudFront
+CockroachDB
+Cognito, Amazon Cognito
+Cordova, Apache Cordova
 Couchbase
 CouchDB, Apache CouchDB
 CSS
@@ -43,9 +48,10 @@ Deep learning
 Django
 Docker
 Dropwizard
+Druid
 Drupal
 DynamoDB, Dynamo, Amazon DynamoDB
-EC2
+EC2, Amazon EC2
 ElasticSearch, Elastic Search
 Electron.js, Electron, ElectronJS
 Elixir
@@ -63,11 +69,13 @@ FPGA/VHDL
 Framer
 GCC
 GDB
+Geode, Apache Geode
 Git
-Github
+GitHub
 GoCD
 Golang, Go
 Google Cloud, GCP
+Google Compute Engine, GCE
 Grafana
 GraphQL
 GStreamer
@@ -75,10 +83,12 @@ Gunicorn
 Hadoop, Apache Hadoop
 HAProxy
 Haskell
-HBase
+HBase, Apache HBase
 Heroku
-Hive
+Hive, Apache Hive
 HTML
+IIS, Microsoft IIS
+InfluxDB, InfluxData
 Invision
 IOS
 Java
@@ -87,23 +97,25 @@ Jenkins
 Jest
 jQuery
 JVM
-Kafka
+Kafka, Apache Kafka
 Kibana
-Kinesis
+Kinesis, Amazon Kinesis
 Kotlin
 Kubernetes, K8s
 KVM
+Kylin, Apache Kylin
 Lambda, AWS Lambda
 Laravel
 LoopBack
 Machine learning, ML
 Maltego
 MariaDB
-Mesos
+Maven, Apache Maven
+Mesos, Apache Mesos
 Meteor
 MongoDB, Mongo
 Multiplexing
-MxNet
+MxNet, Apache MXNet
 MySQL
 Nagios
 Neptune
@@ -116,6 +128,7 @@ OpenCV
 OpenDKIM
 OpenStack
 Oracle
+Pandas
 Perl
 Phoenix
 PHP
@@ -133,7 +146,7 @@ Python
 R
 RabbitMQ
 Raspberry Pi
-RDS
+RDS, Amazon RDS, Amazon Relational Database Service
 React-Apollo
 React.js, React, ReactJS
 React Native
@@ -141,18 +154,19 @@ Redis
 Redshift, Amazon Redshift
 Redux
 Rollbar
-Rspec
-RTMP
+RSpec
+RTMP, Real-Time Messaging Protocol
 Ruby
 Ruby on Rails, Rails, RoR
 Rust
-S3
+S3, Amazon S3
 Salesforce
 SAT/SMT
 Scala
 Sketch
 Snowflake
-Spark
+Solr, Apache Solr
+Spark, Apache Spark
 Spring
 SQL
 SQLAlchemy
@@ -161,9 +175,12 @@ SQL Server, Microsoft SQL Server
 SQS
 Stripe
 Swift
+Tarantool
+Tcl
 TensorFlow
 Terraform
-TokuDB
+TokuDB, Percona TokuDB
+Tomcat, Apache Tomcat
 TravisCI, Travis
 Twilio
 TypeScript
@@ -176,3 +193,4 @@ WebAssembly
 Webpack
 Wordpress
 Xamarin
+ZooKeeper, Apache ZooKeeper
