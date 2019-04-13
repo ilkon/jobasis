@@ -19,6 +19,7 @@ AWS ECS, ECS
 Azure, Microsoft Azure
 Babel
 Bash
+Beam, Apache Beam
 BigQuery, Google BigQuery
 Blockchain
 C#
@@ -177,6 +178,7 @@ SQLAlchemy
 SQLite
 SQL Server, MSSQL, Microsoft SQL Server
 SQS
+Storm, Apache Storm
 Stripe
 Swift
 Tarantool
@@ -195,6 +197,7 @@ VBA
 Vue.js, Vue, VueJS
 WebAssembly
 Webpack
+WebSphere, IBM WebSphere
 Wordpress
 Xamarin
 ZooKeeper, Apache ZooKeeper
