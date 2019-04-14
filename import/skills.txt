@@ -30,6 +30,7 @@ Caffe
 Capistrano
 Cassandra, Apache Cassandra
 Celery
+Ceph
 Chef
 CircleCI, Circle CI
 Clang-Tidy
@@ -177,6 +178,7 @@ S3, Amazon S3
 Salesforce
 SAT/SMT
 Scala
+Scikit-learn, sklearn
 Selenium
 Sketch
 Snowflake
