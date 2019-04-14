@@ -22,9 +22,9 @@ Bash
 Beam, Apache Beam
 BigQuery, Google BigQuery
 Blockchain
-C
+C, C99, C11, C18
 C#
-C++, C++14, C++17
+C++, C++98, C++03, ‎C++11, C++14, C++17, ‎‎C++20
 Caffe
 Capistrano
 Cassandra, Apache Cassandra
@@ -67,6 +67,7 @@ F#
 Figma
 Firebase
 Flask
+Fortran
 FPGA/VHDL
 Framer
 GCC
@@ -110,6 +111,7 @@ KVM
 Kylin, Apache Kylin
 Lambda, AWS Lambda
 Laravel
+Lisp, Common Lisp
 Logstash
 LoopBack
 Machine learning, ML
@@ -130,9 +132,11 @@ Nginx, Ngnix
 Node.js, Node, NodeJS
 Objective-C, Objective C
 OCaml
+OpenCL
 OpenCV
 OpenDKIM
 OpenEmbedded
+OpenGL
 OpenStack
 Oracle
 Pandas
@@ -193,6 +197,7 @@ TravisCI, Travis
 Twilio
 TypeScript
 Unity, Unity 3D
+VAAPI
 Vagrant
 Varnish
 VBA

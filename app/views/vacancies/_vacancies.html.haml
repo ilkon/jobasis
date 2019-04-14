@@ -13,8 +13,9 @@
             .column
               = vacancy.post.text
         .tags
-          - vacancy.skill_ids.each do |skill_id|
-            %span.tag.is-info= @skills[skill_id]
+          - skills = vacancy.skill_ids.map { |skill_id| @skills[skill_id] }.sort
+          - skills.each do |skill|
+            %span.tag.is-info= skill
 
         .content.vacancy
           - if false
