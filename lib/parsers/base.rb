@@ -41,18 +41,32 @@ module Parsers
       end
 
       def skills(paragraphs)
-        skills = []
+        skills = {}
+
+        mapped = {}
         Skill.all.each do |skill|
-          names = ([skill.name] + skill.synonyms).map { |name| name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1') }
-          regexp = Regexp.new(/(?:\A|\W)(?:#{names.join('|')})(?:\W|\z)/i)
-          paragraphs.each do |paragraph|
-            if paragraph.match?(regexp)
-              skills << skill
-              break
-            end
+          mapped[skill.name] = skill
+          skill.synonyms.each { |synonym| mapped[synonym] = skill }
+        end
+
+        names = mapped.keys.sort_by(&:length).reverse
+
+        prgrphs = paragraphs.deep_dup
+
+        names.each do |name|
+          regexp = Regexp.new(/(?<=\A|\W)#{name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1')}(?=\W|\z)/i)
+
+          prgrphs.each do |prgrph|
+            next unless prgrph.match?(regexp)
+
+            skill = mapped[name]
+            skills[skill.id] = skill
+
+            prgrph.gsub!(regexp, 'DUMMY')
           end
         end
-        skills
+
+        skills.values
       end
 
       def onsite?(paragraphs)

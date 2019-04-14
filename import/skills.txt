@@ -22,6 +22,7 @@ Bash
 Beam, Apache Beam
 BigQuery, Google BigQuery
 Blockchain
+C
 C#
 C++, C++14, C++17
 Caffe
