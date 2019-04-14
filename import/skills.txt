@@ -100,7 +100,7 @@ InfluxDB, InfluxData
 Invision
 IOS
 Java
-JavaScript
+JavaScript, JS
 Jenkins
 Jest
 jQuery
