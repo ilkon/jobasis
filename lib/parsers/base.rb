@@ -57,12 +57,11 @@ module Parsers
           regexp = Regexp.new(/(?<=\A|\W)#{name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1')}(?=\W|\z)/i)
 
           prgrphs.each do |prgrph|
-            next unless prgrph.match?(regexp)
+            res = prgrph.gsub!(regexp, 'DUMMY')
+            next unless res
 
             skill = mapped[name]
             skills[skill.id] = skill
-
-            prgrph.gsub!(regexp, 'DUMMY')
           end
         end
 
