@@ -11,6 +11,7 @@ Apache
 APIG
 Apollo
 Arduino
+Arrow, Apache Arrow
 ASP.NET
 Assembly
 Aurelia
@@ -41,7 +42,7 @@ Cognito, Amazon Cognito
 Cordova, Apache Cordova
 Couchbase
 CouchDB, Apache CouchDB
-CSS
+CSS, CSS3
 D3
 Dart
 DataDog
@@ -67,6 +68,7 @@ F#
 Figma
 Firebase
 Flask
+Flink, Apache Flink
 Fortran
 FPGA/VHDL
 Framer
@@ -91,7 +93,7 @@ Haskell
 HBase, Apache HBase
 Heroku
 Hive, Apache Hive
-HTML
+HTML, HTML5
 IIS, Microsoft IIS
 InfluxDB, InfluxData
 Invision
@@ -107,6 +109,7 @@ Kibana
 Kinesis, Amazon Kinesis
 Kotlin
 Kubernetes, K8s
+Kudu, Apache Kudu
 KVM
 Kylin, Apache Kylin
 Lambda, AWS Lambda
@@ -174,6 +177,7 @@ S3, Amazon S3
 Salesforce
 SAT/SMT
 Scala
+Selenium
 Sketch
 Snowflake
 Solr, Apache Solr
@@ -207,4 +211,5 @@ Webpack
 WebSphere, IBM WebSphere
 Wordpress
 Xamarin
+Yii2
 ZooKeeper, Apache ZooKeeper
