@@ -5,4 +5,6 @@
 
 require_relative 'config/application'
 
+require 'resque/pool/tasks'
+
 Rails.application.load_tasks

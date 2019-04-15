@@ -12,7 +12,7 @@ module Auth
       if user
         if user.user_password
           token = user.user_password.set_reset_token
-          Auth::Mailer.reset_password_instruction(forgot_params[:email], user, token).deliver_now
+          Auth::Mailer.reset_password_instruction(forgot_params[:email], user, token).deliver_later
           @success = true
         else
           flash.now[:error] = I18n.t('auth.password.no_password')
@@ -55,7 +55,7 @@ module Auth
             password.clear_reset_token
 
             email = password.user.user_emails.first
-            Auth::Mailer.changed_password_notification(email.email, password.user).deliver_now if email
+            Auth::Mailer.changed_password_notification(email.email, password.user).deliver_later if email
 
             sign_in!(password.user)
             @success = true

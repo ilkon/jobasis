@@ -6,7 +6,7 @@ module Fetch
   class HackerNewsJob < ApplicationJob
     MAX_AGE_FOR_POST = 4.months
 
-    queue_as :default
+    queue_as :fetchers
 
     def perform
       today = Date.today
@@ -83,10 +83,12 @@ module Fetch
           if data.any? { |k, v| post[k] != v }
             data[:last_fetched_at] = Time.now.utc
             post.update(data)
+            Parse::BaseJob.perform_later(post)
           end
         else
           data[:last_fetched_at] = Time.now.utc
-          Post.partition_model(published_date).create(key.merge(data))
+          post = Post.partition_model(published_date).create(key.merge(data))
+          Parse::BaseJob.perform_later(post)
         end
       end
     end

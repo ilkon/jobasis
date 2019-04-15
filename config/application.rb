@@ -29,6 +29,10 @@ module Remotico
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.active_job.queue_adapter = :resque
+    config.active_job.queue_name_prefix = 'remotico'
+    config.active_job.queue_name_delimiter = ':'
+
     config.eager_load_paths << Rails.root.join('lib')
 
     config.generators do |g|

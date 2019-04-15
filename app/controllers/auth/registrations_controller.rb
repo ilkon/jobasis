@@ -21,7 +21,7 @@ module Auth
       if user.save
         email = user.user_emails.first
         token = email.set_confirm_token
-        Auth::Mailer.confirm_email_instruction(email.email, user, token).deliver_now
+        Auth::Mailer.confirm_email_instruction(email.email, user, token).deliver_later
 
         sign_in!(user)
         redirect_to root_path, notice: I18n.t('auth.registration.success')

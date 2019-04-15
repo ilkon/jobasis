@@ -4,7 +4,7 @@
 
 module Parse
   class BaseJob < ApplicationJob
-    queue_as :default
+    queue_as :parsers
 
     def perform(post)
       return if post.text.nil?
