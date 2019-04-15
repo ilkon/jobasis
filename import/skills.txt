@@ -56,7 +56,7 @@ Druid
 Drupal
 DynamoDB, Dynamo, Amazon DynamoDB
 EC2, Amazon EC2
-ElasticSearch, Elastic Search
+ElasticSearch, Elastic Search, Elastic
 Electron.js, Electron, ElectronJS
 Elixir
 Elm
@@ -149,6 +149,7 @@ Phoenix
 PHP
 Polymer
 Postfix
+PostGIS
 PostgreSQL, Postgres
 Presto
 Prolog
