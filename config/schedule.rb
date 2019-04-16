@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
+# Learn more: http://github.com/javan/whenever
 # http://en.wikipedia.org/wiki/Cron
 
 # Example:
@@ -19,8 +17,6 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-# Learn more: http://github.com/javan/whenever
-
 if @environment == 'production'
   every 2.hours do
     rake 'posts:fetch'
@@ -28,5 +24,9 @@ if @environment == 'production'
 
   every '5 * * * *' do
     rake 'vacancies:parse_new'
+  end
+
+  every '0 3 * * *' do
+    rake 'skills:update_recent'
   end
 end

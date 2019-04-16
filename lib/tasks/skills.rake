@@ -50,4 +50,9 @@ namespace :skills do
 
     puts "#{skills.count} skills exported"
   end
+
+  desc 'Update recent skills and save to Redis'
+  task update_recent: :environment do
+    Update::BaseJob.perform_now
+  end
 end
