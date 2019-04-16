@@ -286,6 +286,7 @@ DEPENDENCIES
   pg
   puma
   rails
+  redis
   resque
   resque-pool
   rspec-rails

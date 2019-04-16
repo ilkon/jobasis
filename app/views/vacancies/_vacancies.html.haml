@@ -18,9 +18,6 @@
             %span.tag.is-info= skill
 
         .content.vacancy
-          - if false
-            = vacancy.post.text
-            %hr
           = raw(vacancy.clean_text(session[:user_id].present?))
 
         .tags

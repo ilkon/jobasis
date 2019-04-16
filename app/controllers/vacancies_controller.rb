@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'redis'
+
 class VacanciesController < ApplicationController
   PER_PAGE = 10
 
@@ -41,6 +43,18 @@ class VacanciesController < ApplicationController
     end
 
     @skills = Skill.order(name: :asc).each_with_object({}) { |skill, hash| hash[skill.id] = skill.name }
+
+    @recent_skills = {}
+    recent_skills = Redis.new.get(Update::BaseJob::SKILLS_REDIS_KEY)
+    if recent_skills
+      skill_counts = JSON.parse(recent_skills)
+
+      @skills.each do |skill_id, name|
+        @recent_skills[skill_id] = [name, skill_counts[skill_id.to_s].to_i] if skill_counts[skill_id.to_s]
+      end
+    else
+      Update::BaseJob.perform_later
+    end
 
     @last_visit_at = session[:vacancies_last_visit_at]
     session[:vacancies_last_visit_at] = Time.now.to_i

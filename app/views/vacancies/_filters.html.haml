@@ -9,8 +9,11 @@
       %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter] }
       %label{ for: "filter-#{filter}" }
         = t("vacancies.involvement.#{filter}")
-  %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' } Skills
+  %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
+    Skills
+    %span.icon.has-text-info.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
+      %i.far.fa-question-circle
   .select.is-multiple.is-info
     %select{ multiple: true, size: 8, name: 'skill_ids[]' }
-      - @skills.each do |id, name|
-        %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= name
+      - @recent_skills.each do |id, prms|
+        %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= "#{prms.first} (#{prms.last})"

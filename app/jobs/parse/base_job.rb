@@ -47,6 +47,8 @@ module Parse
 
       post.last_parsed_at = Time.now.utc
       post.save!
+
+      Update::BaseJob.perform_later
     end
   end
 end
