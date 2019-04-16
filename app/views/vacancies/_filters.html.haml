@@ -1,19 +1,22 @@
-%form.filters.box{ action: vacancies_path, onchange: 'submit()' }
+%form.filters.box{ action: vacancies_path }
   - Vacancy::REMOTENESS.each do |filter|
     .field
-      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter] }
+      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
       %label{ for: "filter-#{filter}" }
         = t("vacancies.remoteness.#{filter}")
   - Vacancy::INVOLVEMENT.each do |filter|
     .field
-      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter] }
+      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
       %label{ for: "filter-#{filter}" }
         = t("vacancies.involvement.#{filter}")
-  %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
-    Skills
-    %span.icon.has-text-info.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
-      %i.far.fa-question-circle
-  .select.is-multiple.is-info
-    %select{ multiple: true, size: 8, name: 'skill_ids[]' }
-      - @recent_skills.each do |id, prms|
-        %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= "#{prms.first} (#{prms.last})"
+  .field
+    %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
+      Skills
+      %span.icon.has-text-info.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
+        %i.far.fa-question-circle
+    .select.is-multiple.is-info
+      %select{ multiple: true, size: 8, name: 'skill_ids[]' }
+        - @recent_skills.each do |id, prms|
+          %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= "#{prms.first} (#{prms.last})"
+  .field
+    %button.button.is-info{ type: 'submit' } Apply
