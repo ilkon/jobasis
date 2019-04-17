@@ -144,6 +144,7 @@ OpenGL
 OpenStack
 Oracle
 Pandas
+Pentaho
 Perl
 Phoenix
 PHP
@@ -208,6 +209,7 @@ VAAPI
 Vagrant
 Varnish
 VBA
+Vertica
 Vue.js, Vue, VueJS
 WebAssembly
 Webpack
