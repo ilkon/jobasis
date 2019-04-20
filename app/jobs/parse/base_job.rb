@@ -12,10 +12,11 @@ module Parse
       parsed = Parsers::Base.parse(post.text)
 
       data = {}
-      # if parsed[:employer_name]
-      #   employer = Employer.find_or_create_by!(name: parsed[:employer_name])
-      #   post.employer_id = employer.id
-      # end
+
+      if parsed[:employer_name]
+        employer = Employer.find_or_create_by(name: parsed[:employer_name])
+        data[:employer_id] = employer.id if employer
+      end
 
       data[:remoteness] = 0
       Vacancy::REMOTENESS.each_with_index do |f, i|

@@ -149,17 +149,24 @@ module Parsers
       def parse(raw_text)
         text = raw_text.gsub(/&#x2F;/i, '/')
 
-        chunks = text.split('|')
-        employer_name = AttributeStripper.strip_string(chunks[0], collapse_spaces: true, replace_newlines: true, allow_empty: true)
-
-        words_count = employer_name.split(' ').count
-
         paragraphs = paragraphs(text)
+
+        employer_name = nil
+        chunks = paragraphs.first.split('|')
+        if chunks.count > 1
+          employer_name = chunks.first.dup
+          employer_name.gsub!(/[\[\(\{<].+[\]\)\}>]/, '')
+          employer_name = AttributeStripper.strip_string(employer_name, collapse_spaces: true, replace_newlines: true, allow_empty: true)
+
+          words_count = employer_name.split(' ').count
+          employer_name = nil if words_count >= 5 || words_count.zero?
+        end
+
         emails = parse_emails(paragraphs)
         urls = parse_urls(paragraphs)
 
         {
-          employer_name: words_count.positive? && words_count < 5 ? employer_name : nil,
+          employer_name: employer_name,
           remoteness:    {
             onsite: onsite?(paragraphs),
             remote: remote?(paragraphs)
