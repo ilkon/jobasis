@@ -3,12 +3,9 @@
 # https://github.com/HackerNews/API
 
 require 'redis'
-require 'resque-loner'
 
 module Update
   class BaseJob < ApplicationJob
-    include Resque::Plugins::UniqueJob
-
     queue_as :updaters
 
     SKILLS_EXPIRE_TTL = 30 * 24 * 60 * 60 # 30 days
