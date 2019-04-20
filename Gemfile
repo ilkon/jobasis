@@ -18,6 +18,7 @@ gem 'bcrypt'
 gem 'whenever', require: false
 gem 'resque'
 gem 'resque-pool'
+gem 'resque-loner'
 gem 'redis'
 
 # Reduces boot times through caching; required in config/boot.rb
