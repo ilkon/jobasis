@@ -10,7 +10,7 @@ module Update
 
     SKILLS_EXPIRE_TTL = 30 * 24 * 60 * 60 # 30 days
     SKILLS_TIME_WINDOW = 30.days
-    SKILLS_REDIS_KEY = 'remotico:skills'
+    SKILLS_REDIS_KEY = 'jobasis:skills'
 
     def perform
       date = Date.today - SKILLS_TIME_WINDOW

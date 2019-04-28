@@ -56,7 +56,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "remotico_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "jobasis_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
 
@@ -64,8 +64,8 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_options = { from: 'remotico@konyukhov.com' }
-  config.action_mailer.default_url_options = { host: 'remotico.konyukhov.com' }
+  config.action_mailer.default_options = { from: 'info@jobasis.com' }
+  config.action_mailer.default_url_options = { host: 'jobasis.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 

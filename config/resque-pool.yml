@@ -1,4 +1,4 @@
-remotico:mailers: 2
-remotico:fetchers: 2
-remotico:parsers: 2
-remotico:updaters: 2
+jobasis:mailers: 2
+jobasis:fetchers: 2
+jobasis:parsers: 2
+jobasis:updaters: 2
