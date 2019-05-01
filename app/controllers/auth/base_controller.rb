@@ -2,8 +2,6 @@
 
 module Auth
   class BaseController < ApplicationController
-    layout 'auth'
-
     protected
 
     def sign_in!(user, remember_me: false, oauth_provider: nil, oauth_access_token: nil)

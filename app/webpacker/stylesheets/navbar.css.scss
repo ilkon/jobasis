@@ -1,19 +1,18 @@
 .application {
   .navbar {
     background-color: hsl(135, 48%, 88%);
+    color: #363636;
+  }
+}
+
+.has-navbar-fixed-top {
+  .navbar {
     transform: translateY(0);
     transition: transform 0.2s ease-in-out;
 
     &.is-hidden-scroll {
       transform: translateY(-100%);
     }
-  }
-}
-
-.auth {
-  .navbar {
-    background-color: hsl(135, 48%, 88%);
-    color: #363636;
   }
 }
 

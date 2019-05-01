@@ -6,24 +6,25 @@
     %title= content_for?(:page_title) ? 'Jobasis | ' + yield(:page_title) : 'Jobasis'
     = csrf_meta_tags
     = csp_meta_tag
-    = render 'layouts/favicons'
+    %link{ rel: 'shortcut icon', type: 'image/x-icon', href: asset_pack_path('media/images/favicon.ico') }
+    %link{ rel: 'apple-touch-icon', type: 'image/x-icon', href: asset_pack_path('media/images/apple-touch-icon.png') }
     = render 'layouts/gtag'
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  - navbar_locals = params[:controller].start_with?('auth/') ? {} : { auth_links: true }
   - if content_for?(:full_height)
-    %body.auth
+    %body.application
       %section.hero.is-fullheight
         .hero-head
-          = render 'layouts/navbar', auth_links: true
+          = render 'layouts/navbar', navbar_locals
         .hero-body
           .container
-            = render 'layouts/notification'
             = yield
         .hero-foot
           = render 'layouts/footer'
   - else
     %body.application.has-navbar-fixed-top
-      = render 'layouts/navbar', fixed_top: true, auth_links: true
+      = render 'layouts/navbar', navbar_locals.merge(fixed_top: true)
       %section.section
         .container
           = render 'layouts/notification'
