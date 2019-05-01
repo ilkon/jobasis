@@ -12,11 +12,11 @@
   .field
     %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
       Skills
-      %span.icon.has-text-info.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
+      %span.icon.has-text-skill.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
         %i.far.fa-question-circle
-    .select.is-multiple.is-info
+    .select.is-multiple.is-skill
       %select{ multiple: true, size: 8, name: 'skill_ids[]' }
         - @recent_skills.each do |id, prms|
           %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= "#{prms.first} (#{prms.last})"
   .field
-    %button.button.is-info{ type: 'submit' } Apply
+    %button.button.is-skill{ type: 'submit' } Apply

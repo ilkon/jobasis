@@ -15,7 +15,7 @@
         .tags
           - skills = vacancy.skill_ids.map { |skill_id| @skills[skill_id] }.sort
           - skills.each do |skill|
-            %span.tag.is-info= skill
+            %span.tag.is-skill= skill
 
         .content.vacancy
           = raw(vacancy.clean_text(session[:user_id].present?))
