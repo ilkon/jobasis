@@ -18,7 +18,7 @@
 # end
 
 if @environment == 'production'
-  every 2.hours do
+  every 1.hour do
     rake 'posts:fetch'
   end
 
