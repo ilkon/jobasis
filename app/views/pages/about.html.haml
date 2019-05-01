@@ -1,0 +1,16 @@
+- content_for(:page_title) { 'About' }
+- content_for(:full_height) { '1' }
+
+.columns.is-fullheight
+  %mail.column
+    %h1.title About Jobasis
+    .content
+      %p
+        %b Jobasis
+        is a search interface to job vacancies posted on Hacker News forum
+        %a{ href: 'https://news.ycombinator.com/submitted?id=whoishiring', target: '_blank' } (Ask HN: Who is hiring?)
+      %p
+        Key features are:
+        %ul
+          %li Vacancies are parsed and tagged by required skills. Easier to search vacancy by skill.
+          %li Published emails are visible to registered users only. Some kind of SPAM-protection.

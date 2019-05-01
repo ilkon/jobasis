@@ -3,17 +3,29 @@
   %head
     %meta{ 'http-equiv' => 'Content-Type', content: 'text/html; charset=UTF-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    %title= content_for?(:page_title) ? yield(:page_title) : 'Jobasis'
+    %title= content_for?(:page_title) ? 'Jobasis | ' + yield(:page_title) : 'Jobasis'
     = csrf_meta_tags
     = csp_meta_tag
     = render 'layouts/favicons'
     = render 'layouts/gtag'
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.application.has-navbar-fixed-top
-    = render 'layouts/navbar', fixed_top: true, auth_links: true
-    %section.section
-      .container
-        = render 'layouts/notification'
-        = yield
-    = render 'layouts/footer'
+  - if content_for?(:full_height)
+    %body.auth
+      %section.hero.is-fullheight
+        .hero-head
+          = render 'layouts/navbar', auth_links: true
+        .hero-body
+          .container
+            = render 'layouts/notification'
+            = yield
+        .hero-foot
+          = render 'layouts/footer'
+  - else
+    %body.application.has-navbar-fixed-top
+      = render 'layouts/navbar', fixed_top: true, auth_links: true
+      %section.section
+        .container
+          = render 'layouts/notification'
+          = yield
+      = render 'layouts/footer'
