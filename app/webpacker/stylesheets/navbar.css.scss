@@ -1,6 +1,6 @@
 .application {
   .navbar {
-    background-color: #ededed;
+    background-color: hsl(135, 48%, 88%);
     transform: translateY(0);
     transition: transform 0.2s ease-in-out;
 
@@ -12,7 +12,11 @@
 
 .auth {
   .navbar {
-    background-color: #ededed;
+    background-color: hsl(135, 48%, 88%);
     color: #363636;
   }
+}
+
+.footer {
+  background-color: hsl(135, 48%, 88%);
 }

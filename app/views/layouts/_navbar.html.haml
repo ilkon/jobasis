@@ -1,8 +1,8 @@
-%nav.navbar{ class: "navbar is-light #{local_assigns[:fixed_top] && 'is-fixed-top'}", 'aria-label' => 'main navigation', role: 'navigation', data: local_assigns[:fixed_top] && { sticky: true, 'hide-on-scroll' => true } }
+%nav.navbar{ class: "navbar #{local_assigns[:fixed_top] && 'is-fixed-top'}", 'aria-label' => 'main navigation', role: 'navigation', data: local_assigns[:fixed_top] && { sticky: true, 'hide-on-scroll' => true } }
   .container
     .navbar-brand
       %a.navbar-item{ href: '/' }
-        %img{ src: 'https://bulma.io/images/bulma-logo.png', height: 28, width: 112 }
+        %img{ src: asset_pack_path('media/images/logo.svg'), style: 'margin-top: -0.7rem;' }
       .navbar-burger.burger{ 'aria-expanded' => 'false', 'aria-label' => 'menu', 'data-target' => 'main-nav', role: 'button' }
         %span{ 'aria-hidden' => 'true' }
         %span{ 'aria-hidden' => 'true' }
@@ -10,10 +10,6 @@
 
     #main-nav.navbar-menu
       .navbar-start
-        %a.navbar-item{ href: '#' }
-          %span.icon
-            %i.far.fa-gem
-          %span Home
         %a.navbar-item{ href: '#' }
           %span.icon
             %i.far.fa-star

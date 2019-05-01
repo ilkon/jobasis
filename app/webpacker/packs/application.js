@@ -24,3 +24,5 @@ import Notification from '../javascripts/bulmajs/plugins/notification'
 const application = Application.start()
 const context = require.context('controllers', true, /\.js$/)
 application.load(definitionsFromContext(context))
+
+require.context('../images', true)
