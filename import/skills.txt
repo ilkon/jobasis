@@ -129,6 +129,7 @@ Multiplexing
 MxNet, Apache MXNet
 MySQL
 Nagios
+Natural Language Processing, NLP
 Neptune
 .NET, dotNet
 Neural networks
