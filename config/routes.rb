@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   root to: 'vacancies#index'
   get 'vacancies', to: 'vacancies#index'
   get 'about', to: 'pages#about'
+  get 'insights', to: 'pages#insights'
 end
