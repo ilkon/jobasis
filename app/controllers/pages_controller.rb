@@ -8,7 +8,7 @@ class PagesController < ApplicationController
           JOIN #{Vacancy.table_name} V on V.skill_ids @> S.id::text::jsonb
       GROUP BY S.id, to_char(V.date, 'YYYY-MM')"
     rows = Vacancy.connection.select_all(sql)
-    @skills = rows.group_by { |r| r['id'] }.values
+    @skills = rows.group_by { |r| r['name'] }.sort.to_h.values
     @dates = rows.group_by { |r| r['date'] }.keys.sort
   end
 end
