@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def insights
+  def trends
     sql = "
       SELECT S.id, min(S.name) AS name, to_char(V.date, 'YYYY-MM') AS date, count(*) AS vacancies_count
       FROM #{Skill.table_name} S

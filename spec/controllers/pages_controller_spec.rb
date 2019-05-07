@@ -9,4 +9,11 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #trends' do
+    it 'responds with appropriate HTTP code' do
+      get :trends
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
