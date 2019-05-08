@@ -1,0 +1,20 @@
+%form.filters.box{ action: trends_path }
+  - Vacancy::REMOTENESS.each do |filter|
+    .field
+      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
+      %label{ for: "filter-#{filter}" }
+        = t("vacancies.remoteness.#{filter}")
+  - Vacancy::INVOLVEMENT.each do |filter|
+    .field
+      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
+      %label{ for: "filter-#{filter}" }
+        = t("vacancies.involvement.#{filter}")
+  .field
+    %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
+      Skills
+      %span.icon.has-text-skill.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
+        %i.far.fa-question-circle
+    .select.is-multiple.is-skill{ data: { controller: 'chart' } }
+      %select{ multiple: true, size: 8, name: 'skill_ids[]', data: { target: 'chart.skills', action: "change->chart#highlight" } }
+        - @skills.each do |skill|
+          %option{ value: skill.first['id'], selected: (@filters[:skill_ids] || []).include?(skill.first['id'].to_i) }= skill.first['name']

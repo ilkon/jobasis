@@ -1,21 +1,8 @@
 - content_for(:page_title) { 'Trends' }
+- content_for(:full_height) { '1' }
 
 .columns.is-fullheight
   %mail.column
-    %h1.title Trends
-    .content
-      %table
-        %thead
-          %th Skill
-          - @dates.each do |date|
-            %th
-              = date
-        %tbody
-          - @skills.each do |skill|
-            %tr
-              %td
-                = skill.first['name']
-              - indexed = skill.index_by { |r| r['date'] }
-              - @dates.each do |date|
-                %td
-                  = indexed[date]['vacancies_count'] if indexed[date]
+    = render 'chart'
+  %aside.column.is-narrow.sidebar
+    = render 'filters'

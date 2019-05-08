@@ -1,0 +1,64 @@
+:css
+  path {
+    stroke: #e2e2e2;
+    stroke-width: 0.05625rem;
+    fill: none;
+    z-index: 10;
+  }
+  path.highlight {
+    stroke: #e28472;
+    stroke-width: 0.10625rem;
+    z-index: 100;
+  }
+  line {
+    stroke: black;
+  }
+  text {
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 0.8rem;
+  }
+  .axis {
+    stroke-width: 0.05rem;
+    stroke: #000;
+  }
+  .xTicks, .yTicks {
+    stroke-width: 0.0375rem;
+    stroke: #000;
+  }
+
+:ruby
+  chart_width = 925
+  chart_height = 550
+  chart_padding_x = 45
+  chart_padding_y = 35
+  step_width = (chart_width - chart_padding_x * 2).to_f / (@dates.count - 1)
+  tick_length = 7
+  label_pos_y = 540
+  elev_height = ( chart_height - chart_padding_y * 2 ).to_f / 250
+
+%svg{ height: chart_height, width: chart_width }
+  %g
+    %line.axis{ x1: chart_padding_x, y1: chart_height - chart_padding_y, x2: chart_width, y2: chart_height - chart_padding_y }
+    %line.axis{ x1: chart_padding_x, y1: chart_height - chart_padding_y, x2: chart_padding_x, y2: chart_padding_y }
+    - @dates.each_with_index do |date, i|
+      - x = chart_padding_x + step_width * i
+      %text.xLabel{ 'text-anchor' => 'middle', x: x, y: label_pos_y }= date
+      %line.xTicks{ x1: x, y1: chart_height - chart_padding_y, x2: x, y2: chart_height - chart_padding_y + tick_length }
+
+    - 0.upto(4).each do |i|
+      - y = chart_height - chart_padding_y - elev_height * i * 50
+      %text.yLabel{ 'text-anchor' => 'end', dy: '3', x: chart_padding_x - tick_length - 5, y: y }= i * 50
+      %line.yTicks{ x1: chart_padding_x - tick_length, y1: y, x2: chart_padding_x, y2: y }
+
+    - @skills.each do |skill|
+      - indexed = skill.index_by { |r| r['date'] }
+      - path = []
+      - prev_x = prev_y = 0
+      - @dates.each_with_index do |date, i|
+        - x = chart_padding_x + step_width * i
+        - y = chart_height - chart_padding_y - elev_height * indexed.dig(date, 'vacancies_count').to_i
+
+        - path << (path.empty? ? "M #{x} #{y}" : "C #{prev_x + step_width / 3} #{prev_y}, #{x - step_width / 3} #{y}, #{x} #{y}")
+        - prev_x = x
+        - prev_y = y
+      %path{ id: "path#{skill.first['id']}", class: (@filters[:skill_ids] || []).include?(skill.first['id'].to_i) ? 'highlight' : '', d: path.join(' ') }
