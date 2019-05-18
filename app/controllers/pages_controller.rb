@@ -20,6 +20,5 @@ class PagesController < ApplicationController
     rows = Vacancy.connection.select_all(sql)
     @skills = rows.group_by { |r| r['name'] }.sort.to_h.values
     @dates = rows.group_by { |r| r['date'] }.keys.sort
-    @max_vacancies_count = rows.map { |r| r['vacancies_count'].to_i }.max
   end
 end
