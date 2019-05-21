@@ -17,7 +17,6 @@ class VacanciesController < ApplicationController
                         .order(published_at: :desc)
 
     @filters = %i[remote onsite fulltime parttime skill_ids].each_with_object({}) { |p, hash| hash[p] = params[p] if params[p].present? }
-    @filters[:skill_ids].map!(&:to_i) if @filters[:skill_ids].present?
 
     @vacancies = @vacancies.where.not(remoteness: 2) if @filters[:remote] && !@filters[:onsite]
     @vacancies = @vacancies.where.not(remoteness: 1) if !@filters[:remote] && @filters[:onsite]
@@ -25,7 +24,7 @@ class VacanciesController < ApplicationController
     @vacancies = @vacancies.where.not(involvement: 1) if !@filters[:fulltime] && @filters[:parttime]
 
     if @filters[:skill_ids].present?
-      conditions = @filters[:skill_ids].map { |skill_id| "skill_ids @> '#{skill_id}'::jsonb" }.join(' OR ')
+      conditions = @filters[:skill_ids].map { |skill_id| "skill_ids @> '#{skill_id.to_i}'::jsonb" }.join(' OR ')
       @vacancies = @vacancies.where(conditions)
     end
 

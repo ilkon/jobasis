@@ -17,6 +17,6 @@
     .select.is-multiple.is-skill
       %select{ multiple: true, size: 8, name: 'skill_ids[]' }
         - @recent_skills.each do |id, prms|
-          %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id) }= "#{prms.first} (#{prms.last})"
+          %option{ value: id, selected: (@filters[:skill_ids] || []).include?(id.to_s) }= "#{prms.first} (#{prms.last})"
   .field
     %button.button.is-skill{ type: 'submit' } Apply

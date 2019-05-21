@@ -15,4 +15,4 @@
     .select.is-multiple.is-skill{ data: { controller: 'trends--filter'  } }
       %select{ multiple: true, size: 8, name: 'skill_ids[]', data: { action: "change->trends--filter#select" } }
         - @skills.each do |skill|
-          %option{ value: skill.first['id'], selected: (@filters[:skill_ids] || []).include?(skill.first['id'].to_i) }= skill.first['name']
+          %option{ value: skill.first['id'], selected: (@filters[:skill_ids] || []).include?(skill.first['id'].to_s) }= skill.first['name']

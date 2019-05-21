@@ -3,7 +3,6 @@
 class PagesController < ApplicationController
   def trends
     @filters = %i[remote onsite fulltime parttime skill_ids].each_with_object({}) { |p, hash| hash[p] = params[p] if params[p].present? }
-    @filters[:skill_ids].map!(&:to_i) if @filters[:skill_ids].present?
 
     conditions = []
     conditions << 'V.remoteness != 2' if @filters[:remote] && !@filters[:onsite]

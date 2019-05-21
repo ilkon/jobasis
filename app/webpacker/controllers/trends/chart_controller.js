@@ -51,8 +51,7 @@ export default class extends Controller {
 
   drawChart(canvas, width, height) {
     const dates = this.chartDates,
-        trends = this.chartTrends,
-        selectedSkillIds = this.chartSelectedSkillIds
+        trends = this.chartTrends
 
     let x = d3.scaleTime().rangeRound([0, width])
     let y = d3.scaleLinear().rangeRound([height, 0])
@@ -80,28 +79,23 @@ export default class extends Controller {
         .attr('text-anchor', 'end')
         .text('Vacancies')
 
-    let pathGroup = canvas.append('svg:g')
+    this.pathGroup = canvas.append('svg:g')
 
     const _this = this
     for (let [key, value] of Object.entries(trends)) {
-      pathGroup.append('svg:path')
+      this.pathGroup.append('svg:path')
           .datum(value)
           .attr('d', line)
           .attr('skill-id', key)
-          .attr('class', selectedSkillIds.includes(parseInt(key)) ? 'selected' : '')
           .on('mouseover', function(d) {
             _this.highlight(this)
           })
           .on('mouseout', function(d) {
-            _this.lowlight(this)
+            _this.unhighlight(this)
           })
     }
 
-    pathGroup.selectAll('path').each(function(d, i) {
-      if (this.classList.contains('selected')) {
-        this.parentNode.appendChild(this)
-      }
-    })
+    this.select(this.chartSelectedSkillIds)
   }
 
   highlight(el) {
@@ -109,7 +103,7 @@ export default class extends Controller {
     el.parentNode.appendChild(el)
   }
 
-  lowlight(el) {
+  unhighlight(el) {
     el.classList.remove('highlighted')
     if (!el.classList.contains('selected')) {
       let firstChild = el.parentNode.firstChild
@@ -117,6 +111,19 @@ export default class extends Controller {
         el.parentNode.insertBefore(el, firstChild)
       }
     }
+  }
 
+  select(skillIds) {
+    this.pathGroup.selectAll('path').each(function(d, i) {
+      const skillId = this.getAttribute('skill-id')
+      if (skillIds.includes(skillId)) {
+        this.classList.add('selected')
+        this.parentNode.appendChild(this)
+      } else {
+        this.classList.remove('selected')
+      }
+    })
+
+    this.chartSelectedSkillIds = skillIds
   }
 }
