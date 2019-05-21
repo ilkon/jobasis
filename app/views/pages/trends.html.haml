@@ -3,14 +3,27 @@
 
 :ruby
   dates = @dates.map { |d| d + '-01' }
-  data = @skills.each_with_object({}) do |skill, hash|
+  trends = @skills.each_with_object({}) do |skill, hash|
     indexed = skill.index_by { |r| r['date'] }
-    hash[skill.first['id']] = @dates.map { |d| indexed.dig(d, 'vacancies_count').to_i }
+    hash[skill.first['id'].to_i] = @dates.map { |d| indexed.dig(d, 'vacancies_count').to_i }
   end
+
+:css
+  path {
+    stroke: #cfcfcf;
+    stroke-width: 0.05625rem;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+  }
+  path.highlighted, path.selected {
+    stroke: #e28472;
+    stroke-width: 0.10625rem;
+  }
 
 .columns.is-fullheight
   %main.column
     %h1.title Trends
-    %div{ data: { controller: 'trends', trends_data: data.to_json, trends_dates: dates.to_json } }
+    %div{ data: { controller: 'trends--chart', trends__chart_trends: trends.to_json, trends__chart_selected_skill_ids: (@filters[:skill_ids] || []).to_json, trends__chart_dates: dates.to_json } }
   %aside.column.is-narrow.sidebar
     = render 'filters'

@@ -3,8 +3,9 @@ import * as d3 from 'd3'
 
 export default class extends Controller {
   connect() {
-    this.trendData = JSON.parse(this.data.get('data'))
-    this.trendDates = JSON.parse(this.data.get('dates')).map(x => new Date(x))
+    this.chartDates = JSON.parse(this.data.get('dates')).map(x => new Date(x))
+    this.chartTrends = JSON.parse(this.data.get('trends'))
+    this.chartSelectedSkillIds = JSON.parse(this.data.get('selected-skill-ids'))
 
     this.draw()
 
@@ -42,35 +43,36 @@ export default class extends Controller {
 
     const margin = { top: 20, right: 20, bottom: 30, left: 50 }
 
-    let canvas = svg.append('g')
+    let canvas = svg.append('svg:g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
     return [canvas, svgWidth - margin.left - margin.right, svgHeight - margin.top - margin.bottom]
   }
 
   drawChart(canvas, width, height) {
-    const data = this.trendData,
-        dates = this.trendDates
+    const dates = this.chartDates,
+        trends = this.chartTrends,
+        selectedSkillIds = this.chartSelectedSkillIds
 
     let x = d3.scaleTime().rangeRound([0, width])
     let y = d3.scaleLinear().rangeRound([height, 0])
 
     let line = d3.line()
-        .x(function(d, i) { return x(dates[i])})
-        .y(function(d) { return y(d)})
+        .x((d, i) => { return x(dates[i])})
+        .y((d) => { return y(d)})
         .curve(d3.curveMonotoneX)
 
     x.domain(d3.extent(dates))
-    y.domain(d3.extent([].concat(...Object.values(data))).map(x => x * 1.075))
+    y.domain(d3.extent([].concat(...Object.values(trends))).map(x => x * 1.075))
 
-    canvas.append('g')
+    canvas.append('svg:g')
         .attr('transform', 'translate(0,' + height + ')')
         .call(d3.axisBottom(x))
         .select('.domain')
 
-    canvas.append('g')
+    canvas.append('svg:g')
         .call(d3.axisLeft(y))
-        .append('text')
+        .append('svg:text')
         .attr('fill', '#000')
         .attr('transform', 'rotate(-90)')
         .attr('y', 6)
@@ -78,15 +80,43 @@ export default class extends Controller {
         .attr('text-anchor', 'end')
         .text('Vacancies')
 
-    for (let [key, value] of Object.entries(data)) {
-      canvas.append('path')
+    let pathGroup = canvas.append('svg:g')
+
+    const _this = this
+    for (let [key, value] of Object.entries(trends)) {
+      pathGroup.append('svg:path')
           .datum(value)
-          .attr('fill', 'none')
-          .attr('stroke', 'steelblue')
-          .attr('stroke-linejoin', 'round')
-          .attr('stroke-linecap', 'round')
-          .attr('stroke-width', 1.5)
           .attr('d', line)
+          .attr('skill-id', key)
+          .attr('class', selectedSkillIds.includes(parseInt(key)) ? 'selected' : '')
+          .on('mouseover', function(d) {
+            _this.highlight(this)
+          })
+          .on('mouseout', function(d) {
+            _this.lowlight(this)
+          })
     }
+
+    pathGroup.selectAll('path').each(function(d, i) {
+      if (this.classList.contains('selected')) {
+        this.parentNode.appendChild(this)
+      }
+    })
+  }
+
+  highlight(el) {
+    el.classList.add('highlighted')
+    el.parentNode.appendChild(el)
+  }
+
+  lowlight(el) {
+    el.classList.remove('highlighted')
+    if (!el.classList.contains('selected')) {
+      let firstChild = el.parentNode.firstChild
+      if (firstChild) {
+        el.parentNode.insertBefore(el, firstChild)
+      }
+    }
+
   }
 }

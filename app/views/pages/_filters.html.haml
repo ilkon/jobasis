@@ -12,9 +12,7 @@
   .field
     %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
       Skills
-      %span.icon.has-text-skill.tooltip{ data: { tooltip: '(with number of vacancies in last 30 days)' } }
-        %i.far.fa-question-circle
-    .select.is-multiple.is-skill{ data: { controller: 'chart' } }
-      %select{ multiple: true, size: 8, name: 'skill_ids[]', data: { action: "change->chart#highlight" } }
+    .select.is-multiple.is-skill{ data: { controller: 'trends--filter'  } }
+      %select{ multiple: true, size: 8, name: 'skill_ids[]', data: { action: "change->trends--filter#select" } }
         - @skills.each do |skill|
           %option{ value: skill.first['id'], selected: (@filters[:skill_ids] || []).include?(skill.first['id'].to_i) }= skill.first['name']
