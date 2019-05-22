@@ -1,0 +1,35 @@
+svg {
+  path {
+    stroke: #cfcfcf;
+    stroke-width: 0.08625rem;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+  }
+  circle {
+    fill: none;
+  }
+
+  .highlighted, .selected {
+    path {
+      stroke: #e28472;
+      stroke-width: 0.10625rem;
+    }
+    circle {
+      fill: #e28472;
+    }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 3.8rem;
+  height: 2.3rem;
+  padding: 0.02rem;
+  font-size: 0.7rem;
+  background: #d2efd9;
+  border: 0.05rem solid #9db8a2;
+  border-radius: 0.1rem;
+  pointer-events: none;
+}

@@ -5,6 +5,7 @@ export default class extends Controller {
   connect() {
     this.chartDates = JSON.parse(this.data.get('dates')).map(x => new Date(x))
     this.chartTrends = JSON.parse(this.data.get('trends'))
+    this.chartSkills = JSON.parse(this.data.get('skills'))
     this.chartSelectedSkillIds = JSON.parse(this.data.get('selected-skill-ids'))
 
     this.draw()
@@ -58,7 +59,7 @@ export default class extends Controller {
 
     let line = d3.line()
         .x((d, i) => { return x(dates[i])})
-        .y((d) => { return y(d)})
+        .y(d => { return y(d)})
         .curve(d3.curveMonotoneX)
 
     x.domain(d3.extent(dates))
@@ -79,13 +80,17 @@ export default class extends Controller {
         .attr('text-anchor', 'end')
         .text('Vacancies')
 
-    this.pathGroup = canvas.append('svg:g')
+    this.skillGroups = canvas.append('svg:g')
+
+    var div = d3.select('body').append('div')
+        .attr('class', 'tooltip')
+        .style('opacity', 0);
+    let formatDate = d3.timeFormat('%b %Y')
 
     const _this = this
     for (let [key, value] of Object.entries(trends)) {
-      this.pathGroup.append('svg:path')
-          .datum(value)
-          .attr('d', line)
+      let skillGroup = this.skillGroups
+          .append('svg:g')
           .attr('skill-id', key)
           .on('mouseover', function(d) {
             _this.highlight(this)
@@ -96,6 +101,26 @@ export default class extends Controller {
           .on('click', function(d) {
             _this.toggleSelected(this)
           })
+
+      skillGroup.append('svg:path')
+          .datum(value)
+          .attr('d', line)
+
+      skillGroup.selectAll('circle')
+          .data(value)
+          .enter().append('svg:circle')
+          .attr('r', 4)
+          .attr('cx', (d, i) => { return x(dates[i])})
+          .attr('cy', d => { return y(d)})
+          .on('mouseover', function(d, i) {
+            div.style('opacity', .9)
+            div.html(formatDate(dates[i]) + '<br/><b>' + d + '</b>')
+                .style('left', (d3.event.pageX - 30) + 'px')
+                .style('top', (d3.event.pageY - 45) + 'px')
+          })
+          .on('mouseout', function(d) {
+            div.style('opacity', 0);
+          });
     }
 
     this.updateSelected(this.chartSelectedSkillIds)
@@ -130,7 +155,7 @@ export default class extends Controller {
   }
 
   updateSelected(skillIds) {
-    this.pathGroup.selectAll('path').each(function(d, i) {
+    this.skillGroups.selectAll('g').each(function(d, i) {
       const skillId = this.getAttribute('skill-id')
       if (skillIds.includes(skillId)) {
         this.classList.add('selected')
