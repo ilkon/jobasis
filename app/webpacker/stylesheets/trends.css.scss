@@ -17,6 +17,9 @@ svg {
     }
     circle {
       fill: #e28472;
+      &:hover {
+        fill: #e22a68;
+      }
     }
   }
 }

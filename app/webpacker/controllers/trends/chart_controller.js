@@ -82,9 +82,10 @@ export default class extends Controller {
 
     this.skillGroups = canvas.append('svg:g')
 
-    let div = d3.select('body').append('div')
+    let tooltip = d3.select('body').append('div')
         .attr('class', 'chart-tooltip')
-        .style('opacity', 0);
+        .style('opacity', 0)
+        .style('display', 'none')
     let formatDate = d3.timeFormat('%b %Y')
 
     const _this = this
@@ -113,13 +114,17 @@ export default class extends Controller {
           .attr('cx', (d, i) => { return x(dates[i])})
           .attr('cy', d => { return y(d)})
           .on('mouseover', function(d, i) {
-            div.style('opacity', .9)
-            div.html(formatDate(dates[i]) + '<br/><b>' + d + '</b>')
+            tooltip
+                .html(formatDate(dates[i]) + '<br/><b>' + d + '</b>')
                 .style('left', (d3.event.pageX - 30) + 'px')
                 .style('top', (d3.event.pageY - 45) + 'px')
+                .style('opacity', .9)
+                .style('display', 'block')
           })
           .on('mouseout', function(d) {
-            div.style('opacity', 0);
+            tooltip
+                .style('opacity', 0)
+                .style('display', 'none')
           });
     }
 
