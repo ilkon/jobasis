@@ -82,8 +82,8 @@ export default class extends Controller {
 
     this.skillGroups = canvas.append('svg:g')
 
-    var div = d3.select('body').append('div')
-        .attr('class', 'tooltip')
+    let div = d3.select('body').append('div')
+        .attr('class', 'chart-tooltip')
         .style('opacity', 0);
     let formatDate = d3.timeFormat('%b %Y')
 
