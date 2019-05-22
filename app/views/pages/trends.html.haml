@@ -2,7 +2,8 @@
 - content_for(:full_height) { '1' }
 
 :ruby
-  dates = @dates.map { |d| d + '-01' }
+  today = Date.today
+  dates = @dates.map { |d| [Date.parse(d + '-01').end_of_month, today].min.to_s }
   trends = @skills.each_with_object({}) do |skill, hash|
     indexed = skill.index_by { |r| r['date'] }
     hash[skill.first['id'].to_i] = @dates.map { |d| indexed.dig(d, 'vacancies_count').to_i }
