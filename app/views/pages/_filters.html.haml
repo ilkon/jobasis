@@ -12,7 +12,7 @@
   .field
     %p.subtitle.is-5.is-spaced{ style: 'margin: 1.5rem 0 0.5rem 0' }
       Skills
-    .select.is-multiple.is-skill{ data: { controller: 'trends--filter'  } }
-      %select{ multiple: true, size: 8, name: 'skill_ids[]', data: { action: "change->trends--filter#select" } }
+    .select.is-multiple.is-skill
+      %select#selector{ multiple: true, size: 8, name: 'skill_ids[]', data: { controller: 'trends--selector', action: "change->trends--selector#onchange" } }
         - @skills.each do |skill|
           %option{ value: skill.first['id'], selected: (@filters[:skill_ids] || []).include?(skill.first['id'].to_s) }= skill.first['name']

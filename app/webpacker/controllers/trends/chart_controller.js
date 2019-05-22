@@ -93,9 +93,12 @@ export default class extends Controller {
           .on('mouseout', function(d) {
             _this.unhighlight(this)
           })
+          .on('click', function(d) {
+            _this.toggleSelected(this)
+          })
     }
 
-    this.select(this.chartSelectedSkillIds)
+    this.updateSelected(this.chartSelectedSkillIds)
   }
 
   highlight(el) {
@@ -113,7 +116,20 @@ export default class extends Controller {
     }
   }
 
-  select(skillIds) {
+  toggleSelected(el) {
+    const skillId = el.getAttribute('skill-id')
+    el.classList.toggle('selected')
+
+    if (el.classList.contains('selected')) {
+      this.chartSelectedSkillIds.push(skillId)
+    } else {
+      this.chartSelectedSkillIds = this.chartSelectedSkillIds.filter(sId => sId !== skillId)
+    }
+
+    this.selectorController.updateSelected(this.chartSelectedSkillIds)
+  }
+
+  updateSelected(skillIds) {
     this.pathGroup.selectAll('path').each(function(d, i) {
       const skillId = this.getAttribute('skill-id')
       if (skillIds.includes(skillId)) {
@@ -125,5 +141,10 @@ export default class extends Controller {
     })
 
     this.chartSelectedSkillIds = skillIds
+  }
+
+  get selectorController() {
+    const chart = document.getElementById('selector')
+    return this.application.getControllerForElementAndIdentifier(chart, 'trends--selector')
   }
 }
