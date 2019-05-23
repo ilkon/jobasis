@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 
 export default class extends Controller {
   connect() {
-    this.chartDates = JSON.parse(this.data.get('dates')).map(x => new Date(x))
+    this.chartDates = JSON.parse(this.data.get('dates'))
     this.chartTrends = JSON.parse(this.data.get('trends'))
     this.chartSkills = JSON.parse(this.data.get('skills'))
     this.chartSelectedSkillIds = JSON.parse(this.data.get('selected-skill-ids'))
@@ -14,7 +14,7 @@ export default class extends Controller {
   }
 
   draw() {
-    let [canvas, width, height] = this.prepareCanvas()
+    const [canvas, width, height] = this.prepareCanvas()
     this.drawChart(canvas, width, height)
   }
 
@@ -37,14 +37,14 @@ export default class extends Controller {
 
     d3.select(this.element).select('svg').remove()
 
-    let svg = d3.select(this.element)
+    const svg = d3.select(this.element)
         .append('svg:svg')
         .attr('width', svgWidth)
         .attr('height', svgHeight)
 
-    const margin = { top: 15, right: 15, bottom: 30, left: 50 }
+    const margin = { top: 20, right: 30, bottom: 30, left: 50 }
 
-    let canvas = svg.append('svg:g')
+    const canvas = svg.append('svg:g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
     return [canvas, svgWidth - margin.left - margin.right, svgHeight - margin.top - margin.bottom]
@@ -54,28 +54,31 @@ export default class extends Controller {
     const dates = this.chartDates,
         trends = this.chartTrends
 
-    let x = d3.scaleTime().rangeRound([0, width])
-    let y = d3.scaleLinear().rangeRound([height, 0])
+    const x = d3.scaleLinear().rangeRound([0, width])
+    const y = d3.scaleLinear().rangeRound([height, 0])
 
-    let line = d3.line()
-        .x((d, i) => { return x(dates[i])})
-        .y(d => { return y(d)})
+    const line = d3.line()
+        .x((d, i) => x(i))
+        .y(d => y(d))
         .curve(d3.curveMonotoneX)
 
-    x.domain(d3.extent(dates))
+    x.domain(d3.extent([0, dates.length - 1]))
     y.domain(d3.extent([].concat(...Object.values(trends))).map(x => x * 1.075))
+
+    const xAxis = d3.axisBottom(x)
+        .ticks(dates.length, 's')
+        .tickFormat((d, i) => dates[i])
+    const yAxis = d3.axisLeft(y)
 
     canvas.append('svg:g')
         .attr('class', 'axis')
         .attr('transform', 'translate(0,' + height + ')')
-        .call(d3.axisBottom(x))
-        .select('.domain')
-
+        .call(xAxis)
     canvas.append('svg:g')
         .attr('class', 'axis')
-        .call(d3.axisLeft(y))
+        .call(yAxis)
         .append('svg:text')
-        .attr('fill', '#000')
+        .attr('fill', 'currentColor')
         .attr('transform', 'rotate(-90)')
         .attr('y', 6)
         .attr('dy', '0.71em')
@@ -84,15 +87,14 @@ export default class extends Controller {
 
     this.skillGroups = canvas.append('svg:g')
 
-    let tooltip = d3.select('body').append('div')
+    const tooltip = d3.select('body').append('div')
         .attr('class', 'chart-tooltip')
         .style('opacity', 0)
         .style('display', 'none')
-    let formatDate = d3.timeFormat('%b %Y')
 
     const _this = this
     for (let [key, value] of Object.entries(trends)) {
-      let skillGroup = this.skillGroups
+      const skillGroup = this.skillGroups
           .append('svg:g')
           .attr('skill-id', key)
           .on('mouseover', function(d) {
@@ -113,11 +115,11 @@ export default class extends Controller {
           .data(value)
           .enter().append('svg:circle')
           .attr('r', 4)
-          .attr('cx', (d, i) => { return x(dates[i])})
-          .attr('cy', d => { return y(d)})
+          .attr('cx', (d, i) => x(i))
+          .attr('cy', d => y(d))
           .on('mouseover', function(d, i) {
             tooltip
-                .html(formatDate(dates[i]) + '<br/><b>' + d + '</b>')
+                .html(dates[i] + '<br/><b>' + d + '</b>')
                 .style('left', (d3.event.pageX - 30) + 'px')
                 .style('top', (d3.event.pageY - 45) + 'px')
                 .style('opacity', .9)
@@ -141,7 +143,7 @@ export default class extends Controller {
   unhighlight(el) {
     el.classList.remove('highlighted')
     if (!el.classList.contains('selected')) {
-      let firstChild = el.parentNode.firstChild
+      const firstChild = el.parentNode.firstChild
       if (firstChild) {
         el.parentNode.insertBefore(el, firstChild)
       }

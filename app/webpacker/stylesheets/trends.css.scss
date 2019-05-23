@@ -1,6 +1,9 @@
 svg {
   .axis {
-    stroke-width: 0.8;
+    .domain {
+      stroke: #808080;
+      stroke-width: 0.8;
+    }
     font-size: 0.8rem;
   }
   path {
