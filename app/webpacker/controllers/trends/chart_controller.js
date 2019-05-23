@@ -52,7 +52,8 @@ export default class extends Controller {
 
   drawChart(canvas, width, height) {
     const dates = this.chartDates,
-        trends = this.chartTrends
+        trends = this.chartTrends,
+        skills = this.chartSkills
 
     const x = d3.scaleLinear().rangeRound([0, width])
     const y = d3.scaleLinear().rangeRound([height, 0])
@@ -119,7 +120,7 @@ export default class extends Controller {
           .attr('cy', d => y(d))
           .on('mouseover', function(d, i) {
             tooltip
-                .html(dates[i] + '<br/><b>' + d + '</b>')
+                .html(skills[key] + '<br/><b>' + d + '</b>')
                 .style('left', (d3.event.pageX - 30) + 'px')
                 .style('top', (d3.event.pageY - 45) + 'px')
                 .style('opacity', .9)
