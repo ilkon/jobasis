@@ -10,11 +10,11 @@
 
     #main-nav.navbar-menu
       .navbar-start
-        %a.navbar-item{ href: '/vacancies' }
+        %a.navbar-item{ href: vacancies_path(@filters || {}) }
           %span Vacancies
-        %a.navbar-item{ href: '/trends' }
+        %a.navbar-item{ href: trends_path(@filters || {}) }
           %span Trends
-        %a.navbar-item{ href: '/about' }
+        %a.navbar-item{ href: about_path }
           %span About
 
       - if local_assigns[:auth_links]
