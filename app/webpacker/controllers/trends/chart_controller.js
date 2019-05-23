@@ -42,7 +42,7 @@ export default class extends Controller {
         .attr('width', svgWidth)
         .attr('height', svgHeight)
 
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 }
+    const margin = { top: 15, right: 15, bottom: 30, left: 50 }
 
     let canvas = svg.append('svg:g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
@@ -66,11 +66,13 @@ export default class extends Controller {
     y.domain(d3.extent([].concat(...Object.values(trends))).map(x => x * 1.075))
 
     canvas.append('svg:g')
+        .attr('class', 'axis')
         .attr('transform', 'translate(0,' + height + ')')
         .call(d3.axisBottom(x))
         .select('.domain')
 
     canvas.append('svg:g')
+        .attr('class', 'axis')
         .call(d3.axisLeft(y))
         .append('svg:text')
         .attr('fill', '#000')
