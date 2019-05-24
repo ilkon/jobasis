@@ -110,6 +110,11 @@ export default class extends Controller {
 
       skillGroup.append('svg:path')
           .datum(value)
+          .attr('class', 'line-tracker')
+          .attr('d', line)
+      skillGroup.append('svg:path')
+          .datum(value)
+          .attr('class', 'line')
           .attr('d', line)
 
       skillGroup.selectAll('circle')

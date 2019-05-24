@@ -6,9 +6,16 @@ svg {
     }
     font-size: 0.8rem;
   }
-  path {
+  .line {
     stroke: #cfcfcf;
     stroke-width: 0.08625rem;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+  }
+  .line-tracker {
+    stroke: transparent;
+    stroke-width: 1.2rem;
     stroke-linejoin: round;
     stroke-linecap: round;
     fill: none;
@@ -18,7 +25,7 @@ svg {
   }
 
   .highlighted, .selected {
-    path {
+    .line {
       stroke: #e28472;
       stroke-width: 0.10625rem;
     }
