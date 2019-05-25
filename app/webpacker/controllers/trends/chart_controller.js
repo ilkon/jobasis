@@ -35,6 +35,22 @@ export default class extends Controller {
     }
     const svgHeight = svgWidth * 0.75
 
+    d3.select('#chart-tooltip').remove()
+    d3.select('body')
+        .append('div')
+        .attr('id', 'chart-tooltip')
+        .style('opacity', 0)
+        .style('display', 'none')
+
+    d3.select('#skill-title').remove()
+    const skillTitle = d3.select('#chart')
+        .append('div')
+        .attr('id', 'skill-title')
+        .style('width', svgWidth + 'px')
+        .style('opacity', 0)
+        .style('display', 'none')
+    skillTitle.append('div')
+
     d3.select(this.element).select('svg').remove()
 
     const svg = d3.select(this.element)
@@ -42,7 +58,7 @@ export default class extends Controller {
         .attr('width', svgWidth)
         .attr('height', svgHeight)
 
-    const margin = { top: 20, right: 30, bottom: 30, left: 50 }
+    const margin = { top: 20, right: 40, bottom: 30, left: 40 }
 
     const canvas = svg.append('svg:g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
@@ -52,8 +68,7 @@ export default class extends Controller {
 
   drawChart(canvas, width, height) {
     const dates = this.chartDates,
-        trends = this.chartTrends,
-        skills = this.chartSkills
+        trends = this.chartTrends
 
     const x = d3.scaleLinear().rangeRound([0, width])
     const y = d3.scaleLinear().rangeRound([height, 0])
@@ -88,15 +103,11 @@ export default class extends Controller {
 
     this.skillGroups = canvas.append('svg:g')
 
-    const tooltip = d3.select('body').append('div')
-        .attr('class', 'chart-tooltip')
-        .style('opacity', 0)
-        .style('display', 'none')
-
     const _this = this
     for (let [key, value] of Object.entries(trends)) {
       const skillGroup = this.skillGroups
           .append('svg:g')
+          .attr('class', 'skill-group')
           .attr('skill-id', key)
           .on('mouseover', function(d) {
             _this.highlight(this)
@@ -125,17 +136,18 @@ export default class extends Controller {
           .attr('cx', (d, i) => x(i))
           .attr('cy', d => y(d))
           .on('mouseover', function(d, i) {
-            tooltip
+            d3.select('#chart-tooltip')
                 .html(dates[i] + '<br/><b>' + d + '</b>')
                 .style('left', (d3.event.pageX - 30) + 'px')
                 .style('top', (d3.event.pageY - 45) + 'px')
-                .style('opacity', .9)
+                .transition().duration(100)
+                .style('opacity', 1)
                 .style('display', 'block')
           })
           .on('mouseout', function(d) {
-            tooltip
+            d3.select('#chart-tooltip')
+                .transition().duration(100)
                 .style('opacity', 0)
-                .style('display', 'none')
           })
     }
 
@@ -143,8 +155,16 @@ export default class extends Controller {
   }
 
   highlight(el) {
+    const skills = this.chartSkills
+    const skillId = el.getAttribute('skill-id')
     el.classList.add('highlighted')
     el.parentNode.appendChild(el)
+    d3.select('#skill-title div')
+        .html(skills[skillId])
+    d3.select('#skill-title')
+        .transition().duration(200)
+        .style('opacity', 1)
+        .style('display', 'block')
   }
 
   unhighlight(el) {
@@ -155,6 +175,9 @@ export default class extends Controller {
         el.parentNode.insertBefore(el, firstChild)
       }
     }
+    d3.select('#skill-title')
+        .transition().duration(200)
+        .style('opacity', 0)
   }
 
   toggleSelected(el) {
