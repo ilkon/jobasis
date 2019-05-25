@@ -13,23 +13,23 @@ svg {
     stroke-linecap: round;
     fill: none;
   }
-  .line-tracker {
+  .line-activator {
     stroke: transparent;
     stroke-width: 1.2rem;
     stroke-linejoin: round;
     stroke-linecap: round;
     fill: none;
   }
-  circle {
+  .node {
     fill: none;
   }
 
   .highlighted, .selected {
     .line {
       stroke: #e28472;
-      stroke-width: 0.10625rem;
+      stroke-width: 0.11625rem;
     }
-    circle {
+    .node {
       fill: #e28472;
       &:hover {
         fill: #e22a68;

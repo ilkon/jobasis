@@ -110,22 +110,23 @@ export default class extends Controller {
 
       skillGroup.append('svg:path')
           .datum(value)
-          .attr('class', 'line-tracker')
+          .attr('class', 'line-activator')
           .attr('d', line)
       skillGroup.append('svg:path')
           .datum(value)
           .attr('class', 'line')
           .attr('d', line)
 
-      skillGroup.selectAll('circle')
+      skillGroup.selectAll('circle.node')
           .data(value)
           .enter().append('svg:circle')
-          .attr('r', 4)
+          .attr('class', 'node')
+          .attr('r', 5)
           .attr('cx', (d, i) => x(i))
           .attr('cy', d => y(d))
           .on('mouseover', function(d, i) {
             tooltip
-                .html(skills[key] + '<br/><b>' + d + '</b>')
+                .html(dates[i] + '<br/><b>' + d + '</b>')
                 .style('left', (d3.event.pageX - 30) + 'px')
                 .style('top', (d3.event.pageY - 45) + 'px')
                 .style('opacity', .9)
@@ -135,7 +136,7 @@ export default class extends Controller {
             tooltip
                 .style('opacity', 0)
                 .style('display', 'none')
-          });
+          })
     }
 
     this.updateSelected(this.chartSelectedSkillIds)
