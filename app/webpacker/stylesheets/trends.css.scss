@@ -30,9 +30,11 @@ svg {
       stroke-width: 0.11625rem;
     }
     .node {
-      fill: #e28472;
+      fill: white;
+      stroke: #e28472;
+      stroke-width: 2;
       &:hover {
-        fill: #e22a68;
+        fill: #e28472;
       }
     }
   }
