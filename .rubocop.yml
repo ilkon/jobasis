@@ -1,4 +1,6 @@
-require: rubocop-performance
+require:
+  - rubocop-rails
+  - rubocop-performance
 Documentation:
   Enabled: false
 Metrics/AbcSize:
