@@ -63,7 +63,7 @@ RSpec.describe UserEmail, type: :model do
   end
 
   it 'cannot be deleted if confirmed' do
-    obj = create(:user_email, confirmed_at: Time.now)
+    obj = create(:user_email, confirmed_at: Time.zone.now)
     expect do
       obj.destroy
     end.not_to change(UserEmail, :count)

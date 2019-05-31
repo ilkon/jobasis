@@ -9,7 +9,7 @@ module Fetch
     queue_as :fetchers
 
     def perform
-      today = Date.today
+      today = Time.zone.today
       publisher = Publisher.find_or_create_by!(name: 'HackerNews')
 
       posts = Post.where(publisher_id: publisher.id)
@@ -48,7 +48,7 @@ module Fetch
         published_time = response[:time] || response[:created]
         next unless published_time
 
-        published_at = Time.at(published_time)
+        published_at = Time.zone.at(published_time)
         published_date = published_at.to_date
 
         data = {
@@ -59,7 +59,7 @@ module Fetch
 
         case type
         when :user
-          next unless response[:submitted].present?
+          next if response[:submitted].blank?
 
           data[:author] = response[:id]
 

@@ -40,7 +40,7 @@ class UserPassword < ApplicationRecord
       return nil unless token
 
       encoded_token = Auth.token_generator.digest(:reset_token, token)
-      UserPassword.where(reset_token: encoded_token).first
+      UserPassword.find_by(reset_token: encoded_token)
     end
   end
 end

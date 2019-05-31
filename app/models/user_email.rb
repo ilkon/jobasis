@@ -32,7 +32,7 @@ class UserEmail < ApplicationRecord
       return nil unless token
 
       encoded_token = Auth.token_generator.digest(:confirm_token, token)
-      UserEmail.where(confirm_token: encoded_token).first
+      UserEmail.find_by(confirm_token: encoded_token)
     end
   end
 end

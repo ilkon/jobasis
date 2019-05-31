@@ -30,6 +30,8 @@ Style/FormatStringToken:
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
+Rails/DynamicFindBy:
+  Enabled: false
 AllCops:
   Exclude:
     - 'bin/**/*'

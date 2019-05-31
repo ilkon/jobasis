@@ -13,7 +13,7 @@ module Update
     SKILLS_REDIS_KEY = 'jobasis:skills'
 
     def perform
-      date = Date.today - SKILLS_TIME_WINDOW
+      date = Time.zone.today - SKILLS_TIME_WINDOW
       vacancies = Vacancy.where('published_at > ?', date)
 
       skills = {}
