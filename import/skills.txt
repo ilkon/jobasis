@@ -108,6 +108,7 @@ JVM
 Kafka, Apache Kafka
 Kibana
 Kinesis, Amazon Kinesis
+Knockout.js, Knockout, KnockoutJS
 Kotlin
 Kubernetes, K8s
 Kudu, Apache Kudu
@@ -210,6 +211,7 @@ VAAPI
 Vagrant
 Varnish
 VBA
+Verilog
 Vertica
 Vue.js, Vue, VueJS
 WebAssembly
