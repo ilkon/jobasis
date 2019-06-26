@@ -183,6 +183,7 @@ Salesforce
 SAT/SMT
 Scala
 Scikit-learn, sklearn
+ScyllaDB, Scylla
 Selenium
 Sketch
 Snowflake
