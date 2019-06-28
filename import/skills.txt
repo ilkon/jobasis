@@ -64,6 +64,7 @@ Embedded Linux
 Ember.js, Ember, EmberJS
 Erlang
 ES6
+Exasol
 Express.js, Express, ExpressJS
 F#
 Figma
