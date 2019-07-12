@@ -84,6 +84,8 @@ GoCD
 Golang, Go
 Google Cloud, GCP
 Google Compute Engine, GCE
+Google Dremel, Dremel
+Google PowerDrill, PowerDrill
 Grafana
 Graphite
 GraphQL
@@ -97,7 +99,9 @@ Heroku
 Hive, Apache Hive
 HTML, HTML5
 IIS, Microsoft IIS
+InfiniDB
 InfluxDB, InfluxData
+Infobright
 Invision
 IOS
 Java
@@ -120,12 +124,15 @@ Laravel
 Lisp, Common Lisp
 Logstash
 LoopBack
+LucidDB
 Machine learning, ML
 Maltego
+MapReduce
 MariaDB
 Maven, Apache Maven
 Mesos, Apache Mesos
 Meteor
+MonetDB
 MongoDB, Mongo
 Multiplexing
 MxNet, Apache MXNet
@@ -199,6 +206,7 @@ SQS
 Storm, Apache Storm
 Stripe
 Swift
+Sybase, Sybase IQ
 Tarantool
 Tcl
 TensorFlow
