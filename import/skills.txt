@@ -124,6 +124,7 @@ Laravel
 Lisp, Common Lisp
 Logstash
 LoopBack
+Lucene, Apache Lucene
 LucidDB
 Machine learning, ML
 Maltego

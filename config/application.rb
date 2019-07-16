@@ -35,6 +35,8 @@ module Jobasis
 
     config.eager_load_paths << Rails.root.join('lib')
 
+    config.exceptions_app = ->(env) { PagesController.action(:error).call(env) }
+
     config.generators do |g|
       g.factory_bot dir: 'spec/factories'
     end

@@ -1,0 +1,13 @@
+- content_for(:page_title) { 'Error' }
+- content_for(:full_height) { '1' }
+
+.columns.is-fullheight
+  %main.column
+    %h1.title Oops
+    .content
+      %p
+        It looks like something went wrong :(
+        %br
+        But don't worry, we're already aware of the problem and and our best minds are working on it.
+      %p
+        %a{ href: '/' } Return to the beginning

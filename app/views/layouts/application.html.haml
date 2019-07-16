@@ -11,7 +11,7 @@
     = render 'layouts/gtag'
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  - navbar_locals = params[:controller].start_with?('auth/') ? {} : { auth_links: true }
+  - navbar_locals = controller_path.start_with?('auth/') ? {} : { auth_links: true }
   - if content_for?(:full_height)
     %body.application
       %section.hero.is-fullheight

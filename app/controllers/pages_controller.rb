@@ -20,4 +20,12 @@ class PagesController < ApplicationController
     @skills = rows.group_by { |r| r['name'] }.sort.to_h.values
     @dates = rows.group_by { |r| r['date'] }.keys.sort
   end
+
+  def error
+    exception       = request.env['action_dispatch.exception']
+    status_code     = ActionDispatch::ExceptionWrapper.new(request.env, exception).status_code
+    ActionDispatch::ExceptionWrapper.rescue_responses[exception.class.name]
+
+    render status: status_code
+  end
 end
