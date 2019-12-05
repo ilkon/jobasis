@@ -3,7 +3,7 @@
 namespace :skills do
   desc 'Import skills from txt-file to database'
   task import: :environment do
-    pathname = Rails.root.join('import', 'skills.txt')
+    pathname = Rails.root.join('import/skills.txt')
 
     unless pathname.exist?
       puts 'Import file does not exist'
@@ -40,7 +40,7 @@ namespace :skills do
       next
     end
 
-    filename = Rails.root.join('import', 'skills.txt').to_s
+    filename = Rails.root.join('import/skills.txt').to_s
 
     File.open(filename, 'w') do |file|
       skills.each do |names|

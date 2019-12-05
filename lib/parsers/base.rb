@@ -8,7 +8,7 @@ module Parsers
         return @tld if @tld
 
         @tld = []
-        filename = Rails.root.join('lib', 'parsers', 'dict', 'tlds-alpha-by-domain.txt').to_s
+        filename = Rails.root.join('lib/parsers/dict/tlds-alpha-by-domain.txt').to_s
         File.readlines(filename).each do |line|
           next if line.start_with?('#')
 

@@ -9,7 +9,7 @@ namespace :resque do
     # generic worker setup, e.g. Hoptoad for failed jobs
   end
 
-  task 'pool:setup' do
+  task 'pool:setup': :environment do
     # close any sockets or files in pool manager
     ActiveRecord::Base.connection.disconnect!
     # and re-open them in the resque worker parent
