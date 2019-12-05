@@ -4,7 +4,7 @@ require_relative 'concerns/typhoeus_requester'
 
 module Fetchers
   class HackerNews
-    include Fetchers::TyphoeusRequester
+    include Fetchers::Concerns::TyphoeusRequester
 
     API_URL = 'https://hacker-news.firebaseio.com/v0'
     ROOT_PUBLISHER_KEY = '0'
