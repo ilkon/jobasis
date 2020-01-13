@@ -28,7 +28,6 @@ group :development, :test do
   gem 'timecop'
   gem 'simplecov', require: false
   gem 'rspec-rails', '4.0.0.beta3'
-  gem 'byebug', platforms: %i[mri mingw x64_mingw] # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 end
 
 group :development do
