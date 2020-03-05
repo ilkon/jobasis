@@ -27,7 +27,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'timecop'
   gem 'simplecov', require: false
-  gem 'rspec-rails', '4.0.0.beta3'
+  gem 'rspec-rails', '4.0.0.beta4'
 end
 
 group :development do
