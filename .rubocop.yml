@@ -11,6 +11,8 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
@@ -34,7 +36,15 @@ Layout/HashAlignment:
   EnforcedColonStyle: table
 Layout/LineLength:
   Max: 180
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
 Rails/DynamicFindBy:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
