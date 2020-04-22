@@ -1,12 +1,12 @@
 %form.filters.box{ action: vacancies_path }
   - Vacancy::REMOTENESS.each do |filter|
     .field
-      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
+      %input{ class: "is-checkradio has-no-border is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
       %label{ for: "filter-#{filter}" }
         = t("vacancies.remoteness.#{filter}")
   - Vacancy::INVOLVEMENT.each do |filter|
     .field
-      %input{ class: "is-checkradio is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
+      %input{ class: "is-checkradio has-no-border is-block is-#{filter}", type: 'checkbox', id: "filter-#{filter}", name: filter, checked: @filters[filter], onchange: 'this.form.submit()' }
       %label{ for: "filter-#{filter}" }
         = t("vacancies.involvement.#{filter}")
   .field
