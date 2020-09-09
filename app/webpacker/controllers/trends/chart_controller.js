@@ -109,13 +109,13 @@ export default class extends Controller {
           .append('svg:g')
           .attr('class', 'skill-group')
           .attr('skill-id', key)
-          .on('mouseover', function(d) {
+          .on('mouseover', function(event, d) {
             _this.highlight(this)
           })
-          .on('mouseout', function(d) {
+          .on('mouseout', function(event, d) {
             _this.unhighlight(this)
           })
-          .on('click', function(d) {
+          .on('click', function(event, d) {
             _this.toggleSelected(this)
           })
 
@@ -128,14 +128,17 @@ export default class extends Controller {
           .attr('class', 'line')
           .attr('d', line)
 
-      skillGroup.selectAll('circle.node')
+      const circles = skillGroup.selectAll('circle.node')
           .data(value)
           .enter().append('svg:circle')
           .attr('class', 'node')
           .attr('r', 5)
           .attr('cx', (d, i) => x(i))
           .attr('cy', d => y(d))
-          .on('mouseover', function(event, d, i) {
+
+      circles.on('mouseover', function(event, d) {
+            const e = circles.nodes()
+            const i = e.indexOf(this)
             d3.select('#chart-tooltip')
                 .html(dates[i] + '<br/><b>' + d + '</b>')
                 .style('left', (event.pageX - 30) + 'px')
@@ -144,7 +147,7 @@ export default class extends Controller {
                 .style('opacity', 1)
                 .style('display', 'block')
           })
-          .on('mouseout', function(d) {
+          .on('mouseout', function(event, d) {
             d3.select('#chart-tooltip')
                 .transition().duration(100)
                 .style('opacity', 0)
