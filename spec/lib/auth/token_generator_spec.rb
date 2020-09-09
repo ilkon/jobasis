@@ -16,8 +16,9 @@ RSpec.describe Auth::TokenGenerator, type: :model do
 
   describe '.digest' do
     it 'generates encrypted token' do
+      tokens = %w[token1 ABCABCABCABC !@#!@#ASD F -1]
       %i[reset_token confirm_token].each do |column|
-        %w[token1 ABCABCABCABC !@#!@#ASD F -1].each do |token|
+        tokens.each do |token|
           digest = @token_generator.digest(column, token)
           expect(digest).not_to eql(token)
         end
@@ -26,8 +27,9 @@ RSpec.describe Auth::TokenGenerator, type: :model do
 
     it 'generates different digests for different tokens and columns' do
       digests = []
+      tokens = %w[token1 ABCABCABCABC !@#!@#ASD F -1]
       %i[reset_token confirm_token].each do |column|
-        %w[token1 ABCABCABCABC !@#!@#ASD F -1].each do |token|
+        tokens.each do |token|
           digest = @token_generator.digest(column, token)
           expect(digests).not_to include(digest)
           digests << digest
