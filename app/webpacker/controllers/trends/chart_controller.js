@@ -135,11 +135,11 @@ export default class extends Controller {
           .attr('r', 5)
           .attr('cx', (d, i) => x(i))
           .attr('cy', d => y(d))
-          .on('mouseover', function(d, i) {
+          .on('mouseover', function(event, d, i) {
             d3.select('#chart-tooltip')
                 .html(dates[i] + '<br/><b>' + d + '</b>')
-                .style('left', (d3.event.pageX - 30) + 'px')
-                .style('top', (d3.event.pageY - 45) + 'px')
+                .style('left', (event.pageX - 30) + 'px')
+                .style('top', (event.pageY - 45) + 'px')
                 .transition().duration(100)
                 .style('opacity', 1)
                 .style('display', 'block')
