@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@rails/webpacker": "^5.1.1",
+    "@rails/webpacker": "5.2.1",
     "activestorage": "^5.2.2",
     "bulma": "^0.9.1",
     "bulma-extensions": "^6.2.4",
