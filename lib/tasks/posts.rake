@@ -3,7 +3,7 @@
 namespace :posts do
   desc 'Fetch posts'
   task :fetch, %i[] => :environment do
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
 
     Fetch::HackerNewsJob.perform_now
   end

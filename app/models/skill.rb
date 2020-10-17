@@ -37,7 +37,7 @@ class Skill < ApplicationRecord
         major_id = ids.compact.group_by(&:itself).max_by { |x| x[1].length }.try(:first)
 
         name = names[0]
-        synonyms = names[1..-1]
+        synonyms = names[1..]
 
         if major_id
           indexed_skills[major_id].update(name: name, synonyms: synonyms)

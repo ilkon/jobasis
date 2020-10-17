@@ -147,7 +147,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'responds with appropriate HTTP code' do
-        get :edit, params: { token: @token + '!' }
+        get :edit, params: { token: "#{@token}!" }
 
         expect(response.response_code).to eq(200)
       end
@@ -260,7 +260,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'responds with appropriate HTTP code' do
-        post :update, params: @params.merge(token: @token + '!')
+        post :update, params: @params.merge(token: "#{@token}!")
 
         expect(response.response_code).to eq(200)
       end
@@ -286,7 +286,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       it "doesn't update user password" do
         expect(@user.password?(@password)).to be_falsey
 
-        post :update, params: @params.merge(token: @token + '!')
+        post :update, params: @params.merge(token: "#{@token}!")
         @user.reload
 
         expect(@user.password?(@password)).to be_falsey

@@ -46,7 +46,7 @@ RSpec.describe Skill, type: :model do
 
       @skills = []
       @skill_names.each do |names|
-        @skills << create(:skill, name: names[0], synonyms: names[1..-1])
+        @skills << create(:skill, name: names[0], synonyms: names[1..])
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe Skill, type: :model do
 
       @skills = []
       @skill_names.each do |names|
-        @skills << create(:skill, name: names[0], synonyms: names[1..-1])
+        @skills << create(:skill, name: names[0], synonyms: names[1..])
       end
     end
 

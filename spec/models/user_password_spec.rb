@@ -84,7 +84,7 @@ RSpec.describe UserPassword, type: :model do
 
     it 'matches valid non-stripped password' do
       obj = create(:user_password, password: pwd)
-      expect(obj.match?(' ' + pwd + '  ')).to be_truthy
+      expect(obj.match?(" #{pwd}  ")).to be_truthy
     end
 
     it "doesn't match invalid password" do
@@ -145,7 +145,7 @@ RSpec.describe UserPassword, type: :model do
       obj = create(:user_password)
       token = obj.set_reset_token
 
-      res = described_class.find_by_reset_token(token + '!')
+      res = described_class.find_by_reset_token("#{token}!")
       expect(res).to be_nil
     end
 

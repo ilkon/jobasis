@@ -46,7 +46,7 @@ RSpec.describe UserSocialProfile, type: :model do
 
   it 'is valid with the same provider_id but different uid' do
     prev = create(:user_social_profile)
-    obj = build(:user_social_profile, provider_id: prev.provider_id, uid: prev.uid + 'a')
+    obj = build(:user_social_profile, provider_id: prev.provider_id, uid: "#{prev.uid}a")
     expect(obj).to be_valid
   end
 end

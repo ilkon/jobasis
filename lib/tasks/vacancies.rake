@@ -3,7 +3,7 @@
 namespace :vacancies do
   desc 'Parse all vacancies'
   task :parse_all, %i[] => :environment do
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
 
     publisher = Publisher.find_by!(name: 'HackerNews')
 
@@ -16,7 +16,7 @@ namespace :vacancies do
 
   desc 'Parse new vacancies'
   task :parse_new, %i[] => :environment do
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
 
     publisher = Publisher.find_by!(name: 'HackerNews')
 

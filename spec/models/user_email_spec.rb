@@ -121,7 +121,7 @@ RSpec.describe UserEmail, type: :model do
       obj = create(:user_email)
       token = obj.set_confirm_token
 
-      res = described_class.find_by_confirm_token(token + '!')
+      res = described_class.find_by_confirm_token("#{token}!")
       expect(res).to be_nil
     end
 

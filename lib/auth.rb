@@ -46,7 +46,7 @@ module Auth
     def token_generator
       @token_generator ||= Auth::TokenGenerator.new(
         ActiveSupport::CachingKeyGenerator.new(
-          ActiveSupport::KeyGenerator.new(Rails.application.credentials.dig(:secret_key_base))
+          ActiveSupport::KeyGenerator.new(Rails.application.credentials[:secret_key_base])
         )
       )
     end

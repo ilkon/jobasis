@@ -73,7 +73,7 @@ RSpec.describe Auth::EmailsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'responds with appropriate HTTP code' do
-        get :confirm, params: { token: @token + '!' }
+        get :confirm, params: { token: "#{@token}!" }
 
         expect(response.response_code).to eq(200)
       end

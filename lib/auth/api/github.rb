@@ -16,7 +16,7 @@ module Auth
             state:     state
           }
 
-          AUTHORIZE_URL + '?' + query_values.to_query
+          "#{AUTHORIZE_URL}?#{query_values.to_query}"
         end
 
         def access_token(code, state)

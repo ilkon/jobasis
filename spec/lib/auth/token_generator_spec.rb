@@ -6,7 +6,7 @@ RSpec.describe Auth::TokenGenerator, type: :model do
   before :all do
     @token_generator = described_class.new(
       ActiveSupport::CachingKeyGenerator.new(
-        ActiveSupport::KeyGenerator.new(Rails.application.credentials.dig(:secret_key_base))
+        ActiveSupport::KeyGenerator.new(Rails.application.credentials[:secret_key_base])
       )
     )
   end
