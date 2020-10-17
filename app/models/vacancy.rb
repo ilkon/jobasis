@@ -44,7 +44,7 @@ class Vacancy < ApplicationRecord
     else
       email_placeholder = "<span class='tag is-placeholder tooltip' data-tooltip='#{I18n.t('vacancies.email_placeholder.title')}'>" \
                           "#{I18n.t('vacancies.email_placeholder.text')}</span>"
-      clean_text.gsub!(/###EMAIL[\d]+###/, email_placeholder)
+      clean_text.gsub!(/###EMAIL\d+###/, email_placeholder)
     end
 
     clean_text.gsub!('<a ', '<a rel="nofollow" ')
