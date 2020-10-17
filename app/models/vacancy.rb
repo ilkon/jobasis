@@ -29,7 +29,7 @@ class Vacancy < ApplicationRecord
     end
   end
 
-  def clean_text(logged_in = false)
+  def clean_text(logged_in)
     clean_text = text.dup
 
     urls.each_with_index do |url, i|

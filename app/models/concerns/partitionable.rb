@@ -3,7 +3,7 @@
 module Partitionable
   def self.included(base)
     base.class_eval do
-      def self.partition_model(date, create = true)
+      def self.partition_model(date, create: true)
         partition_suffix = date.strftime('%Y%m')
 
         return @partition_models[partition_suffix] if @partition_models && @partition_models[partition_suffix]
