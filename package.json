@@ -6,11 +6,11 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
+    "@rails/webpacker": "6.0.0-pre.1",
     "bulma": "^0.9.1",
     "bulma-extensions": "^6.2.4",
     "bulma-helpers": "^0.3.6",
-    "stimulus": "^1.1.1",
+    "stimulus": "^2.0.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
