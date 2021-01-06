@@ -56,7 +56,7 @@ module AttributeStripper
       value.gsub!(options[:regex], '') if options[:regex] && value.respond_to?(:gsub!)
 
       if value.respond_to?(:gsub!) && Encoding.compatible?(value, MULTIBYTE_SPACE)
-        value.gsub!(/\A#{MULTIBYTE_SPACE}+|#{MULTIBYTE_SPACE}+\z/, '')
+        value.gsub!(/\A#{MULTIBYTE_SPACE}+|#{MULTIBYTE_SPACE}+\z/o, '')
       elsif value.respond_to?(:strip!)
         value.strip!
       end
@@ -65,7 +65,7 @@ module AttributeStripper
 
       if options[:collapse_spaces]
         if value.respond_to?(:gsub!) && Encoding.compatible?(value, MULTIBYTE_BLANK)
-          value.gsub!(/#{MULTIBYTE_BLANK}+/, ' ')
+          value.gsub!(/#{MULTIBYTE_BLANK}+/o, ' ')
         elsif value.respond_to?(:squeeze!)
           value.squeeze!(' ')
         end
