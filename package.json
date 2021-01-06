@@ -1,21 +1,21 @@
 {
-  "name": "gojilabs_test",
+  "name": "jobasis",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "6.0.0-pre.1",
-    "bulma": "^0.9.1",
+    "@fortawesome/fontawesome-free": "^5.7.1",
+    "@rails/webpacker": "^5.1.1",
+    "activestorage": "^5.2.2",
+    "bulma": "^0.9.0",
     "bulma-extensions": "^6.2.4",
     "bulma-helpers": "^0.3.6",
-    "stimulus": "^2.0.0",
+    "core-js": "3",
+    "d3": "^6.1.1",
+    "rails-ujs": "^5.2.2",
+    "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "webpack": "^4.44.1",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.2.1"
   }
 }
