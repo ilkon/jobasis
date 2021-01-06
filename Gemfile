@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails'
 gem 'puma', '< 5'
 gem 'haml-rails'
-gem 'webpacker'
+gem 'webpacker', '>= 6.0.0.pre.2'
 gem 'pg'
 
 gem 'typhoeus'
