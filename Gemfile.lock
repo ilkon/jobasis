@@ -329,7 +329,7 @@ DEPENDENCIES
   timecop
   typhoeus
   web-console
-  webpacker (>= 6.0.0.pre.2)
+  webpacker
   whenever
 
 BUNDLED WITH
