@@ -6,6 +6,16 @@ module Auth
   class TokenGenerator
     ALGO = 'SHA256'
 
+    class << self
+      def generator
+        @generator ||= new(
+          ActiveSupport::CachingKeyGenerator.new(
+            ActiveSupport::KeyGenerator.new(ENV.fetch('SECRET_KEY_BASE'))
+          )
+        )
+      end
+    end
+
     def initialize(key_generator)
       @key_generator = key_generator
     end
