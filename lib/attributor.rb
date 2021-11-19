@@ -8,9 +8,15 @@ module Attributor
       pepper
       stretches
       password_length
-      refresh_token_ttl
+      regular_session_ttl
+      memorized_session_ttl
+      password_check_session_ttl
+      oauth_provider_check_session_ttl
+      confirm_email_token_ttl
+      confirm_email_token_length
       reset_password_token_ttl
       reset_password_token_length
+      oauth_state_token_length
     ].freeze
     attr_writer(*WRITER_METHODS)
 
@@ -27,6 +33,11 @@ module Attributor
       @stretches || 11
     end
 
+    def email_regexp
+      # /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+      URI::MailTo::EMAIL_REGEXP
+    end
+
     def password_regexp
       %r{
         \A
@@ -41,21 +52,40 @@ module Attributor
       @password_length || (8..64)
     end
 
-    def email_regexp
-      # /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
-      URI::MailTo::EMAIL_REGEXP
+    def regular_session_ttl
+      @regular_session_ttl || 30.minutes
     end
 
-    def refresh_token_ttl
-      @refresh_token_ttl || 1.week
+    def memorized_session_ttl
+      @memorized_session_ttl || 90.days
+    end
+
+    def password_check_session_ttl
+      @password_check_session_ttl || 5.minutes
+    end
+
+    def oauth_provider_check_session_ttl
+      @oauth_provider_check_session_ttl || 5.minutes
+    end
+
+    def confirm_email_token_ttl
+      @confirm_email_token_ttl || 48.hours
+    end
+
+    def confirm_email_token_length
+      @confirm_email_token_length || 48
     end
 
     def reset_password_token_ttl
-      @reset_password_token_ttl || 60.minutes
+      @reset_password_token_ttl || 15.minutes
     end
 
     def reset_password_token_length
       @reset_password_token_length || 48
+    end
+
+    def oauth_state_token_length
+      @oauth_state_token_length || 24
     end
   end
 end

@@ -9,8 +9,8 @@ class UserPassword < ApplicationRecord
 
   validates :user, presence: true
   validates :password, presence: true,
-                       length:   { within: Auth.password_length },
-                       format:   { with: Auth.password_regexp, message: 'should include a digit, uppercase and lowercase letter' }
+                       length:   { within: Attributor.password_length },
+                       format:   { with: Attributor.password_regexp, message: 'should include a digit, uppercase and lowercase letter' }
 
   before_save do
     self.encrypted_password = Auth::Encryptor.digest(password) if password.present?
@@ -21,7 +21,7 @@ class UserPassword < ApplicationRecord
   end
 
   def set_reset_token
-    token, encoded_token = Auth.token_generator.generate(self.class, :reset_token, Auth.reset_password_token_length)
+    token, encoded_token = Auth::TokenGenerator.generator.generate(self.class, :reset_token, Attributor.reset_password_token_length)
 
     self.reset_token   = encoded_token
     self.reset_sent_at = Time.now.utc
@@ -39,7 +39,7 @@ class UserPassword < ApplicationRecord
     def find_by_reset_token(token)
       return nil unless token
 
-      encoded_token = Auth.token_generator.digest(:reset_token, token)
+      encoded_token = Auth::TokenGenerator.generator.digest(:reset_token, token)
       UserPassword.find_by(reset_token: encoded_token)
     end
   end

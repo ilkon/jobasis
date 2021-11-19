@@ -69,7 +69,7 @@ RSpec.describe Skill, type: :model do
   end
 
   describe '.import' do
-    before :each do
+    before do
       @skill_names = [
         %w[PHP PHP4 PHP7],
         %w[Kubernetes k8s],
@@ -83,7 +83,7 @@ RSpec.describe Skill, type: :model do
       end
     end
 
-    after :each do
+    after do
       @skills.each(&:destroy)
     end
 

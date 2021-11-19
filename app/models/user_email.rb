@@ -7,12 +7,12 @@ class UserEmail < ApplicationRecord
   before_destroy { throw(:abort) if confirmed_at }
 
   validates :user, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: Auth.email_regexp }
+  validates :email, presence: true, uniqueness: true, format: { with: Attributor.email_regexp }
 
   strip_attributes :email
 
   def set_confirm_token
-    token, encoded_token = Auth.token_generator.generate(self.class, :confirm_token, Auth.confirm_email_token_length)
+    token, encoded_token = Auth::TokenGenerator.generator.generate(self.class, :confirm_token, Attributor.confirm_email_token_length)
 
     self.confirm_token    = encoded_token
     self.confirm_sent_at  = Time.now.utc
@@ -31,7 +31,7 @@ class UserEmail < ApplicationRecord
     def find_by_confirm_token(token)
       return nil unless token
 
-      encoded_token = Auth.token_generator.digest(:confirm_token, token)
+      encoded_token = Auth::TokenGenerator.generator.digest(:confirm_token, token)
       UserEmail.find_by(confirm_token: encoded_token)
     end
   end

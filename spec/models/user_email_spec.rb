@@ -31,7 +31,7 @@ RSpec.describe UserEmail, type: :model do
   end
 
   it 'is valid with a valid email' do
-    %w[a.b.c@example.com test_mail@gmail.com any+1@any.net email@test.br 123@mail.test 1☃3@mail.test].each do |email|
+    %w[a.b.c@example.com test_mail@gmail.com any+1@any.net email@test.br 123@mail.test].each do |email|
       obj = build(:user_email, email: email)
       expect(obj).to be_valid
     end
@@ -59,14 +59,14 @@ RSpec.describe UserEmail, type: :model do
     obj = create(:user_email)
     expect do
       obj.destroy
-    end.to change(UserEmail, :count).by(-1)
+    end.to change(described_class, :count).by(-1)
   end
 
   it 'cannot be deleted if confirmed' do
     obj = create(:user_email, confirmed_at: Time.zone.now)
     expect do
       obj.destroy
-    end.not_to change(UserEmail, :count)
+    end.not_to change(described_class, :count)
   end
 
   describe '.set_confirm_token' do
@@ -93,7 +93,7 @@ RSpec.describe UserEmail, type: :model do
     it 'returns a token that can be matched with saved encoded token' do
       obj = create(:user_email)
       token = obj.set_confirm_token
-      expect(obj.confirm_token).to eql(Auth.token_generator.digest(:confirm_token, token))
+      expect(obj.confirm_token).to eql(Auth::TokenGenerator.generator.digest(:confirm_token, token))
     end
   end
 

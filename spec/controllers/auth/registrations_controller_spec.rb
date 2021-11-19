@@ -16,7 +16,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid parameters' do
-      let(:params) { { name: 'John Doe', email: 'john@test.com', password: '123Qwerty123' } }
+      let(:params) { { name: 'John Doe', email: 'john@test.com', password: '123Qwerty123!' } }
 
       it 'responds with appropriate HTTP code' do
         post :create, params: params
@@ -39,7 +39,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       it 'strips and downcases sensitive params before creating user' do
-        params = { name: ' John Doe  ', email: ' JOHNNY@test.com ', password: '    123Qwerty123  ' }
+        params = { name: ' John Doe  ', email: ' JOHNNY@test.com ', password: '    123Qwerty123!  ' }
 
         expect do
           post :create, params: params
@@ -100,7 +100,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it 'does not save new user in the database' do
         expect do
           post :create, params: params
-        end.to_not change(User, :count)
+        end.not_to change(User, :count)
       end
 
       it 'returns details about validation error' do

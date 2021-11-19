@@ -7,7 +7,7 @@ module Auth
     # GET /auth/github
     def new
       reset_session
-      session[:oauth_state] = SecureRandom.hex(Auth.oauth_state_token_length)
+      session[:oauth_state] = SecureRandom.hex(Attributor.oauth_state_token_length)
 
       redirect_to Auth::Api::Github.authorize_url(session[:oauth_state])
     end

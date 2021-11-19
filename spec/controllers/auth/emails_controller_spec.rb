@@ -6,7 +6,7 @@ RSpec.describe Auth::EmailsController, type: :controller do
   render_views
 
   describe 'GET #confirm' do
-    before :each do
+    before do
       @user = create(:user)
       @user.user_emails << build(:user_email, user_id: nil)
 
@@ -55,7 +55,7 @@ RSpec.describe Auth::EmailsController, type: :controller do
 
     context 'with valid but expired parameters' do
       it 'responds with appropriate HTTP code' do
-        Timecop.travel(Auth.confirm_email_token_ttl + 1.minute) do
+        Timecop.travel(Attributor.confirm_email_token_ttl + 1.minute) do
           get :confirm, params: @params
 
           expect(response.response_code).to eq(200)
@@ -63,7 +63,7 @@ RSpec.describe Auth::EmailsController, type: :controller do
       end
 
       it 'returns details about validation error' do
-        Timecop.travel(Auth.confirm_email_token_ttl + 1.minute) do
+        Timecop.travel(Attributor.confirm_email_token_ttl + 1.minute) do
           get :confirm, params: @params
 
           expect(response.body).to include(I18n.t('auth.email.expired_token'))

@@ -39,14 +39,14 @@ RSpec.describe UserPassword, type: :model do
   end
 
   it 'is valid with a valid password' do
-    obj = build(:user_password, password: 'SuperCoolPwd123')
+    obj = build(:user_password, password: 'SuperCoolPwd123!')
     expect(obj).to be_valid
   end
 
   it 'strips password before saving' do
-    pwd = ' 123maMAma123  '
+    pwd = ' 123maMAma123!  '
     obj = create(:user_password, password: pwd)
-    expect(obj.match?(pwd.strip)).to be_truthy
+    expect(obj).to be_match(pwd.strip)
   end
 
   it 'generates hashed password when setting password' do
@@ -68,7 +68,7 @@ RSpec.describe UserPassword, type: :model do
   end
 
   it 'generates different hashed passwords for the same password' do
-    pwd = '123maMAma123'
+    pwd = '123maMAma123!'
     obj1 = create(:user_password, password: pwd)
     obj2 = create(:user_password, password: pwd)
     expect(obj1.encrypted_password).not_to eql(obj2.encrypted_password)
@@ -79,17 +79,17 @@ RSpec.describe UserPassword, type: :model do
 
     it 'matches valid password' do
       obj = create(:user_password, password: pwd)
-      expect(obj.match?(pwd)).to be_truthy
+      expect(obj).to be_match(pwd)
     end
 
     it 'matches valid non-stripped password' do
       obj = create(:user_password, password: pwd)
-      expect(obj.match?(" #{pwd}  ")).to be_truthy
+      expect(obj).to be_match(" #{pwd}  ")
     end
 
     it "doesn't match invalid password" do
       obj = create(:user_password, password: pwd)
-      expect(obj.match?('not-my-password')).not_to be_truthy
+      expect(obj).not_to be_match('not-my-password')
     end
   end
 
@@ -117,7 +117,7 @@ RSpec.describe UserPassword, type: :model do
     it 'returns a token that can be matched with saved encoded token' do
       obj = create(:user_password)
       token = obj.set_reset_token
-      expect(obj.reset_token).to eql(Auth.token_generator.digest(:reset_token, token))
+      expect(obj.reset_token).to eql(Auth::TokenGenerator.generator.digest(:reset_token, token))
     end
   end
 

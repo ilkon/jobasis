@@ -32,7 +32,7 @@ module Auth
       password = UserPassword.find_by_reset_token(@token)
 
       if password
-        @token_error = I18n.t('auth.password.expired_token') if password.reset_sent_at.to_i + Auth.reset_password_token_ttl.to_i <= Time.now.to_i
+        @token_error = I18n.t('auth.password.expired_token') if password.reset_sent_at.to_i + Attributor.reset_password_token_ttl.to_i <= Time.now.to_i
       else
         @token_error = I18n.t('auth.password.invalid_token')
       end
@@ -46,7 +46,7 @@ module Auth
       password = UserPassword.find_by_reset_token(@token)
 
       if password
-        if password.reset_sent_at.to_i + Auth.reset_password_token_ttl.to_i > Time.now.to_i
+        if password.reset_sent_at.to_i + Attributor.reset_password_token_ttl.to_i > Time.now.to_i
 
           if password.update(password: reset_params[:password])
             password.clear_reset_token

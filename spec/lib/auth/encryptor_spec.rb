@@ -24,7 +24,7 @@ RSpec.describe Auth::Encryptor, type: :model do
       password = 'qwerty'
       digests = []
       %w[pepper1 ABC !@#!@#ASD F -3].each do |pepper|
-        Auth.pepper = pepper
+        Attributor.pepper = pepper
         digest = described_class.digest(password)
         expect(digests).not_to include(digest)
         digests << digest
@@ -43,12 +43,12 @@ RSpec.describe Auth::Encryptor, type: :model do
 
     it 'mismatches password with its digest when pepper has changed' do
       passwords = []
-      Auth.pepper = 'pepper1'
+      Attributor.pepper = 'pepper1'
       %w[password1 ABC !@#!@#ASD F -1].each do |password|
         digest = described_class.digest(password)
         passwords << [password, digest]
       end
-      Auth.pepper = 'pepper2'
+      Attributor.pepper = 'pepper2'
       passwords.each do |password, digest|
         res = described_class.compare(digest, password)
         expect(res).to be_falsey

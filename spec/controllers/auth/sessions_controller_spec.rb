@@ -15,7 +15,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
   describe 'POST #create' do
     before :all do
-      @params = { email: 'john@test.com', password: '123Qwerty123' }
+      @params = { email: 'john@test.com', password: '123Qwerty123!' }
 
       @user = create(:user)
       @user.user_emails << build(:user_email, user_id: nil, email: @params[:email])

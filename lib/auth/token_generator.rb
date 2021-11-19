@@ -10,7 +10,7 @@ module Auth
       def generator
         @generator ||= new(
           ActiveSupport::CachingKeyGenerator.new(
-            ActiveSupport::KeyGenerator.new(ENV.fetch('SECRET_KEY_BASE'))
+            ActiveSupport::KeyGenerator.new(Rails.application.credentials[:secret_key_base])
           )
         )
       end

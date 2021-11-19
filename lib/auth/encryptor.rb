@@ -6,9 +6,9 @@ module Auth
   module Encryptor
     class << self
       def digest(password)
-        password = "#{password}#{Auth.pepper}" if Auth.pepper.present?
+        password = "#{password}#{Attributor.pepper}" if Attributor.pepper.present?
 
-        ::BCrypt::Password.create(password, cost: Auth.stretches).to_s
+        ::BCrypt::Password.create(password, cost: Attributor.stretches).to_s
       end
 
       def compare(hashed_password, password)
@@ -16,7 +16,7 @@ module Auth
 
         bcrypt = ::BCrypt::Password.new(hashed_password)
 
-        password = "#{password}#{Auth.pepper}" if Auth.pepper.present?
+        password = "#{password}#{Attributor.pepper}" if Attributor.pepper.present?
 
         password = ::BCrypt::Engine.hash_secret(password, bcrypt.salt)
         secure_compare(password, hashed_password)

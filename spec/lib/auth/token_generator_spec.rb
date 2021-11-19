@@ -11,9 +11,6 @@ RSpec.describe Auth::TokenGenerator, type: :model do
     )
   end
 
-  after :all do
-  end
-
   describe '.digest' do
     it 'generates encrypted token' do
       tokens = %w[token1 ABCABCABCABC !@#!@#ASD F -1]
@@ -41,7 +38,7 @@ RSpec.describe Auth::TokenGenerator, type: :model do
   describe '.generate' do
     let(:token_length) { 48 }
 
-    before :each do
+    before do
       pwd = 'Super-SeCrEt=password_123'
       10.times { create(:user_password, password: pwd) }
       10.times { create(:user_email) }
@@ -75,7 +72,7 @@ RSpec.describe Auth::TokenGenerator, type: :model do
         [UserPassword, :reset_token],
         [UserEmail, :confirm_token]
       ].each do |klass, column|
-        expect(klass.count).to eql(10)
+        expect(klass.count).to be(10)
 
         encoded_tokens = []
         klass.all.each do |item|
@@ -93,7 +90,7 @@ RSpec.describe Auth::TokenGenerator, type: :model do
         [UserPassword, :reset_token],
         [UserEmail, :confirm_token]
       ].each do |klass, column|
-        expect(klass.count).to eql(10)
+        expect(klass.count).to be(10)
 
         klass.all.each do |item|
           token, encoded_token = @token_generator.generate(klass, column, token_length)

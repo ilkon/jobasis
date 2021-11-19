@@ -8,7 +8,7 @@ class VacanciesController < ApplicationController
   def index
     limit = params[:per_page].to_i
     limit = PER_PAGE if limit.zero?
-    offset = params[:page].to_i.positive? && (params[:page].to_i - 1) * limit || 0
+    offset = (params[:page].to_i.positive? && ((params[:page].to_i - 1) * limit)) || 0
 
     @vacancies = Vacancy.select('*, count(*) OVER() AS total_count')
                         .includes(:employer)
@@ -33,7 +33,7 @@ class VacanciesController < ApplicationController
     total_count = @vacancies.first&.total_count || 0
 
     @total_pages = (total_count + limit - 1) / limit
-    @current_page = offset / limit + 1
+    @current_page = (offset / limit) + 1
 
     if @current_page < 1
       @current_page = 0

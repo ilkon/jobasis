@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'auth'
+require 'attributor'
 
-Auth.configure do |config|
+Attributor.configure do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   config.password_length = 8..64
