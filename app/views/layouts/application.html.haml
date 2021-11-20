@@ -6,10 +6,10 @@
     %title= (content_for?(:page_title) ? yield(:page_title) + ' | ' : '') + 'Jobasis'
     = csrf_meta_tags
     = csp_meta_tag
-    -#%link{ rel: 'shortcut icon', type: 'image/x-icon', href: asset_pack_path('media/images/favicon.ico') }
-    -#%link{ rel: 'apple-touch-icon', type: 'image/x-icon', href: asset_pack_path('media/images/apple-touch-icon.png') }
+    %link{ rel: 'shortcut icon', type: 'image/x-icon', href: asset_pack_path('media/images/favicon.ico') }
+    %link{ rel: 'apple-touch-icon', type: 'image/x-icon', href: asset_pack_path('media/images/apple-touch-icon.png') }
     = render 'layouts/gtag'
-    -# = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   - navbar_locals = controller_path.start_with?('auth/') ? {} : { auth_links: true }
   - if content_for?(:full_height)
