@@ -1,16 +1,8 @@
 # frozen_string_literal: true
-
-# Import skills
-pathname = Rails.root.join('import/skills.txt')
-
-skills = []
-File.open(pathname, 'r') do |file|
-  file.each_line do |line|
-    names = line.split(',').map(&:strip).reject(&:empty?)
-    next if names.empty?
-
-    skills << names
-  end
-end
-
-Skill.import(skills)
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#   Character.create(name: "Luke", movie: movies.first)

@@ -34,8 +34,8 @@ module AttributeStripper
   #   U+2060 WORD JOINER
   #   U+FEFF ZERO WIDTH NO-BREAK SPACE
   MULTIBYTE_WHITE = "\u180E\u200B\u200C\u200D\u2060\uFEFF"
-  MULTIBYTE_SPACE = /[[:space:]#{MULTIBYTE_WHITE}]/.freeze
-  MULTIBYTE_BLANK = /[[:blank:]#{MULTIBYTE_WHITE}]/.freeze
+  MULTIBYTE_SPACE = /[[:space:]#{MULTIBYTE_WHITE}]/
+  MULTIBYTE_BLANK = /[[:blank:]#{MULTIBYTE_WHITE}]/
 
   class << self
     def strip(record, attributes, options)

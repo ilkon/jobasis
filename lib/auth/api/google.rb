@@ -13,10 +13,10 @@ module Auth
         def authorize_url(state, redirect_uri)
           query_values = {
             client_id:     Rails.application.credentials.dig(:auth, :google, :client_id),
-            redirect_uri:  redirect_uri,
+            redirect_uri:,
             scope:         'profile email',
             response_type: 'code',
-            state:         state
+            state:
           }
 
           "#{AUTHORIZE_URL}?#{query_values.to_query}"
@@ -29,8 +29,8 @@ module Auth
             params: {
               client_id:     Rails.application.credentials.dig(:auth, :google, :client_id),
               client_secret: Rails.application.credentials.dig(:auth, :google, :client_secret),
-              redirect_uri:  redirect_uri,
-              code:          code,
+              redirect_uri:,
+              code:,
               grant_type:    'authorization_code'
             }
           }

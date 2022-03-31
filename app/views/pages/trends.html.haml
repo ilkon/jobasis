@@ -14,6 +14,6 @@
 .columns.is-fullheight
   %main.column
     %h1.title Trends
-    %div#chart{ data: { controller: 'trends--chart', trends__chart_trends: trends.to_json, trends__chart_skills: skills.to_json, trends__chart_selected_skill_ids: (@filters[:skill_ids] || []).to_json, trends__chart_dates: dates.to_json } }
+    %div#chart{ data: { controller: 'chart', chart_trends: trends.to_json, chart_skills: skills.to_json, chart_selected_skill_ids: (@filters[:skill_ids] || []).to_json, chart_dates: dates.to_json } }
   %aside.column.is-narrow.sidebar
     = render 'filters'

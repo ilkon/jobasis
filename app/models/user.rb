@@ -24,7 +24,7 @@ class User < ApplicationRecord
     end
 
     def find_by_social_profile(provider_id, uid)
-      includes(:user_role).joins(:user_social_profiles).find_by(user_social_profiles: { provider_id: provider_id, uid: uid })
+      includes(:user_role).joins(:user_social_profiles).find_by(user_social_profiles: { provider_id:, uid: })
     end
   end
 end

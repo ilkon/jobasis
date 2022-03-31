@@ -10,8 +10,6 @@ class Vacancy < ApplicationRecord
   belongs_to :post
   belongs_to :employer, optional: true
 
-  validates :publisher, presence: true
-  validates :post, presence: true
   validates :published_at, presence: true
   validates :date, presence: true
   validates :text, presence: true

@@ -3,50 +3,49 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails'
-gem 'puma', '< 5'
-gem 'haml-rails'
-gem 'webpacker'
-gem 'pg'
+ruby '~> 3.1'
 
-gem 'typhoeus'
-gem 'ffaker'
-gem 'htmlentities'
+gem 'puma'
+gem 'rails', '~> 7.0'
+
+gem 'pg'
 
 gem 'bcrypt'
 
-gem 'whenever', require: false
+gem 'ffaker'
+gem 'typhoeus'
+
 gem 'redis'
 gem 'resque'
 gem 'resque-pool'
+gem 'whenever', require: false
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'sprockets-rails'
+gem 'importmap-rails'
+gem 'turbo-rails'
+gem 'stimulus-rails'
+gem 'haml-rails'
+gem 'bulma-rails'
+gem 'font-awesome-sass'
 
-group :development, :test do
-  gem 'factory_bot_rails'
-  gem 'timecop'
-  gem 'simplecov', require: false
-  gem 'rspec-rails'
-end
+gem 'bootsnap', require: false
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console'
-  gem 'listen'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem 'brakeman'
+  gem 'bullet'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'rubocop-performance', require: false
+  gem 'web-console'
 end
 
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'simplecov', require: false
+  gem 'timecop'
+  gem 'webmock'
 end

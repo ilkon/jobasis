@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
 
   it 'strips name before saving' do
     name = ' John Doe  '
-    obj = create(:user, name: name)
+    obj = create(:user, name:)
     expect(obj.name).to eql(name.strip)
   end
 
@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
 
     it 'finds if email is valid' do
       obj = create(:user)
-      obj.user_emails << build(:user_email, user_id: nil, email: email)
+      obj.user_emails << build(:user_email, user_id: nil, email:)
 
       res = described_class.find_by_email(email)
       expect(res).to eql(obj)
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
 
     it 'finds if provider_id and uid are valid' do
       obj = create(:user)
-      obj.user_social_profiles << build(:user_social_profile, user_id: nil, provider_id: provider_id, uid: uid)
+      obj.user_social_profiles << build(:user_social_profile, user_id: nil, provider_id:, uid:)
 
       res = described_class.find_by_social_profile(provider_id, uid)
       expect(res).to eql(obj)

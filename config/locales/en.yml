@@ -23,6 +23,7 @@ en:
       no_user: Sorry, the user with this email is not found.
       expired_token: Sorry, the link is expired. Please reset your password once again.
       invalid_token: Sorry, the link is invalid. Please reset your password once again.
+      password_format: should include a digit, uppercase and lowercase letter
 
     mailer:
       confirm_email_instruction:

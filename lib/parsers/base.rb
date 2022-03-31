@@ -158,7 +158,7 @@ module Parsers
           employer_name.gsub!(/[\[\(\{<].+[\]\)\}>]/, '')
           employer_name = AttributeStripper.strip_string(employer_name, collapse_spaces: true, replace_newlines: true, allow_empty: true)
 
-          words_count = employer_name.split(' ').count
+          words_count = employer_name.split.count
           employer_name = nil if words_count >= 5 || words_count.zero?
         end
 
@@ -166,7 +166,7 @@ module Parsers
         urls = parse_urls(paragraphs)
 
         {
-          employer_name: employer_name,
+          employer_name:,
           remoteness:    {
             onsite: onsite?(paragraphs),
             remote: remote?(paragraphs)
@@ -176,8 +176,8 @@ module Parsers
             parttime: parttime?(paragraphs)
           },
           skills:        skills(paragraphs),
-          urls:          urls,
-          emails:        emails,
+          urls:,
+          emails:,
           text:          text(paragraphs)
         }
       end

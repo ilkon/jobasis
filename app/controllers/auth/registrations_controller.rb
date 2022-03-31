@@ -35,7 +35,7 @@ module Auth
           name:     user.errors[:name].first
         }
 
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
   end

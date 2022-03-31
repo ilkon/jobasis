@@ -21,7 +21,7 @@ module Auth
         flash.now[:error] = I18n.t('auth.password.no_user')
       end
 
-      render :new
+      render :new, status: (@success ? :ok : :unprocessable_entity)
     end
 
     # GET /auth/reset_password?token=abcdef
@@ -69,7 +69,7 @@ module Auth
         @token_error = I18n.t('auth.password.invalid_token')
       end
 
-      render :edit
+      render :edit, status: (@success ? :ok : :unprocessable_entity)
     end
   end
 end

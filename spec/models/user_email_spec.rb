@@ -25,14 +25,14 @@ RSpec.describe UserEmail, type: :model do
 
   it 'is invalid with invalid email' do
     %w[invalid_email_format 123 $$$ () ☃ bla@bla.].each do |email|
-      obj = build(:user_email, email: email)
+      obj = build(:user_email, email:)
       expect(obj).not_to be_valid
     end
   end
 
   it 'is valid with a valid email' do
     %w[a.b.c@example.com test_mail@gmail.com any+1@any.net email@test.br 123@mail.test].each do |email|
-      obj = build(:user_email, email: email)
+      obj = build(:user_email, email:)
       expect(obj).to be_valid
     end
   end
@@ -45,13 +45,13 @@ RSpec.describe UserEmail, type: :model do
 
   it 'downcases email before saving' do
     email = 'Foo@BAR.com'
-    obj = create(:user_email, email: email)
+    obj = create(:user_email, email:)
     expect(obj.email).to eql(email.downcase)
   end
 
   it 'strips email before saving' do
     email = ' foo@bar.com  '
-    obj = create(:user_email, email: email)
+    obj = create(:user_email, email:)
     expect(obj.email).to eql(email.strip)
   end
 

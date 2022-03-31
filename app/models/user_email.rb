@@ -6,7 +6,6 @@ class UserEmail < ApplicationRecord
   before_validation { email.downcase! if email.present? }
   before_destroy { throw(:abort) if confirmed_at }
 
-  validates :user, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: Attributor.email_regexp }
 
   strip_attributes :email

@@ -36,7 +36,7 @@ module Auth
           user = User.find_by_social_profile(provider_id, uid)
 
           if user
-            user.update(name: name) unless user.name == name
+            user.update(name:) unless user.name == name
 
             sign_in!(user, oauth_provider: :google, oauth_access_token: access_token)
             redirect_to root_path
@@ -47,8 +47,8 @@ module Auth
           user = User.find_by_email(email)
 
           if user
-            user.update(name: name) unless user.name == name
-            user.user_social_profiles.create(provider_id: provider_id, uid: uid)
+            user.update(name:) unless user.name == name
+            user.user_social_profiles.create(provider_id:, uid:)
 
             sign_in!(user, oauth_provider: :google, oauth_access_token: access_token)
             redirect_to root_path
@@ -56,16 +56,16 @@ module Auth
           end
 
           user = User.create(
-            name:                            name,
+            name:,
             user_social_profiles_attributes: [
               {
-                provider_id: provider_id,
-                uid:         uid
+                provider_id:,
+                uid:
               }
             ],
             user_emails_attributes:          [
               {
-                email: email
+                email:
               }
             ]
           )

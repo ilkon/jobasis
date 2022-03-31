@@ -51,7 +51,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       it 'responds with appropriate HTTP code' do
         post :create, params: params
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it 'returns details about validation error' do

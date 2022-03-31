@@ -42,7 +42,7 @@ module Authenticatable
 
               provider_id = UserSocialProfile::PROVIDERS[:github]
               uid = userinfo[:id]
-              social_profile = UserSocialProfile.find_by(provider_id: provider_id, uid: uid)
+              social_profile = UserSocialProfile.find_by(provider_id:, uid:)
 
               unless social_profile && social_profile.user_id == user.id
                 reset_session

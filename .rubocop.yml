@@ -5,9 +5,9 @@ require:
 
 Style/Documentation:
   Enabled: false
-Style/AccessorGrouping:
+Style/RedundantRegexpEscape:
   Enabled: false
-Style/TrivialAccessors:
+Style/RedundantRegexpCharacterClass:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
@@ -23,8 +23,6 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/ModuleLength:
   Enabled: false
-Metrics/ParameterLists:
-  Max: 6
 Metrics/PerceivedComplexity:
   Max: 30
 Layout/LineLength:
@@ -34,44 +32,24 @@ Layout/EmptyLinesAroundExceptionHandlingKeywords:
 Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
+
 Bundler/OrderedGems:
-  Enabled: false
-Rails/EnvironmentVariableAccess:
-  AllowReads: true
-Rails/CreateTableWithTimestamps:
-  Enabled: false
-Rails/SkipsModelValidations:
-  Enabled: false
-Rails/ApplicationController:
   Enabled: false
 Rails/DynamicFindBy:
   Enabled: false
-Rails/OutputSafety:
-  Enabled: false
-Rails/LexicallyScopedActionFilter:
-  Enabled: false
-Rails/BulkChangeTable:
-  Enabled: false
-Rails/NotNullColumn:
-  Enabled: false
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
-Rails/UnknownEnv:
-  Environments:
-    - production
-    - development
-    - staging
-    - test
-RSpec/InstanceVariable:
-  Enabled: false
+
 RSpec/BeforeAfterAll:
+  Enabled: false
+RSpec/InstanceVariable:
   Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
 RSpec/ExampleLength:
   Enabled: false
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
 RSpec/FactoryBot/CreateList:
   EnforcedStyle: n_times
 
@@ -80,7 +58,5 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - 'bin/**/*'
-    - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'db/schema.rb'
-    - 'lib/parsers/base.rb'

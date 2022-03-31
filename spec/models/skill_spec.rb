@@ -31,7 +31,7 @@ RSpec.describe Skill, type: :model do
 
   it 'strips name before saving' do
     name = ' PHP   '
-    obj = create(:skill, name: name)
+    obj = create(:skill, name:)
     expect(obj.name).to eql(name.strip)
   end
 

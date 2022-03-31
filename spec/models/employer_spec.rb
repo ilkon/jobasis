@@ -31,7 +31,7 @@ RSpec.describe Employer, type: :model do
 
   it 'strips name before saving' do
     name = ' Hacker News  '
-    obj = create(:employer, name: name)
+    obj = create(:employer, name:)
     expect(obj.name).to eql(name.strip)
   end
 end

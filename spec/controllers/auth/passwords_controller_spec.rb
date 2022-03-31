@@ -75,7 +75,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       it 'responds with appropriate HTTP code' do
         post :create, params: @params2
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it 'returns an error message why reset instructions cannot be sent' do
@@ -91,13 +91,13 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       it 'responds with appropriate HTTP code' do
         post :create, params: params
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it "doesn't send an email about password reset instructions" do
         expect do
           perform_enqueued_jobs do
-            post :create, params: params
+            post :create, params:
           end
         end.not_to change(ActionMailer::Base.deliveries, :count)
       end
@@ -234,7 +234,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
         Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
           post :update, params: @params
 
-          expect(response.response_code).to eq(200)
+          expect(response.response_code).to eq(422)
         end
       end
 
@@ -262,13 +262,13 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       it 'responds with appropriate HTTP code' do
         post :update, params: @params.merge(token: "#{@token}!")
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it 'responds with appropriate HTTP code if token is blank' do
         post :update, params: @params.merge(token: nil)
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it 'returns details about validation error' do

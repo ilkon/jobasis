@@ -2,7 +2,7 @@
   .container
     .navbar-brand
       %a.navbar-item{ href: '/' }
-        %img{ src: asset_pack_path('media/images/logo.svg'), style: 'margin-top: -0.8rem;' }
+        %img{ src: asset_path('logo.svg'), style: 'margin-top: -0.8rem;' }
       .navbar-burger.burger{ 'aria-expanded' => 'false', 'aria-label' => 'menu', 'data-target' => 'main-nav', role: 'button' }
         %span{ 'aria-hidden' => 'true' }
         %span{ 'aria-hidden' => 'true' }
@@ -22,7 +22,7 @@
           - if session[:user_name]
             .navbar-item
               = 'Hi, ' + session[:user_name]
-            = link_to 'Logout', auth_logout_path, method: :delete, class: 'navbar-item'
+            = link_to 'Logout', auth_logout_path, data: { 'turbo-method': :delete }, class: 'navbar-item'
           - else
             %a.navbar-item{ href: auth_login_path }
               Login

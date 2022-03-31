@@ -40,11 +40,11 @@ class Skill < ApplicationRecord
         synonyms = names[1..]
 
         if major_id
-          indexed_skills[major_id].update(name: name, synonyms: synonyms)
+          indexed_skills[major_id].update(name:, synonyms:)
           status[:updated] += 1
           indexed_skills.delete(major_id)
         else
-          create(name: name, synonyms: synonyms)
+          create(name:, synonyms:)
           status[:created] += 1
         end
       end

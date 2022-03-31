@@ -17,7 +17,7 @@ module Auth
         @values = login_params.to_h.select { |k, _v| param_names.include?(k.to_sym) }
         flash.now[:error] = I18n.t('auth.session.login_error')
 
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 

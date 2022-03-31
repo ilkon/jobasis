@@ -13,7 +13,7 @@ module Auth
         def authorize_url(state)
           query_values = {
             client_id: Rails.application.credentials.dig(:auth, :github, :client_id),
-            state:     state
+            state:
           }
 
           "#{AUTHORIZE_URL}?#{query_values.to_query}"
@@ -26,8 +26,8 @@ module Auth
             params:  {
               client_id:     Rails.application.credentials.dig(:auth, :github, :client_id),
               client_secret: Rails.application.credentials.dig(:auth, :github, :client_secret),
-              code:          code,
-              state:         state
+              code:,
+              state:
             },
             headers: {
               Accept: 'application/json'

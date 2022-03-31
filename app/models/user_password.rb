@@ -7,10 +7,9 @@ class UserPassword < ApplicationRecord
 
   before_validation { self.password = password.strip if password.present? }
 
-  validates :user, presence: true
   validates :password, presence: true,
                        length:   { within: Attributor.password_length },
-                       format:   { with: Attributor.password_regexp, message: 'should include a digit, uppercase and lowercase letter' }
+                       format:   { with: Attributor.password_regexp, message: I18n.t('auth.password.password_format') }
 
   before_save do
     self.encrypted_password = Auth::Encryptor.digest(password) if password.present?

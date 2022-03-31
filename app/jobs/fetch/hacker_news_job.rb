@@ -43,7 +43,7 @@ module Fetch
         response = Fetchers::HackerNews.fetch(publisher_key)
         next unless response && (response[:type] || 'user') == type.to_s
 
-        key = { publisher_id: publisher.id, publisher_key: publisher_key }
+        key = { publisher_id: publisher.id, publisher_key: }
 
         published_time = response[:time] || response[:created]
         next unless published_time
@@ -52,7 +52,7 @@ module Fetch
         published_date = published_at.to_date
 
         data = {
-          published_at: published_at,
+          published_at:,
           author:       response[:by],
           date:         published_date
         }

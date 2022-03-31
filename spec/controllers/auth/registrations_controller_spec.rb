@@ -26,7 +26,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
       it 'creates a new user with given params' do
         expect do
-          post :create, params: params
+          post :create, params:
         end.to change(User, :count).by(1)
 
         user = User.last
@@ -42,7 +42,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         params = { name: ' John Doe  ', email: ' JOHNNY@test.com ', password: '    123Qwerty123!  ' }
 
         expect do
-          post :create, params: params
+          post :create, params:
         end.to change(User, :count).by(1)
 
         user = User.last
@@ -57,7 +57,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it 'sends email about email confirm instructions' do
         expect do
           perform_enqueued_jobs do
-            post :create, params: params
+            post :create, params:
           end
         end.to change(ActionMailer::Base.deliveries, :count).by(1)
 
@@ -94,12 +94,12 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it 'responds with appropriate HTTP code' do
         post :create, params: params
 
-        expect(response.response_code).to eq(200)
+        expect(response.response_code).to eq(422)
       end
 
       it 'does not save new user in the database' do
         expect do
-          post :create, params: params
+          post :create, params:
         end.not_to change(User, :count)
       end
 
@@ -122,7 +122,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it "doesn't send an email about email confirm instructions" do
         expect do
           perform_enqueued_jobs do
-            post :create, params: params
+            post :create, params:
           end
         end.not_to change(ActionMailer::Base.deliveries, :count)
       end
