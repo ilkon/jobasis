@@ -9,7 +9,7 @@ module Auth
       reset_session
       session[:oauth_state] = SecureRandom.hex(Attributor.oauth_state_token_length)
 
-      redirect_to Auth::Api::Google.authorize_url(session[:oauth_state], auth_google_callback_url)
+      redirect_to Auth::Api::Google.authorize_url(session[:oauth_state], auth_google_callback_url), allow_other_host: true
     end
 
     # GET /auth/google_callback
