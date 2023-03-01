@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::PasswordsController, type: :controller do
+RSpec.describe Auth::PasswordsController do
   render_views
   include ActiveJob::TestHelper
 
@@ -89,7 +89,7 @@ RSpec.describe Auth::PasswordsController, type: :controller do
       let(:params) { { email: 'della@test.com' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.response_code).to eq(422)
       end

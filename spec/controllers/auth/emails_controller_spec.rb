@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::EmailsController, type: :controller do
+RSpec.describe Auth::EmailsController do
   render_views
 
   describe 'GET #confirm' do

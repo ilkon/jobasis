@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserRole, type: :model do
+RSpec.describe UserRole do
   it 'has a valid factory' do
     obj = build(:common_user_role)
     expect(obj).to be_valid

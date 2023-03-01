@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::RegistrationsController, type: :controller do
+RSpec.describe Auth::RegistrationsController do
   render_views
   include ActiveJob::TestHelper
 
@@ -19,7 +19,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       let(:params) { { name: 'John Doe', email: 'john@test.com', password: '123Qwerty123!' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.response_code).to eq(302)
       end
@@ -67,7 +67,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       it 'sets confirm_token and confirm_sent_at time' do
-        post :create, params: params
+        post(:create, params:)
         user = User.last
 
         expect(user.user_emails.first.confirm_token).not_to be_nil
@@ -76,7 +76,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
       it 'authenticates user with given params' do
         before_ts = Time.now.to_i
-        post :create, params: params
+        post(:create, params:)
         after_ts = Time.now.to_i
 
         user = User.last
@@ -92,7 +92,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       let(:params) { { email: 'john@test.com', password: '123Qwerty123' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.response_code).to eq(422)
       end
@@ -104,7 +104,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       it 'returns details about validation error' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.body).to include('Name can&#39;t be blank')
       end

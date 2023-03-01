@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::Encryptor, type: :model do
+RSpec.describe Auth::Encryptor do
   describe '.digest' do
     it 'generates encrypted password' do
       %w[password1 ABC !@#!@#ASD F -1].each do |password|

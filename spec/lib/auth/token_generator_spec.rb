@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::TokenGenerator, type: :model do
+RSpec.describe Auth::TokenGenerator do
   before :all do
     @token_generator = described_class.new(
       ActiveSupport::CachingKeyGenerator.new(

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserPassword, type: :model do
+RSpec.describe UserPassword do
   it 'has a valid factory' do
     obj = build(:user_password)
     expect(obj).to be_valid

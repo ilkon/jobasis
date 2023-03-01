@@ -39,6 +39,8 @@ Rails/DynamicFindBy:
   Enabled: false
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
+Rails/ActionOrder:
+  Enabled: false
 
 RSpec/BeforeAfterAll:
   Enabled: false

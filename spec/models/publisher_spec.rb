@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Publisher, type: :model do
+RSpec.describe Publisher do
   it 'has a valid factory' do
     obj = build(:publisher)
     expect(obj).to be_valid

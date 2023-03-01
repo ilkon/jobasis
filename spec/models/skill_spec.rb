@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Skill, type: :model do
+RSpec.describe Skill do
   it 'has a valid factory' do
     obj = build(:skill)
     expect(obj).to be_valid

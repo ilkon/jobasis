@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Authentication', type: :routing do
+RSpec.describe 'Authentication' do
   it { expect(get:    '/auth/login').to           route_to('auth/sessions#new') }
   it { expect(post:   '/auth/login').to           route_to('auth/sessions#create') }
   it { expect(delete: '/auth/logout').to          route_to('auth/sessions#destroy') }

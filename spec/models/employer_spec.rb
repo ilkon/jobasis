@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Employer, type: :model do
+RSpec.describe Employer do
   it 'has a valid factory' do
     obj = build(:employer)
     expect(obj).to be_valid

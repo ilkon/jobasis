@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PagesController, type: :controller do
+RSpec.describe PagesController do
   describe 'GET #about' do
     it 'responds with appropriate HTTP code' do
       get :about

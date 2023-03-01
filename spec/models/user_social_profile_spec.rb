@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserSocialProfile, type: :model do
+RSpec.describe UserSocialProfile do
   it 'has a valid factory' do
     obj = build(:user_social_profile)
     expect(obj).to be_valid

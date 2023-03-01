@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserEmail, type: :model do
+RSpec.describe UserEmail do
   it 'has a valid factory' do
     obj = build(:user_email)
     expect(obj).to be_valid

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::SessionsController, type: :controller do
+RSpec.describe Auth::SessionsController do
   render_views
 
   describe 'GET #new' do
@@ -49,19 +49,19 @@ RSpec.describe Auth::SessionsController, type: :controller do
       let(:params) { { email: 'delladella@test.com', password: 'Asasasasa9876' } }
 
       it 'responds with appropriate HTTP code' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.response_code).to eq(422)
       end
 
       it 'returns details about validation error' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(response.body).to include(I18n.t('auth.session.login_error'))
       end
 
       it 'does not authenticate user' do
-        post :create, params: params
+        post(:create, params:)
 
         expect(session[:user_id]).to be_falsey
         expect(session[:user_name]).to be_falsey

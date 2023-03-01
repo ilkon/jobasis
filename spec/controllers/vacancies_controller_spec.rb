@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VacanciesController, type: :controller do
+RSpec.describe VacanciesController do
   describe 'GET #index' do
     it 'responds with appropriate HTTP code' do
       get :index
