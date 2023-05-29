@@ -48,6 +48,7 @@ D3
 Dart
 DataDog
 Datalog
+DBT
 Deep learning
 Django
 Docker
@@ -71,6 +72,7 @@ Figma
 Firebase
 Flask
 Flink, Apache Flink
+Flutter
 Fortran
 FPGA/VHDL
 Framer
@@ -80,6 +82,7 @@ Geode, Apache Geode
 Git
 GitHub
 GitLab
+GlusterFS
 GoCD
 Golang, Go
 Google Cloud, GCP
@@ -89,6 +92,8 @@ Google PowerDrill, PowerDrill
 Grafana
 Graphite
 GraphQL
+Groovy, Apache Groovy
+gRPC
 GStreamer
 Gunicorn
 Hadoop, Apache Hadoop
@@ -141,8 +146,11 @@ MySQL
 Nagios
 Natural Language Processing, NLP
 Neptune
+Nest.js, Nest, NestJS
 .NET, dotNet
+NETCONF
 Neural networks
+Next.js, Next, NextJS
 Nginx, Ngnix
 Node.js, Node, NodeJS
 Objective-C, Objective C
@@ -163,6 +171,7 @@ Polymer
 Postfix
 PostGIS
 PostgreSQL, Postgres
+PowerShell
 Presto
 Prolog
 Prometheus
@@ -190,6 +199,7 @@ Rust
 S3, Amazon S3
 Salesforce
 SAT/SMT
+SCADA
 Scala
 Scikit-learn, sklearn
 ScyllaDB, Scylla
@@ -208,10 +218,12 @@ Storm, Apache Storm
 Stripe
 Swift
 Sybase, Sybase IQ
+Tailwind, TailwindCSS
 Tarantool
 Tcl
 TensorFlow
 Terraform
+TimescaleDB
 TokuDB, Percona TokuDB
 Tomcat, Apache Tomcat
 TravisCI, Travis
