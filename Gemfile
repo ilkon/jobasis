@@ -10,7 +10,7 @@ gem 'rails', '~> 7.0'
 
 gem 'pg'
 
-gem 'bcrypt'
+gem 'authonomy'
 
 gem 'ffaker'
 gem 'typhoeus'

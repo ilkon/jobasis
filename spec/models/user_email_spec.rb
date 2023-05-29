@@ -93,7 +93,7 @@ RSpec.describe UserEmail do
     it 'returns a token that can be matched with saved encoded token' do
       obj = create(:user_email)
       token = obj.set_confirm_token
-      expect(obj.confirm_token).to eql(Auth::TokenGenerator.generator.digest(:confirm_token, token))
+      expect(obj.confirm_token).to eql(Authonomy::TokenGenerator.generator.digest(:confirm_token, token))
     end
   end
 

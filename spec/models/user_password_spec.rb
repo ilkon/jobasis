@@ -117,7 +117,7 @@ RSpec.describe UserPassword do
     it 'returns a token that can be matched with saved encoded token' do
       obj = create(:user_password)
       token = obj.set_reset_token
-      expect(obj.reset_token).to eql(Auth::TokenGenerator.generator.digest(:reset_token, token))
+      expect(obj.reset_token).to eql(Authonomy::TokenGenerator.generator.digest(:reset_token, token))
     end
   end
 

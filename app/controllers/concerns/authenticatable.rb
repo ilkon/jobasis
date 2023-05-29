@@ -19,7 +19,7 @@ module Authenticatable
 
         if session[:oauth_provider]
           oauth_provider_checked_at = session[:last_auth_check_at] || session[:login_at]
-          if oauth_provider_checked_at + Attributor.oauth_provider_check_session_ttl.to_i < now
+          if oauth_provider_checked_at + 5.minutes.to_i < now
             user = User.find_by(id: session[:user_id])
             unless user
               reset_session
@@ -59,7 +59,7 @@ module Authenticatable
 
         else
           password_checked_at = session[:last_auth_check_at] || session[:login_at]
-          if password_checked_at + Attributor.password_check_session_ttl.to_i < now
+          if password_checked_at + 5.minutes.to_i < now
             user = User.find_by(id: session[:user_id])
             unless user
               reset_session
@@ -76,9 +76,9 @@ module Authenticatable
           end
 
           visited_at = session[:last_visit_at] || session[:login_at]
-          if visited_at + Attributor.regular_session_ttl.to_i < now
+          if visited_at + 30.minutes.to_i < now
             if session[:remember_me]
-              if session[:login_at] + Attributor.memorized_session_ttl.to_i < now
+              if session[:login_at] + 90.days.to_i < now
                 reset_session
                 redirect_to auth_login_path, notice: I18n.t('auth.session.expired_session')
                 return

@@ -129,7 +129,7 @@ RSpec.describe Auth::PasswordsController do
 
     context 'with valid but expired parameters' do
       it 'responds with appropriate HTTP code' do
-        Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
+        Timecop.travel(Authonomy.reset_password_token_ttl + 1.minute) do
           get :edit, params: @params
 
           expect(response.response_code).to eq(200)
@@ -137,7 +137,7 @@ RSpec.describe Auth::PasswordsController do
       end
 
       it 'returns details about validation error' do
-        Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
+        Timecop.travel(Authonomy.reset_password_token_ttl + 1.minute) do
           get :edit, params: @params
 
           expect(response.body).to include(I18n.t('auth.password.expired_token'))
@@ -231,7 +231,7 @@ RSpec.describe Auth::PasswordsController do
 
     context 'with valid but expired parameters' do
       it 'responds with appropriate HTTP code' do
-        Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
+        Timecop.travel(Authonomy.reset_password_token_ttl + 1.minute) do
           post :update, params: @params
 
           expect(response.response_code).to eq(422)
@@ -239,7 +239,7 @@ RSpec.describe Auth::PasswordsController do
       end
 
       it 'returns details about validation error' do
-        Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
+        Timecop.travel(Authonomy.reset_password_token_ttl + 1.minute) do
           post :update, params: @params
 
           expect(response.body).to include(I18n.t('auth.password.expired_token'))
@@ -247,7 +247,7 @@ RSpec.describe Auth::PasswordsController do
       end
 
       it "doesn't update user password" do
-        Timecop.travel(Attributor.reset_password_token_ttl + 1.minute) do
+        Timecop.travel(Authonomy.reset_password_token_ttl + 1.minute) do
           expect(@user).not_to be_password(@password)
 
           post :update, params: @params

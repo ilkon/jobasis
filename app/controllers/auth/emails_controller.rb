@@ -9,7 +9,7 @@ module Auth
       email = UserEmail.find_by_confirm_token(confirm_params[:token])
 
       if email
-        if email.confirm_sent_at.to_i + Attributor.confirm_email_token_ttl.to_i > Time.now.to_i
+        if email.confirm_sent_at.to_i + Authonomy.confirm_email_token_ttl.to_i > Time.now.to_i
           email.clear_confirm_token
           sign_in!(email.user)
         else

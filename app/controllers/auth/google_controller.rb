@@ -4,10 +4,12 @@ require 'securerandom'
 
 module Auth
   class GoogleController < BaseController
+    OAUTH_STATE_TOKEN_LENGTH = 24
+
     # GET /auth/google
     def new
       reset_session
-      session[:oauth_state] = SecureRandom.hex(Attributor.oauth_state_token_length)
+      session[:oauth_state] = SecureRandom.hex(OAUTH_STATE_TOKEN_LENGTH)
 
       redirect_to Auth::Api::Google.authorize_url(session[:oauth_state], auth_google_callback_url), allow_other_host: true
     end

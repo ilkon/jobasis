@@ -22,7 +22,7 @@
         - content_for(:page_title) { 'Change your password' }
         .box.has-text-left
           %p.content.has-text-grey.has-text-centered
-            Make sure new password is at least #{Attributor.password_length.first} characters including a number, an uppercase and a lowercase letter.
+            Make sure new password is at least #{Authonomy.password_length.first} characters including a number, an uppercase and a lowercase letter.
           = form_tag auth_reset_password_path do
             %input{ type: :hidden, name: :token, value: @token }
             .field
