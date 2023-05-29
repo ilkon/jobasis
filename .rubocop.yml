@@ -41,6 +41,8 @@ Rails/UniqueValidationWithoutIndex:
   Enabled: false
 Rails/ActionOrder:
   Enabled: false
+Rails/ThreeStateBooleanColumn:
+  Enabled: false
 
 RSpec/BeforeAfterAll:
   Enabled: false
@@ -52,8 +54,6 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/NestedGroups:
   Max: 5
-RSpec/FactoryBot/CreateList:
-  EnforcedStyle: n_times
 
 AllCops:
   NewCops: enable

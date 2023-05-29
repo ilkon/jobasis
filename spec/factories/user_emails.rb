@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :user_email do
-    association :user, strategy: :create
-
+    user             { { strategy: :create } }
     sequence(:email) { |n| "#{FFaker::Internet.user_name}#{n}@#{FFaker::Internet.domain_name}" }
   end
 
