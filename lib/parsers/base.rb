@@ -54,7 +54,7 @@ module Parsers
         prgrphs = paragraphs.deep_dup
 
         names.each do |name|
-          regexp = Regexp.new(/(?<=\A|\W)#{name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1')}(?=\W|\z)/i)
+          regexp = /(?<=\A|\W)#{name.gsub(/([\.\+\-\­\#\\])/, '\\\\\1')}(?=\W|\z)/i
 
           prgrphs.each do |prgrph|
             res = prgrph.gsub!(regexp, 'DUMMY')

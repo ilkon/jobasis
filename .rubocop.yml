@@ -54,6 +54,8 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/NestedGroups:
   Max: 5
+FactoryBot/AssociationStyle:
+  Enabled: false
 
 AllCops:
   NewCops: enable

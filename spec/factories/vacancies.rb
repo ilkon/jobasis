@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :vacancy do
-    publisher     { { strategy: :build } }
-    post          { { strategy: :build } }
-    employer      { { strategy: :build } }
+    association   :publisher, strategy: :build
+    association   :post, strategy: :build
+    association   :employer, strategy: :build
 
     published_at  { Time.now.utc - 5.days - rand(5).days }
     date          { published_at.to_date }

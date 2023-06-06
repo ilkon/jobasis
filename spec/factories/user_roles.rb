@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :common_user_role, class: 'UserRole' do
-    user  { { strategy: :create } }
+    association :user, strategy: :create
     admin { false }
   end
 
   factory :admin_user_role, class: 'UserRole' do
-    user  { { strategy: :create } }
+    association :user, strategy: :create
     admin { true }
   end
 end
