@@ -73,7 +73,7 @@ GEM
       activesupport
       bcrypt
       jwt
-    bcrypt (3.1.18)
+    bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -125,6 +125,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     jwt (2.7.1)
+    language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -233,9 +234,10 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
-    rspec-support (3.12.0)
-    rubocop (1.52.1)
+    rspec-support (3.12.1)
+    rubocop (1.53.1)
       json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.2.2.3)
       rainbow (>= 2.2.2, < 4.0)
@@ -289,7 +291,7 @@ GEM
     thor (1.2.2)
     tilt (2.2.0)
     timecop (0.9.6)
-    timeout (0.3.2)
+    timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
