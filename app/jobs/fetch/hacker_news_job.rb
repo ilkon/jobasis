@@ -66,7 +66,7 @@ module Fetch
           (response[:submitted] || []).each { |child| processing_pool[child.to_s] = :story }
 
         when :story
-          next unless response[:kids].present? && response[:title]&.match?(/Ask HN: Who is hiring\?/)
+          next unless response[:kids].present? && response[:title]&.include?('Ask HN: Who is hiring?')
 
           next if published_date < today - MAX_AGE_FOR_POST
 
