@@ -44,7 +44,7 @@ module Parsers
         skills = {}
 
         mapped = {}
-        Skill.all.each do |skill|
+        Skill.find_each do |skill|
           mapped[skill.name] = skill
           skill.synonyms.each { |synonym| mapped[synonym] = skill }
         end
