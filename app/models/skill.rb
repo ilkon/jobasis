@@ -50,9 +50,7 @@ class Skill < ApplicationRecord
       end
 
       status[:deleted] = indexed_skills.count
-      indexed_skills.each do |_id, model|
-        model.destroy
-      end
+      indexed_skills.each_value(&:destroy)
 
       status
     end
