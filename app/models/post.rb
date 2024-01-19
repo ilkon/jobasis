@@ -12,6 +12,7 @@ class Post < ApplicationRecord
 
   class << self
     def create_indexes(schema, table)
+      connection.execute("ALTER TABLE #{schema}.#{table} ADD PRIMARY KEY (id)")
       connection.execute("CREATE UNIQUE INDEX #{table}_unique ON #{schema}.#{table} (publisher_id, publisher_key)")
       connection.execute("CREATE INDEX #{table}_vacancy ON #{schema}.#{table} (publisher_id, vacancy)")
     end

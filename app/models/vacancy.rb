@@ -20,6 +20,7 @@ class Vacancy < ApplicationRecord
 
   class << self
     def create_indexes(schema, table)
+      connection.execute("ALTER TABLE #{schema}.#{table} ADD PRIMARY KEY (id)")
       connection.execute("CREATE INDEX #{table}_publisher_id ON #{schema}.#{table} (publisher_id)")
       connection.execute("CREATE INDEX #{table}_post_id ON #{schema}.#{table} (post_id)")
       connection.execute("CREATE INDEX #{table}_employer_id ON #{schema}.#{table} (employer_id)")
