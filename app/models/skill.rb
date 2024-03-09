@@ -5,7 +5,7 @@ class Skill < ApplicationRecord
 
   strip_attributes :name
 
-  serialize :synonyms, ObjectToJsonbSerializer
+  serialize :synonyms, coder: ObjectToJsonbSerializer
 
   class << self
     def export
