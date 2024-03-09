@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = render 'layouts/gtag'
     %meta{ 'http-equiv' => 'Content-Type', content: 'text/html; charset=UTF-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
     %title= (content_for?(:page_title) ? yield(:page_title) + ' | ' : '') + 'Jobasis'
@@ -8,7 +9,6 @@
     = csp_meta_tag
     %link{ rel: 'shortcut icon', type: 'image/x-icon', href: asset_path('favicon.ico') }
     %link{ rel: 'apple-touch-icon', type: 'image/x-icon', href: asset_path('apple-touch-icon.png') }
-    = render 'layouts/gtag'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   - navbar_locals = controller_path.start_with?('auth/') ? {} : { auth_links: true }
